@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA8B248C1905C83A004D51D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248B1905C83A004D51D7 /* Foundation.framework */; };
+		EA8B248E1905C83A004D51D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248D1905C83A004D51D7 /* CoreGraphics.framework */; };
+		EA8B24901905C83A004D51D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248F1905C83A004D51D7 /* UIKit.framework */; };
+		EA8B24921905C83A004D51D7 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B24911905C83A004D51D7 /* SpriteKit.framework */; };
+		EA8B24981905C83B004D51D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA8B24961905C83B004D51D7 /* InfoPlist.strings */; };
+		EA8B249A1905C83B004D51D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24991905C83B004D51D7 /* main.m */; };
+		EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B249D1905C83B004D51D7 /* AEAppDelegate.m */; };
+		EA8B24A11905C83B004D51D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA8B249F1905C83B004D51D7 /* Main.storyboard */; };
+		EA8B24A41905C83B004D51D7 /* AEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24A31905C83B004D51D7 /* AEViewController.m */; };
+		EA8B24A71905C83B004D51D7 /* AEMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24A61905C83B004D51D7 /* AEMyScene.m */; };
+		EA8B24A91905C83B004D51D7 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8B24A81905C83B004D51D7 /* Spaceship.png */; };
+		EA8B24AB1905C83B004D51D7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8B24AA1905C83B004D51D7 /* Images.xcassets */; };
+		EA8B24B21905C83B004D51D7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B24B11905C83B004D51D7 /* XCTest.framework */; };
+		EA8B24B31905C83B004D51D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248B1905C83A004D51D7 /* Foundation.framework */; };
+		EA8B24B41905C83B004D51D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248F1905C83A004D51D7 /* UIKit.framework */; };
+		EA8B24BC1905C83B004D51D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA8B24BA1905C83B004D51D7 /* InfoPlist.strings */; };
+		EA8B24BE1905C83B004D51D7 /* AsteroidEvasionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24BD1905C83B004D51D7 /* AsteroidEvasionTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA8B24B51905C83B004D51D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA8B24801905C83A004D51D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA8B24871905C83A004D51D7;
+			remoteInfo = AsteroidEvasion;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EA8B24881905C83A004D51D7 /* AsteroidEvasion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsteroidEvasion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA8B248B1905C83A004D51D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EA8B248D1905C83A004D51D7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EA8B248F1905C83A004D51D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EA8B24911905C83A004D51D7 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		EA8B24951905C83B004D51D7 /* AsteroidEvasion-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AsteroidEvasion-Info.plist"; sourceTree = "<group>"; };
+		EA8B24971905C83B004D51D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA8B24991905C83B004D51D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EA8B249B1905C83B004D51D7 /* AsteroidEvasion-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AsteroidEvasion-Prefix.pch"; sourceTree = "<group>"; };
+		EA8B249C1905C83B004D51D7 /* AEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEAppDelegate.h; sourceTree = "<group>"; };
+		EA8B249D1905C83B004D51D7 /* AEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEAppDelegate.m; sourceTree = "<group>"; };
+		EA8B24A01905C83B004D51D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EA8B24A21905C83B004D51D7 /* AEViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEViewController.h; sourceTree = "<group>"; };
+		EA8B24A31905C83B004D51D7 /* AEViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEViewController.m; sourceTree = "<group>"; };
+		EA8B24A51905C83B004D51D7 /* AEMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEMyScene.h; sourceTree = "<group>"; };
+		EA8B24A61905C83B004D51D7 /* AEMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEMyScene.m; sourceTree = "<group>"; };
+		EA8B24A81905C83B004D51D7 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
+		EA8B24AA1905C83B004D51D7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EA8B24B01905C83B004D51D7 /* AsteroidEvasionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsteroidEvasionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA8B24B11905C83B004D51D7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		EA8B24B91905C83B004D51D7 /* AsteroidEvasionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AsteroidEvasionTests-Info.plist"; sourceTree = "<group>"; };
+		EA8B24BB1905C83B004D51D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA8B24BD1905C83B004D51D7 /* AsteroidEvasionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsteroidEvasionTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA8B24851905C83A004D51D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA8B248E1905C83A004D51D7 /* CoreGraphics.framework in Frameworks */,
+				EA8B24901905C83A004D51D7 /* UIKit.framework in Frameworks */,
+				EA8B24921905C83A004D51D7 /* SpriteKit.framework in Frameworks */,
+				EA8B248C1905C83A004D51D7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA8B24AD1905C83B004D51D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA8B24B21905C83B004D51D7 /* XCTest.framework in Frameworks */,
+				EA8B24B41905C83B004D51D7 /* UIKit.framework in Frameworks */,
+				EA8B24B31905C83B004D51D7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EA8B247F1905C83A004D51D7 = {
+			isa = PBXGroup;
+			children = (
+				EA8B24931905C83B004D51D7 /* AsteroidEvasion */,
+				EA8B24B71905C83B004D51D7 /* AsteroidEvasionTests */,
+				EA8B248A1905C83A004D51D7 /* Frameworks */,
+				EA8B24891905C83A004D51D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EA8B24891905C83A004D51D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA8B24881905C83A004D51D7 /* AsteroidEvasion.app */,
+				EA8B24B01905C83B004D51D7 /* AsteroidEvasionTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA8B248A1905C83A004D51D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA8B248B1905C83A004D51D7 /* Foundation.framework */,
+				EA8B248D1905C83A004D51D7 /* CoreGraphics.framework */,
+				EA8B248F1905C83A004D51D7 /* UIKit.framework */,
+				EA8B24911905C83A004D51D7 /* SpriteKit.framework */,
+				EA8B24B11905C83B004D51D7 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA8B24931905C83B004D51D7 /* AsteroidEvasion */ = {
+			isa = PBXGroup;
+			children = (
+				EA8B249C1905C83B004D51D7 /* AEAppDelegate.h */,
+				EA8B249D1905C83B004D51D7 /* AEAppDelegate.m */,
+				EA8B249F1905C83B004D51D7 /* Main.storyboard */,
+				EA8B24A21905C83B004D51D7 /* AEViewController.h */,
+				EA8B24A31905C83B004D51D7 /* AEViewController.m */,
+				EA8B24A51905C83B004D51D7 /* AEMyScene.h */,
+				EA8B24A61905C83B004D51D7 /* AEMyScene.m */,
+				EA8B24A81905C83B004D51D7 /* Spaceship.png */,
+				EA8B24AA1905C83B004D51D7 /* Images.xcassets */,
+				EA8B24941905C83B004D51D7 /* Supporting Files */,
+			);
+			path = AsteroidEvasion;
+			sourceTree = "<group>";
+		};
+		EA8B24941905C83B004D51D7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA8B24951905C83B004D51D7 /* AsteroidEvasion-Info.plist */,
+				EA8B24961905C83B004D51D7 /* InfoPlist.strings */,
+				EA8B24991905C83B004D51D7 /* main.m */,
+				EA8B249B1905C83B004D51D7 /* AsteroidEvasion-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EA8B24B71905C83B004D51D7 /* AsteroidEvasionTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA8B24BD1905C83B004D51D7 /* AsteroidEvasionTests.m */,
+				EA8B24B81905C83B004D51D7 /* Supporting Files */,
+			);
+			path = AsteroidEvasionTests;
+			sourceTree = "<group>";
+		};
+		EA8B24B81905C83B004D51D7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA8B24B91905C83B004D51D7 /* AsteroidEvasionTests-Info.plist */,
+				EA8B24BA1905C83B004D51D7 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA8B24871905C83A004D51D7 /* AsteroidEvasion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA8B24C11905C83B004D51D7 /* Build configuration list for PBXNativeTarget "AsteroidEvasion" */;
+			buildPhases = (
+				EA8B24841905C83A004D51D7 /* Sources */,
+				EA8B24851905C83A004D51D7 /* Frameworks */,
+				EA8B24861905C83A004D51D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AsteroidEvasion;
+			productName = AsteroidEvasion;
+			productReference = EA8B24881905C83A004D51D7 /* AsteroidEvasion.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EA8B24AF1905C83B004D51D7 /* AsteroidEvasionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA8B24C41905C83B004D51D7 /* Build configuration list for PBXNativeTarget "AsteroidEvasionTests" */;
+			buildPhases = (
+				EA8B24AC1905C83B004D51D7 /* Sources */,
+				EA8B24AD1905C83B004D51D7 /* Frameworks */,
+				EA8B24AE1905C83B004D51D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA8B24B61905C83B004D51D7 /* PBXTargetDependency */,
+			);
+			name = AsteroidEvasionTests;
+			productName = AsteroidEvasionTests;
+			productReference = EA8B24B01905C83B004D51D7 /* AsteroidEvasionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA8B24801905C83A004D51D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AE;
+				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					EA8B24AF1905C83B004D51D7 = {
+						TestTargetID = EA8B24871905C83A004D51D7;
+					};
+				};
+			};
+			buildConfigurationList = EA8B24831905C83A004D51D7 /* Build configuration list for PBXProject "AsteroidEvasion" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EA8B247F1905C83A004D51D7;
+			productRefGroup = EA8B24891905C83A004D51D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA8B24871905C83A004D51D7 /* AsteroidEvasion */,
+				EA8B24AF1905C83B004D51D7 /* AsteroidEvasionTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA8B24861905C83A004D51D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA8B24981905C83B004D51D7 /* InfoPlist.strings in Resources */,
+				EA8B24AB1905C83B004D51D7 /* Images.xcassets in Resources */,
+				EA8B24A91905C83B004D51D7 /* Spaceship.png in Resources */,
+				EA8B24A11905C83B004D51D7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA8B24AE1905C83B004D51D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA8B24BC1905C83B004D51D7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA8B24841905C83A004D51D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA8B24A71905C83B004D51D7 /* AEMyScene.m in Sources */,
+				EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */,
+				EA8B24A41905C83B004D51D7 /* AEViewController.m in Sources */,
+				EA8B249A1905C83B004D51D7 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA8B24AC1905C83B004D51D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA8B24BE1905C83B004D51D7 /* AsteroidEvasionTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EA8B24B61905C83B004D51D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA8B24871905C83A004D51D7 /* AsteroidEvasion */;
+			targetProxy = EA8B24B51905C83B004D51D7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EA8B24961905C83B004D51D7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA8B24971905C83B004D51D7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EA8B249F1905C83B004D51D7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA8B24A01905C83B004D51D7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EA8B24BA1905C83B004D51D7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA8B24BB1905C83B004D51D7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA8B24BF1905C83B004D51D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EA8B24C01905C83B004D51D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA8B24C21905C83B004D51D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AsteroidEvasion/AsteroidEvasion-Prefix.pch";
+				INFOPLIST_FILE = "AsteroidEvasion/AsteroidEvasion-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EA8B24C31905C83B004D51D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AsteroidEvasion/AsteroidEvasion-Prefix.pch";
+				INFOPLIST_FILE = "AsteroidEvasion/AsteroidEvasion-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		EA8B24C51905C83B004D51D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AsteroidEvasion.app/AsteroidEvasion";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AsteroidEvasion/AsteroidEvasion-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "AsteroidEvasionTests/AsteroidEvasionTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		EA8B24C61905C83B004D51D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AsteroidEvasion.app/AsteroidEvasion";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AsteroidEvasion/AsteroidEvasion-Prefix.pch";
+				INFOPLIST_FILE = "AsteroidEvasionTests/AsteroidEvasionTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA8B24831905C83A004D51D7 /* Build configuration list for PBXProject "AsteroidEvasion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA8B24BF1905C83B004D51D7 /* Debug */,
+				EA8B24C01905C83B004D51D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA8B24C11905C83B004D51D7 /* Build configuration list for PBXNativeTarget "AsteroidEvasion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA8B24C21905C83B004D51D7 /* Debug */,
+				EA8B24C31905C83B004D51D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EA8B24C41905C83B004D51D7 /* Build configuration list for PBXNativeTarget "AsteroidEvasionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA8B24C51905C83B004D51D7 /* Debug */,
+				EA8B24C61905C83B004D51D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA8B24801905C83A004D51D7 /* Project object */;
+}
