@@ -26,17 +26,17 @@
         <!--PlayersVC - Players-->
         <scene sceneID="1aX-nw-2IM">
             <objects>
-                <tableViewController id="DfN-s0-zR0" customClass="AEPlayersVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PlayersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DfN-s0-zR0" customClass="AEPlayersVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="51" sectionHeaderHeight="22" sectionFooterHeight="22" id="QxL-2n-8wr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" textLabel="P4G-32-Rn0" detailTextLabel="wlL-Jt-84s" imageView="2Rb-Ic-YIU" rowHeight="51" style="IBUITableViewCellStyleSubtitle" id="TXg-y6-2qo">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerCell" textLabel="P4G-32-Rn0" detailTextLabel="wlL-Jt-84s" imageView="2Rb-Ic-YIU" rowHeight="51" style="IBUITableViewCellStyleSubtitle" id="TXg-y6-2qo">
                                 <rect key="frame" x="0.0" y="66" width="320" height="51"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TXg-y6-2qo" id="wVc-qP-ate">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P4G-32-Rn0">
@@ -69,7 +69,7 @@
                     <navigationItem key="navigationItem" title="Players" id="Z52-A3-C63">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Arv-df-sYe">
                             <connections>
-                                <segue destination="z9K-SY-0hd" kind="modal" id="b2K-kH-r3l"/>
+                                <segue destination="z9K-SY-0hd" kind="modal" identifier="AddPlayer" id="b2K-kH-r3l"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -143,6 +143,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="hhz-TI-v9O" id="bIs-Wn-zWE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ia-Mp-ZOA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

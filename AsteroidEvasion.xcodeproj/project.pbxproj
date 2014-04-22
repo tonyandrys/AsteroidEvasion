@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA0F23B719064F7F00ED4C78 /* PlayerData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA0F23B619064F7F00ED4C78 /* PlayerData.plist */; };
 		EA8B248C1905C83A004D51D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248B1905C83A004D51D7 /* Foundation.framework */; };
 		EA8B248E1905C83A004D51D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248D1905C83A004D51D7 /* CoreGraphics.framework */; };
 		EA8B24901905C83A004D51D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248F1905C83A004D51D7 /* UIKit.framework */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA0F23B619064F7F00ED4C78 /* PlayerData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlayerData.plist; sourceTree = "<group>"; };
 		EA8B24881905C83A004D51D7 /* AsteroidEvasion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsteroidEvasion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8B248B1905C83A004D51D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA8B248D1905C83A004D51D7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,6 +187,7 @@
 				EA8B24961905C83B004D51D7 /* InfoPlist.strings */,
 				EA8B24991905C83B004D51D7 /* main.m */,
 				EA8B249B1905C83B004D51D7 /* AsteroidEvasion-Prefix.pch */,
+				EA0F23B619064F7F00ED4C78 /* PlayerData.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA8B24981905C83B004D51D7 /* InfoPlist.strings in Resources */,
+				EA0F23B719064F7F00ED4C78 /* PlayerData.plist in Resources */,
 				EA8B24AB1905C83B004D51D7 /* Images.xcassets in Resources */,
 				EA8B24A91905C83B004D51D7 /* Spaceship.png in Resources */,
 				EA8B24A11905C83B004D51D7 /* Main.storyboard in Resources */,

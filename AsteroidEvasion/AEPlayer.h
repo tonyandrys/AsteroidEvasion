@@ -17,23 +17,24 @@
     string
  
  + A high score 
-    unsigned integer
+    signed integer
  
  + A ship color (used to color the ship in single player and represent this player in network games)
-    unsigned integer representing one of many(?) ship colors
+    signed integer representing one of many(?) ship colors
  
  + A difficulty level 
-    unsigned integer representing one of four difficulty levels
+    signed integer representing one of four difficulty levels
  
  FIXME: Need to add a property to hold a player's profile image
- FIXME: Another problem would go here... etc
  */
 
-@interface Player : NSObject
+@interface AEPlayer : NSObject
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *highScore;
-@property (readonly, assign) NSUInteger shipColor;
-@property (readonly, assign) NSUInteger difficulty;
+@property (readwrite, assign) NSInteger shipColor;
+@property (readwrite, assign) NSInteger difficulty;
+
+-(NSDictionary *)toDictionary;
 
 @end

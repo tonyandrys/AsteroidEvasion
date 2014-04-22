@@ -37,7 +37,7 @@ It's helpful if every new class written contains a brief description of its purp
  FIXME: Another problem would go here... etc
  */
 
-@interface Player : NSObject
+@interface AEPlayer : NSObject
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *highScore;
