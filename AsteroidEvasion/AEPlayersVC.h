@@ -1,5 +1,5 @@
 //
-//  AEPlayersVC.h
+//  AEPlayersTableVC.h
 //  AsteroidEvasion
 //
 //  Created by Tony Andrys on 4/21/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AEPlayersVC : UIViewController
+@interface AEPlayersVC : UITableViewController
 
 @end

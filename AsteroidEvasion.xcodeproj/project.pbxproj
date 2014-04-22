@@ -26,7 +26,7 @@
 		EA8B24BE1905C83B004D51D7 /* AsteroidEvasionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24BD1905C83B004D51D7 /* AsteroidEvasionTests.m */; };
 		EA8B24C91905D394004D51D7 /* AEMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24C81905D394004D51D7 /* AEMainViewController.m */; };
 		EA9400B81905F14800A7C18C /* AENewPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400B71905F14800A7C18C /* AENewPlayerVC.m */; };
-		EA9400BE1905F6AA00A7C18C /* AEPlayersTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400BD1905F6AA00A7C18C /* AEPlayersTableVC.m */; };
+		EA9400BE1905F6AA00A7C18C /* AEPlayersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400BD1905F6AA00A7C18C /* AEPlayersVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +67,8 @@
 		EA8B24C81905D394004D51D7 /* AEMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEMainViewController.m; sourceTree = "<group>"; };
 		EA9400B61905F14800A7C18C /* AENewPlayerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AENewPlayerVC.h; sourceTree = "<group>"; };
 		EA9400B71905F14800A7C18C /* AENewPlayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AENewPlayerVC.m; sourceTree = "<group>"; };
-		EA9400BC1905F6AA00A7C18C /* AEPlayersTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPlayersTableVC.h; sourceTree = "<group>"; };
-		EA9400BD1905F6AA00A7C18C /* AEPlayersTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlayersTableVC.m; sourceTree = "<group>"; };
+		EA9400BC1905F6AA00A7C18C /* AEPlayersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPlayersVC.h; sourceTree = "<group>"; };
+		EA9400BD1905F6AA00A7C18C /* AEPlayersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlayersVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +105,8 @@
 				EA8B24C81905D394004D51D7 /* AEMainViewController.m */,
 				EA9400B61905F14800A7C18C /* AENewPlayerVC.h */,
 				EA9400B71905F14800A7C18C /* AENewPlayerVC.m */,
-				EA9400BC1905F6AA00A7C18C /* AEPlayersTableVC.h */,
-				EA9400BD1905F6AA00A7C18C /* AEPlayersTableVC.m */,
+				EA9400BC1905F6AA00A7C18C /* AEPlayersVC.h */,
+				EA9400BD1905F6AA00A7C18C /* AEPlayersVC.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 				EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */,
 				EA8B24A41905C83B004D51D7 /* AEGameSceneViewController.m in Sources */,
 				EA9400B81905F14800A7C18C /* AENewPlayerVC.m in Sources */,
-				EA9400BE1905F6AA00A7C18C /* AEPlayersTableVC.m in Sources */,
+				EA9400BE1905F6AA00A7C18C /* AEPlayersVC.m in Sources */,
 				EA8B24C91905D394004D51D7 /* AEMainViewController.m in Sources */,
 				EA8B249A1905C83B004D51D7 /* main.m in Sources */,
 			);
