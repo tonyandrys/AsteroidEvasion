@@ -2,14 +2,14 @@
 //  AEViewController.m
 //  AsteroidEvasion
 //
-//  Created by Tony on 4/21/14.
-//  Copyright (c) 2014 __MyCompanyName__. All rights reserved.
+//  Created by Tony Andrys on 4/21/14.
+//  Copyright (c) 2014 Tony Andrys. All rights reserved.
 //
 
-#import "AEViewController.h"
+#import "AEGameSceneViewController.h"
 #import "AEMyScene.h"
 
-@implementation AEViewController
+@implementation AEGameSceneViewController
 
 - (void)viewDidLoad
 {

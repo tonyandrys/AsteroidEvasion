@@ -15,7 +15,7 @@
 		EA8B249A1905C83B004D51D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24991905C83B004D51D7 /* main.m */; };
 		EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B249D1905C83B004D51D7 /* AEAppDelegate.m */; };
 		EA8B24A11905C83B004D51D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA8B249F1905C83B004D51D7 /* Main.storyboard */; };
-		EA8B24A41905C83B004D51D7 /* AEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24A31905C83B004D51D7 /* AEViewController.m */; };
+		EA8B24A41905C83B004D51D7 /* AEGameSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24A31905C83B004D51D7 /* AEGameSceneViewController.m */; };
 		EA8B24A71905C83B004D51D7 /* AEMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24A61905C83B004D51D7 /* AEMyScene.m */; };
 		EA8B24A91905C83B004D51D7 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8B24A81905C83B004D51D7 /* Spaceship.png */; };
 		EA8B24AB1905C83B004D51D7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8B24AA1905C83B004D51D7 /* Images.xcassets */; };
@@ -24,6 +24,9 @@
 		EA8B24B41905C83B004D51D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248F1905C83A004D51D7 /* UIKit.framework */; };
 		EA8B24BC1905C83B004D51D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA8B24BA1905C83B004D51D7 /* InfoPlist.strings */; };
 		EA8B24BE1905C83B004D51D7 /* AsteroidEvasionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24BD1905C83B004D51D7 /* AsteroidEvasionTests.m */; };
+		EA8B24C91905D394004D51D7 /* AEMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24C81905D394004D51D7 /* AEMainViewController.m */; };
+		EA9400B81905F14800A7C18C /* AENewPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400B71905F14800A7C18C /* AENewPlayerVC.m */; };
+		EA9400BE1905F6AA00A7C18C /* AEPlayersTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400BD1905F6AA00A7C18C /* AEPlayersTableVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +52,8 @@
 		EA8B249C1905C83B004D51D7 /* AEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEAppDelegate.h; sourceTree = "<group>"; };
 		EA8B249D1905C83B004D51D7 /* AEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEAppDelegate.m; sourceTree = "<group>"; };
 		EA8B24A01905C83B004D51D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EA8B24A21905C83B004D51D7 /* AEViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEViewController.h; sourceTree = "<group>"; };
-		EA8B24A31905C83B004D51D7 /* AEViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEViewController.m; sourceTree = "<group>"; };
+		EA8B24A21905C83B004D51D7 /* AEGameSceneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEGameSceneViewController.h; sourceTree = "<group>"; };
+		EA8B24A31905C83B004D51D7 /* AEGameSceneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEGameSceneViewController.m; sourceTree = "<group>"; };
 		EA8B24A51905C83B004D51D7 /* AEMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEMyScene.h; sourceTree = "<group>"; };
 		EA8B24A61905C83B004D51D7 /* AEMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEMyScene.m; sourceTree = "<group>"; };
 		EA8B24A81905C83B004D51D7 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
@@ -60,6 +63,12 @@
 		EA8B24B91905C83B004D51D7 /* AsteroidEvasionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AsteroidEvasionTests-Info.plist"; sourceTree = "<group>"; };
 		EA8B24BB1905C83B004D51D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA8B24BD1905C83B004D51D7 /* AsteroidEvasionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsteroidEvasionTests.m; sourceTree = "<group>"; };
+		EA8B24C71905D394004D51D7 /* AEMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEMainViewController.h; sourceTree = "<group>"; };
+		EA8B24C81905D394004D51D7 /* AEMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEMainViewController.m; sourceTree = "<group>"; };
+		EA9400B61905F14800A7C18C /* AENewPlayerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AENewPlayerVC.h; sourceTree = "<group>"; };
+		EA9400B71905F14800A7C18C /* AENewPlayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AENewPlayerVC.m; sourceTree = "<group>"; };
+		EA9400BC1905F6AA00A7C18C /* AEPlayersTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPlayersTableVC.h; sourceTree = "<group>"; };
+		EA9400BD1905F6AA00A7C18C /* AEPlayersTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlayersTableVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +96,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA65FBBA1905DF180013AB7C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EA8B24A21905C83B004D51D7 /* AEGameSceneViewController.h */,
+				EA8B24A31905C83B004D51D7 /* AEGameSceneViewController.m */,
+				EA8B24C71905D394004D51D7 /* AEMainViewController.h */,
+				EA8B24C81905D394004D51D7 /* AEMainViewController.m */,
+				EA9400B61905F14800A7C18C /* AENewPlayerVC.h */,
+				EA9400B71905F14800A7C18C /* AENewPlayerVC.m */,
+				EA9400BC1905F6AA00A7C18C /* AEPlayersTableVC.h */,
+				EA9400BD1905F6AA00A7C18C /* AEPlayersTableVC.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		EA65FBBC1905DF330013AB7C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				EA8B24A51905C83B004D51D7 /* AEMyScene.h */,
+				EA8B24A61905C83B004D51D7 /* AEMyScene.m */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		EA65FBBD1905DF4A0013AB7C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EA8B24A81905C83B004D51D7 /* Spaceship.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		EA8B247F1905C83A004D51D7 = {
 			isa = PBXGroup;
 			children = (
@@ -121,14 +162,12 @@
 		EA8B24931905C83B004D51D7 /* AsteroidEvasion */ = {
 			isa = PBXGroup;
 			children = (
+				EA65FBBD1905DF4A0013AB7C /* Assets */,
+				EA65FBBC1905DF330013AB7C /* Scenes */,
+				EA65FBBA1905DF180013AB7C /* View Controllers */,
 				EA8B249C1905C83B004D51D7 /* AEAppDelegate.h */,
 				EA8B249D1905C83B004D51D7 /* AEAppDelegate.m */,
 				EA8B249F1905C83B004D51D7 /* Main.storyboard */,
-				EA8B24A21905C83B004D51D7 /* AEViewController.h */,
-				EA8B24A31905C83B004D51D7 /* AEViewController.m */,
-				EA8B24A51905C83B004D51D7 /* AEMyScene.h */,
-				EA8B24A61905C83B004D51D7 /* AEMyScene.m */,
-				EA8B24A81905C83B004D51D7 /* Spaceship.png */,
 				EA8B24AA1905C83B004D51D7 /* Images.xcassets */,
 				EA8B24941905C83B004D51D7 /* Supporting Files */,
 			);
@@ -210,6 +249,7 @@
 			attributes = {
 				CLASSPREFIX = AE;
 				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Tony Andrys, Ian Brauer, Patrick Walsh";
 				TargetAttributes = {
 					EA8B24AF1905C83B004D51D7 = {
 						TestTargetID = EA8B24871905C83A004D51D7;
@@ -264,7 +304,10 @@
 			files = (
 				EA8B24A71905C83B004D51D7 /* AEMyScene.m in Sources */,
 				EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */,
-				EA8B24A41905C83B004D51D7 /* AEViewController.m in Sources */,
+				EA8B24A41905C83B004D51D7 /* AEGameSceneViewController.m in Sources */,
+				EA9400B81905F14800A7C18C /* AENewPlayerVC.m in Sources */,
+				EA9400BE1905F6AA00A7C18C /* AEPlayersTableVC.m in Sources */,
+				EA8B24C91905D394004D51D7 /* AEMainViewController.m in Sources */,
 				EA8B249A1905C83B004D51D7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,8 +436,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AsteroidEvasion/AsteroidEvasion-Prefix.pch";
 				INFOPLIST_FILE = "AsteroidEvasion/AsteroidEvasion-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -407,8 +452,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AsteroidEvasion/AsteroidEvasion-Prefix.pch";
 				INFOPLIST_FILE = "AsteroidEvasion/AsteroidEvasion-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -472,6 +519,7 @@
 				EA8B24C31905C83B004D51D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA8B24C41905C83B004D51D7 /* Build configuration list for PBXNativeTarget "AsteroidEvasionTests" */ = {
 			isa = XCConfigurationList;
@@ -480,6 +528,7 @@
 				EA8B24C61905C83B004D51D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

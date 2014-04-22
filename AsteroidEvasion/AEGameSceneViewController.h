@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface AEViewController : UIViewController
+@interface AEGameSceneViewController : UIViewController
 
 @end
