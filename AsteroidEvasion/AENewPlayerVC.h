@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AENewPlayerVC : UIViewController
+@class AENewPlayerVC;
+
+@protocol AENewPlayerVCDelegate <NSObject>
+
+- (void)AENewPlayerVCDidCancel:(AENewPlayerVC *)controller;
+- (void)AENewPlayerVCDidSave:(AENewPlayerVC *)controller;
 
 @end
+
+@interface AENewPlayerVC : UITableViewController
+
+@property (nonatomic, weak) id <AENewPlayerVCDelegate> delegate;
+
+- (IBAction)cancel:(id)sender;
+- (IBAction)done:(id)sender;
+
+@end
+

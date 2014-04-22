@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="1357" y="60"/>
         </scene>
-        <!--Players TableVC - Players-->
+        <!--PlayersVC - Players-->
         <scene sceneID="1aX-nw-2IM">
             <objects>
-                <tableViewController id="DfN-s0-zR0" customClass="AEPlayersTableVC" sceneMemberID="viewController">
+                <tableViewController id="DfN-s0-zR0" customClass="AEPlayersVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="51" sectionHeaderHeight="22" sectionFooterHeight="22" id="QxL-2n-8wr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,10 +78,10 @@
             </objects>
             <point key="canvasLocation" x="543" y="1636"/>
         </scene>
-        <!--Table View Controller - New Player-->
+        <!--New PlayerVC - New Player-->
         <scene sceneID="0BP-Xl-orU">
             <objects>
-                <tableViewController id="kgN-jM-R7v" sceneMemberID="viewController">
+                <tableViewController id="kgN-jM-R7v" customClass="AENewPlayerVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Nw1-67-5l5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,8 +132,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Player" id="wP5-C8-MEc">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vU4-7o-Exd"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="icg-PK-TmQ"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vU4-7o-Exd">
+                            <connections>
+                                <action selector="cancel:" destination="kgN-jM-R7v" id="jMM-Zr-Ua3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="icg-PK-TmQ">
+                            <connections>
+                                <action selector="done:" destination="kgN-jM-R7v" id="ACd-zS-70b"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ia-Mp-ZOA" userLabel="First Responder" sceneMemberID="firstResponder"/>
