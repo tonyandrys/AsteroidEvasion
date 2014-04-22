@@ -12,6 +12,7 @@
 
 @protocol AENewPlayerVCDelegate <NSObject>
 
+// Customary to include a reference to the object in question as the first parameter when writing delegate methods to avoid confusion.
 - (void)AENewPlayerVCDidCancel:(AENewPlayerVC *)controller;
 - (void)AENewPlayerVCDidSave:(AENewPlayerVC *)controller;
 

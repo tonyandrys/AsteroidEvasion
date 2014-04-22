@@ -27,6 +27,7 @@
 		EA8B24C91905D394004D51D7 /* AEMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B24C81905D394004D51D7 /* AEMainViewController.m */; };
 		EA9400B81905F14800A7C18C /* AENewPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400B71905F14800A7C18C /* AENewPlayerVC.m */; };
 		EA9400BE1905F6AA00A7C18C /* AEPlayersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400BD1905F6AA00A7C18C /* AEPlayersVC.m */; };
+		EA9400C21906250500A7C18C /* AEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400C11906250500A7C18C /* AEPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		EA9400B71905F14800A7C18C /* AENewPlayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AENewPlayerVC.m; sourceTree = "<group>"; };
 		EA9400BC1905F6AA00A7C18C /* AEPlayersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPlayersVC.h; sourceTree = "<group>"; };
 		EA9400BD1905F6AA00A7C18C /* AEPlayersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlayersVC.m; sourceTree = "<group>"; };
+		EA9400C01906250500A7C18C /* AEPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPlayer.h; sourceTree = "<group>"; };
+		EA9400C11906250500A7C18C /* AEPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,7 @@
 		EA8B24931905C83B004D51D7 /* AsteroidEvasion */ = {
 			isa = PBXGroup;
 			children = (
+				EA9400BF190624E300A7C18C /* Objects */,
 				EA65FBBD1905DF4A0013AB7C /* Assets */,
 				EA65FBBC1905DF330013AB7C /* Scenes */,
 				EA65FBBA1905DF180013AB7C /* View Controllers */,
@@ -201,6 +205,15 @@
 				EA8B24BA1905C83B004D51D7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EA9400BF190624E300A7C18C /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				EA9400C01906250500A7C18C /* AEPlayer.h */,
+				EA9400C11906250500A7C18C /* AEPlayer.m */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA9400C21906250500A7C18C /* AEPlayer.m in Sources */,
 				EA8B24A71905C83B004D51D7 /* AEMyScene.m in Sources */,
 				EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */,
 				EA8B24A41905C83B004D51D7 /* AEGameSceneViewController.m in Sources */,

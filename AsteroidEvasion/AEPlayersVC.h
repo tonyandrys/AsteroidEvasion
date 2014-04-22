@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AENewPlayerVC.h"
 
-@interface AEPlayersVC : UITableViewController
+// PlayersVC must implement NewPlayerVCDelegate to allow communication between the "Add Players" view and this view which contains the list of players.
+@interface AEPlayersVC : UITableViewController <AENewPlayerVCDelegate>
+
+// Array of Player objects to display in the table
+@property (nonatomic, strong) NSMutableArray *players;
 
 @end

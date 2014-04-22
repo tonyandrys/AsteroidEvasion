@@ -56,6 +56,23 @@
     return 0;
 }
 
+#pragma mark AENewPlayerVCDelegate Implementation
+// Called if the user presses the Cancel button on the modal Add Player screen
+- (void)AENewPlayerVCDidSave:(AENewPlayerVC *)controller {
+    
+    // Closes the window and returns focus to this view
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Called if the user presses the Done button on the modal Add Player screen
+- (void)AENewPlayerVCDidCancel:(AENewPlayerVC *)controller {
+    
+    // For now, close the window
+    // FIXME: Write new player data to a database to store it
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
