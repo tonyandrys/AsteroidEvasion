@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EA0F23B719064F7F00ED4C78 /* PlayerData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA0F23B619064F7F00ED4C78 /* PlayerData.plist */; };
+		EA0F23BA19070A1600ED4C78 /* AEPlayerDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23B919070A1600ED4C78 /* AEPlayerDetailsVC.m */; };
+		EA0F23C11907193600ED4C78 /* AEPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23C01907193600ED4C78 /* AEPreferences.m */; };
 		EA8B248C1905C83A004D51D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248B1905C83A004D51D7 /* Foundation.framework */; };
 		EA8B248E1905C83A004D51D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248D1905C83A004D51D7 /* CoreGraphics.framework */; };
 		EA8B24901905C83A004D51D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248F1905C83A004D51D7 /* UIKit.framework */; };
@@ -43,6 +45,10 @@
 
 /* Begin PBXFileReference section */
 		EA0F23B619064F7F00ED4C78 /* PlayerData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlayerData.plist; sourceTree = "<group>"; };
+		EA0F23B819070A1600ED4C78 /* AEPlayerDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPlayerDetailsVC.h; sourceTree = "<group>"; };
+		EA0F23B919070A1600ED4C78 /* AEPlayerDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlayerDetailsVC.m; sourceTree = "<group>"; };
+		EA0F23BF1907193600ED4C78 /* AEPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPreferences.h; sourceTree = "<group>"; };
+		EA0F23C01907193600ED4C78 /* AEPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPreferences.m; sourceTree = "<group>"; };
 		EA8B24881905C83A004D51D7 /* AsteroidEvasion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsteroidEvasion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8B248B1905C83A004D51D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA8B248D1905C83A004D51D7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -101,6 +107,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA0F23BB1907146800ED4C78 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				EA0F23BF1907193600ED4C78 /* AEPreferences.h */,
+				EA0F23C01907193600ED4C78 /* AEPreferences.m */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		EA65FBBA1905DF180013AB7C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +127,8 @@
 				EA9400B71905F14800A7C18C /* AENewPlayerVC.m */,
 				EA9400BC1905F6AA00A7C18C /* AEPlayersVC.h */,
 				EA9400BD1905F6AA00A7C18C /* AEPlayersVC.m */,
+				EA0F23B819070A1600ED4C78 /* AEPlayerDetailsVC.h */,
+				EA0F23B919070A1600ED4C78 /* AEPlayerDetailsVC.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -167,6 +184,7 @@
 		EA8B24931905C83B004D51D7 /* AsteroidEvasion */ = {
 			isa = PBXGroup;
 			children = (
+				EA0F23BB1907146800ED4C78 /* Constants */,
 				EA9400BF190624E300A7C18C /* Objects */,
 				EA65FBBD1905DF4A0013AB7C /* Assets */,
 				EA65FBBC1905DF330013AB7C /* Scenes */,
@@ -320,7 +338,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA9400C21906250500A7C18C /* AEPlayer.m in Sources */,
+				EA0F23C11907193600ED4C78 /* AEPreferences.m in Sources */,
 				EA8B24A71905C83B004D51D7 /* AEMyScene.m in Sources */,
+				EA0F23BA19070A1600ED4C78 /* AEPlayerDetailsVC.m in Sources */,
 				EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */,
 				EA8B24A41905C83B004D51D7 /* AEGameSceneViewController.m in Sources */,
 				EA9400B81905F14800A7C18C /* AENewPlayerVC.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "AEPlayersVC.h"
 #import "AEPlayer.h"
+#import "AEPlayerDetailsVC.h"
 
 @interface AEPlayersVC ()
 
@@ -103,26 +104,6 @@
     
 }
 
- #pragma mark - Navigation
- 
- // Prepare for navigation to child views before a segue takes place
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     
-     // Add Player Segue Configuration
-     if ([segue.identifier isEqualToString:@"AddPlayer"]) {
-         
-         // Get a hook to the ViewController we're about to move to
-         UINavigationController *navigationController = segue.destinationViewController;
-         AENewPlayerVC *newPlayerViewController = [navigationController viewControllers][0];
-         
-         // Let the destination ViewController be the delegate of this class for communication between the two
-         newPlayerViewController.delegate = self;
-     }
-     
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
-
 #pragma mark - Data Operations
 
 // Reads player data from storage and returns an array of AEPlayer objects
@@ -192,6 +173,43 @@
     [writeDictionary writeToFile:plistPath atomically:YES];
     NSLog(@"Wrote %i Players to storage.", [self.players count]);
 }
+
+#pragma mark - Navigation
+
+// Prepare for navigation to child views before a segue takes place
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    // Add Player segue configuration
+    if ([segue.identifier isEqualToString:@"AddPlayer"]) {
+        
+        // Get a hook to the ViewController we're about to move to
+        UINavigationController *navigationController = segue.destinationViewController;
+        AENewPlayerVC *newPlayerViewController = [navigationController viewControllers][0];
+        
+        // Let the destination ViewController be the delegate of this class for communication between the two
+        newPlayerViewController.delegate = self;
+    }
+    
+    // Player Details segue configuration
+    else if ([segue.identifier isEqualToString:@"PlayerDetails"]) {
+        
+        // Get the index of the clicked cell
+        NSInteger clickedIndex = [self.tableView indexPathForCell:sender].row;
+        
+        // Get the Player object associated with that index in the array
+        AEPlayer *selectedPlayer = [self.players objectAtIndex:clickedIndex];
+        NSLog(@"User has selected the player name %@", selectedPlayer.name);
+        
+        //UINavigationController *navigationController = segue.destinationViewController;
+        AEPlayerDetailsVC *playerDetailsVC = segue.destinationViewController;
+        
+        // Pass the player object to the next VC
+        playerDetailsVC.displayPlayer = selectedPlayer;
+        NSLog(@"Transitioning to Player Details View...");
+    }
+    
+}
+
 
 
 /*
