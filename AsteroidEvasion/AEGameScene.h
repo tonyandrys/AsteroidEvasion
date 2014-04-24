@@ -13,6 +13,7 @@
 
 // Player objects representing active user profile
 @property (strong, nonatomic) AEPlayer *playerOne;
+@property (readwrite, assign) NSInteger *playerScore;
 
 - (id)initWithSize:(CGSize)size playerOne:(AEPlayer *)p1;
 

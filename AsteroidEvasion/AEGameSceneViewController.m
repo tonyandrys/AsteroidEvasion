@@ -19,11 +19,15 @@
     SKView* skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
+
     
     // Create and configure the scene.
-    NSLog(@"Configuring SKScene with height: %f width: %f", skView.bounds.size.height, skView.bounds.size.width);
+    NSLog(@"Building SKScene with height: %f width: %f", skView.bounds.size.height, skView.bounds.size.width);
     AEGameScene* scene = [[AEGameScene alloc] initWithSize:skView.bounds.size playerOne:self.loggedInPlayer];
     scene.scaleMode = SKSceneScaleModeAspectFit;
+    
+    // This game makes the most sense if we break up the scene into a cartesian plane, let (0,0) be the point in the center of the scene, and let (0,0) be the point of origin for adding nodes and sprites. Setting the anchor point to (0.5,0.5) allows this setup.
+    scene.anchorPoint = CGPointMake(0.5, 0.5);
     
     // Present the scene.
     [skView presentScene:scene];
