@@ -55,17 +55,14 @@ float circleRadius;
     // plotting test circles
     CGRect bLCircle = CGRectMake(bottomLeftPoint.x, bottomLeftPoint.y, 25.0, 25.0);
     CGRect bRCircle = CGRectMake(bottomRightPoint.x-25.0, bottomRightPoint.y, 25.0, 25.0);
-    CGRect tLCircle = CGRectMake(topLeftPoint.x, topLeftPoint.y-25.0, 25.0, 25.0);
     CGRect tRCircle = CGRectMake(topRightPoint.x-25.0, topRightPoint.y-25.0, 25.0, 25.0);
     
     SKShapeNode *bLCircleShapeNode = [[SKShapeNode alloc] init];
     SKShapeNode *bRCircleShapeNode = [[SKShapeNode alloc] init];
-    SKShapeNode *tLCircleShapeNode = [[SKShapeNode alloc] init];
     SKShapeNode *tRCircleShapeNode = [[SKShapeNode alloc] init];
     
     bLCircleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:bLCircle].CGPath;
     bRCircleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:bRCircle].CGPath;
-    tLCircleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:tLCircle].CGPath;
     tRCircleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:tRCircle].CGPath;
     
     bLCircleShapeNode.strokeColor = [UIColor redColor];
@@ -74,15 +71,18 @@ float circleRadius;
     bRCircleShapeNode.strokeColor = [UIColor yellowColor];
     [self addChild:bRCircleShapeNode];
     
-    tLCircleShapeNode.strokeColor = [UIColor greenColor];
-    [self addChild:tLCircleShapeNode];
-    
     tRCircleShapeNode.strokeColor = [UIColor blueColor];
     [self addChild:tRCircleShapeNode];
     
     
     /* Configure scene background */
     self.backgroundColor = [SKColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+    
+    // Configure SKSCene physics
+    self.physicsWorld.contactDelegate = self;
+    
+    // No gravity should be used in this game, asteroids should be able to be pushed in any direction
+    self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     
     /* Build text labels */
     // Player name label
@@ -138,19 +138,32 @@ float circleRadius;
     ship.position = CGPointMake(self.frame.origin.x + circleShapeNode.frame.size.width/2, self.frame.origin.y);
     [self addChild:ship];
     
+    // Test asteroid
+    SKSpriteNode *testAsteroid = [[SKSpriteNode alloc] initWithImageNamed:@"asteroid"];
+    testAsteroid.position = CGPointMake(bottomLeftPoint.x, bottomLeftPoint.y);
+    [self addChild:testAsteroid];
     
+    // test asteroid physics body - fluid based as we want it to be affected by forces and impulses
+    testAsteroid.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:testAsteroid.frame.size.width/2];
+    testAsteroid.physicsBody.friction = 0.4f; // Asteroids should have no friction
+    testAsteroid.physicsBody.restitution = 1.0f; // Restitution = "bounciness", we want elastic collisions with no energy loss
+    testAsteroid.physicsBody.linearDamping = 0.0f; // Linear dampening = air friction - there's none of that shit in space
+    testAsteroid.physicsBody.allowsRotation = YES; // Asteroids should rotate maybe
+    testAsteroid.physicsBody.categoryBitMask = ASTEROID_CATEGORY; // Assign asteroid category bitmask, all asteroids will have the same for now (they will not collide with each other, which we will eventually want to change)
+    testAsteroid.physicsBody.contactTestBitMask = SHIP_CATEGORY; // Notify if the asteroid makes contact with the ship
+    
+    // Apply an impulse (force vector) to the asteroid. Pushing it dx=1.5f and dy=-1.5f will push it to quadrant VI
+    [testAsteroid.physicsBody applyImpulse:CGVectorMake(7.0f, 8.0f)];
 
 }
-
-
 
 # pragma mark - Touch handling
 
 // Called when a touch begins
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     // Get an instance of the touch and store the location of the touch event
-    UITouch *touch = [touches anyObject];
-    CGPoint touchLocation = [touch locationInNode:self];
+    //UITouch *touch = [touches anyObject];
+    //CGPoint touchLocation = [touch locationInNode:self];
 }
 
 // Fired when the finger moves within a view
@@ -165,28 +178,54 @@ float circleRadius;
     
     // Check if the user is panning to the right (positive x difference) or to the left (negative x difference)
     NSInteger difference = touchLocation.x - previousLocation.x;
+    
+    // Calculate difference in radians
+    double dTheta =  difference * (M_PI/180);
+    
+    NSLog(@"===");
+    if (difference > 0) {
+        NSLog(@"Positive (clockwise) touch detected!");
+    } else if (difference < 0) {
+        NSLog(@"Negative (counter-clockwise) touch detected!");
+    } else {
+        NSLog(@"Zero movement touch detected!");
+    }
+    
+    if (difference != 0) {
+        
     NSLog(@"Touch x difference is %i", difference);
+    NSLog(@"We need to move %i * pi/180 radians = %f", difference, dTheta);
     
     // Get a reference to the ship node by its name to change its position
     SKSpriteNode* ship = (SKSpriteNode *)[self childNodeWithName:shipCategoryName];
     
     // Calculate the ship's new position by getting its polar position, taking the sum of theta and the touch x difference, and updating the ship's position
     CGPoint currentShipPosition = CGPointMake(ship.position.x, ship.position.y);
-    double rad = circleRadius; //[self getRadiusFromPoint:currentShipPosition];
+    NSLog(@"Ship's current position is (%f, %f)", ship.position.x, ship.position.y);
+    
+    double rad = [self getRadiusFromPoint:currentShipPosition];
     double theta = [self getThetaFromPoint:currentShipPosition];
+    NSLog(@"Ship's current polar position is (%f, %f)", rad, theta);
     
-    // Convert theta to degrees and add the touch x difference
-    double thetaInDegrees = [self radToDeg:theta];
-    double sum = thetaInDegrees + difference;
+    // Add the change in theta to the original theta
+    double thetaPrime = theta + dTheta;
     
-    // Convert back to radians and convert r and theta back to their cartesian equivalent to set the position of the node
-    double thetaInRadians = [self degToRad:sum];
-    CGPoint newShipPosition = [self polarToCartesian:rad theta:thetaInRadians];
+    // Convert r and theta back to their cartesian equivalent to set the position of the node
+    CGPoint newShipPosition = [self polarToCartesian:rad theta:thetaPrime];
     
     // Update ship position
     ship.position = newShipPosition;
     NSLog(@"Ship is now positioned at (%f, %f)", ship.position.x, ship.position.y);
+    NSLog(@"===");
+    }
 }
+
+#pragma mark - Collision Handling
+-(void)didBeginContact:(SKPhysicsContact *)contact {
+    NSLog(@"Contact!!!!!");
+}
+
+
 
 #pragma mark - Math
 
@@ -206,7 +245,7 @@ float circleRadius;
 
 // Returns the polar angle (theta) given a pair of cartesian (x,y) coordinates
 - (double)getThetaFromPoint:(CGPoint)pair {
-    return atan2(pair.x, pair.y);
+    return atan2(pair.y, pair.x);
 }
 
 // Converts degrees to radians
@@ -218,6 +257,8 @@ float circleRadius;
 - (double)radToDeg:(double)radians {
     return radians * (180.0 / M_PI);
 }
+
+# pragma mark - Frame Update Handler
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
