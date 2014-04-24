@@ -30,8 +30,8 @@
 
 @interface AEPlayer : NSObject
 
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *highScore;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *highScore;
 @property (readwrite, assign) NSInteger shipColor;
 @property (readwrite, assign) NSInteger difficulty;
 

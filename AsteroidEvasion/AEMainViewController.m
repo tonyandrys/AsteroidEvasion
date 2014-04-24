@@ -8,6 +8,9 @@
 
 #import "AEMainViewController.h"
 #import "AEPreferences.h"
+#import "AEPlayer.h"
+#import "AETwoPlayerGameVC.h"
+#import "AEGameSceneViewController.h"
 
 @interface AEMainViewController ()
 
@@ -34,10 +37,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    NSLog (@"wiewWillAppear is called");
     
     // Update the toolbar window and button appropriately
-    [self updateToolbarUI];
+    [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,8 +49,8 @@
 }
 
 #pragma mark - UI handling/actions
-// Updates the button actions and left label of the bottom UIToolbar based on the currently logged in profile
-- (void)updateToolbarUI {
+// Updates all UI elements that must respond to user profile context
+- (void)updateUI {
     
     // Define strings to be used in bottom toolbar
     NSString *noProfileText = @"No Profile";
@@ -60,15 +62,18 @@
     
     // if there is no profile logged in (or a logout just occurred), reset the toolbar's left label text to "No Profile" and the right button's text to "Log In"
     if ([activeProfileName length] == 0) {
-        NSLog(@"No active profile found. Updating bottom toolbar.");
-        self.profileNameButton.style = d
+        NSLog(@"No active profile found. Updating bottom toolbar and disabling game buttons.");
+        [self.onePlayerStartButton setEnabled:NO];
+        [self.twoPlayerStartButton setEnabled:NO];
         self.profileNameButton.title = noProfileText;
         self.toolbarActionButton.title = logInButtonText;
     }
     
     // If a profile is logged in, update the left label to the name of the logged in profile, and and the right button's text to "Log Out"
     else {
-        NSLog(@"Found an active profile (%@). Updating bottom toolbar.", activeProfileName);
+        NSLog(@"Found an active profile (%@). Updating bottom toolbar and enabling game buttons.", activeProfileName);
+        [self.onePlayerStartButton setEnabled:YES];
+        [self.twoPlayerStartButton setEnabled:YES];
         self.profileNameButton.title = activeProfileName;
         self.toolbarActionButton.title = logOutButtonText;
     }
@@ -89,23 +94,46 @@
             [self.userPrefs setValue:nil forKey:KEY_PROFILE_HIGH_SCORE];
             [self.userPrefs setValue:nil forKey:KEY_PROFILE_SHIP_COLOR];
             [self.userPrefs setValue:nil forKey:KEY_PROFILE_DIFFICULTY];
+            NSLog(@"Logged in profile is now logged out.");
             
             // update the UI and do not perform the segue.
-            [self updateToolbarUI];
+            [self updateUI];
             return NO;
         }
     }
     return YES;
 }
 
-/*
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    // Build an AEPlayer from the logged in information available in userPrefs to the child view
+    AEPlayer *p = [[AEPlayer alloc] init];
+    p.name = [self.userPrefs valueForKey:KEY_PROFILE_NAME];
+    p.highScore = [self.userPrefs valueForKey:KEY_PROFILE_HIGH_SCORE];
+    p.shipColor = [[self.userPrefs valueForKey:KEY_PROFILE_SHIP_COLOR] intValue];
+    p.difficulty = [[self.userPrefs valueForKey:KEY_PROFILE_DIFFICULTY] intValue];
+    
+    // Segue from this screen to the Host Game/Join Game menu screen
+    if ([[segue identifier] isEqualToString:@"TwoPlayerMenuSegue"]) {
+        
+        // Get reference to destination VC
+        AETwoPlayerGameVC *destinationVC = [segue destinationViewController];
+        
+        // Write the AEPlayer object we just made to the destinationVC's loggedInPlayer property
+        destinationVC.loggedInPlayer = p;
+    }
+    
+    // Segue from this view to the SKScene kicking off the actual game
+    else if ([[segue identifier] isEqualToString:@"StartOnePlayerGameSegue"]) {
+        NSLog(@"Transitioning to one player game...");
+        
+        // Get reference to destination VC
+        AEGameSceneViewController *destinationVC = [segue destinationViewController];
+        
+        // Write the AEPlayer object we just made to the destinationVC's loggedInPlayer property
+        destinationVC.loggedInPlayer = p;
+    }
 }
-*/
 
 @end
