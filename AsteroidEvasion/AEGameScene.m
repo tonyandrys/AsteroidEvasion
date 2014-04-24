@@ -13,9 +13,8 @@ static NSString *shipCategoryName = @"ship";
 
 // Bitmasks
 static const uint32_t SHIP_CATEGORY = 0x1 << 0; // 00000000000000000000000000000001
-//static const uint32_t BOTTOM_CATEGORY = 0x1 << 1; // 00000000000000000000000000000010
-//static const uint32_t BLOCK_CATEGORY = 0x1 << 2; // 00000000000000000000000000000100
-//static const uint32_t PADDLE_CATEGORY = 0x1 << 3; // 00000000000000000000000000001000
+static const uint32_t ASTEROID_CATEGORY = 0x1 << 1; // 00000000000000000000000000000010
+static const uint32_t POWERUP_CATEGORY = 0x1 << 2; // 00000000000000000000000000000100
 
 // Radius of the circle used as the ship's path
 float circleRadius;
@@ -143,9 +142,50 @@ float circleRadius;
 
 }
 
+
+
+# pragma mark - Touch handling
+
 // Called when a touch begins
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    // Get an instance of the touch and store the location of the touch event
+    UITouch *touch = [touches anyObject];
+    CGPoint touchLocation = [touch locationInNode:self];
+}
+
+// Fired when the finger moves within a view
+-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
+    // We want the user to be able to pan from anywhere on the screen, so recognize a touch on any node or area in the scene
+    UITouch *touch = [touches anyObject];
+        
+    // Get the touch location and the previous touch location
+    CGPoint touchLocation = [touch locationInNode:self];
+    CGPoint previousLocation = [touch previousLocationInNode:self];
+    
+    // Check if the user is panning to the right (positive x difference) or to the left (negative x difference)
+    NSInteger difference = touchLocation.x - previousLocation.x;
+    NSLog(@"Touch x difference is %i", difference);
+    
+    // Get a reference to the ship node by its name to change its position
+    SKSpriteNode* ship = (SKSpriteNode *)[self childNodeWithName:shipCategoryName];
+    
+    // Calculate the ship's new position by getting its polar position, taking the sum of theta and the touch x difference, and updating the ship's position
+    CGPoint currentShipPosition = CGPointMake(ship.position.x, ship.position.y);
+    double rad = circleRadius; //[self getRadiusFromPoint:currentShipPosition];
+    double theta = [self getThetaFromPoint:currentShipPosition];
+    
+    // Convert theta to degrees and add the touch x difference
+    double thetaInDegrees = [self radToDeg:theta];
+    double sum = thetaInDegrees + difference;
+    
+    // Convert back to radians and convert r and theta back to their cartesian equivalent to set the position of the node
+    double thetaInRadians = [self degToRad:sum];
+    CGPoint newShipPosition = [self polarToCartesian:rad theta:thetaInRadians];
+    
+    // Update ship position
+    ship.position = newShipPosition;
+    NSLog(@"Ship is now positioned at (%f, %f)", ship.position.x, ship.position.y);
 }
 
 #pragma mark - Math
@@ -154,23 +194,29 @@ float circleRadius;
 - (CGPoint)polarToCartesian:(double)r theta:(double)q {
     double x = r * cos(q);
     double y = r * sin(q);
+    NSLog(@"Converting] polar (%f %f) to cartesian is (%f, %f)", r, q, x, y);
     return CGPointMake(x,y);
 }
 
-// Returns the radius in polar coordinates from a pair of (x,y) coordinates
+// Returns the polar radius given a pair of cartesian (x,y) coordinates
 - (double)getRadiusFromPoint:(CGPoint)pair {
     double rad = sqrt(((pair.x * pair.x) + (pair.y * pair.y)));
     return rad;
 }
 
-// Returns theta in polar coordinates from a pair of (x,y) coordinates
+// Returns the polar angle (theta) given a pair of cartesian (x,y) coordinates
 - (double)getThetaFromPoint:(CGPoint)pair {
     return atan2(pair.x, pair.y);
 }
 
 // Converts degrees to radians
-float degToRad(float degree) {
-	return degree / 180.0f * M_PI;
+- (double)degToRad:(double)degrees {
+	return degrees / 180.0f * M_PI;
+}
+
+// Converts radians to degrees
+- (double)radToDeg:(double)radians {
+    return radians * (180.0 / M_PI);
 }
 
 -(void)update:(CFTimeInterval)currentTime {
