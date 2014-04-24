@@ -152,6 +152,7 @@
     
     // Convert all AEPlayers in self.players to dictionarys and add them to an array
     NSMutableArray *playerDictionaries = [[NSMutableArray alloc] initWithCapacity:[self.players count]];
+    NSLog(@"Beginning to write player data to plist...");
     for (int i=0; i<[self.players count]; i++) {
         
         // Get the next player
@@ -162,6 +163,7 @@
         
         // Add it to the array
         [playerDictionaries addObject:dict];
+        NSLog(@"%i] added player (%@) to write dictionary", i, player.name);
     }
     
     // Package the array into another dictionary to match plist format

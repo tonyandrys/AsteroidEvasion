@@ -1,5 +1,5 @@
 //
-//  AEViewController.m
+//  AEVGameSceneiewController.m
 //  AsteroidEvasion
 //
 //  Created by Tony Andrys on 4/21/14.
@@ -7,7 +7,7 @@
 //
 
 #import "AEGameSceneViewController.h"
-#import "AEMyScene.h"
+#import "AEGameScene.h"
 
 @implementation AEGameSceneViewController
 
@@ -16,13 +16,14 @@
     [super viewDidLoad];
 
     // Configure the view.
-    SKView * skView = (SKView *)self.view;
+    SKView* skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [AEMyScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
+    NSLog(@"Configuring SKScene with height: %f width: %f", skView.bounds.size.height, skView.bounds.size.width);
+    AEGameScene* scene = [[AEGameScene alloc] initWithSize:skView.bounds.size playerOne:self.loggedInPlayer];
+    scene.scaleMode = SKSceneScaleModeAspectFit;
     
     // Present the scene.
     [skView presentScene:scene];

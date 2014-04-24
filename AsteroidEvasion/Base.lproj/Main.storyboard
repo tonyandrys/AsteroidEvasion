@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Two Player Game-->
+        <!--Two Player GameVC - Two Player Game-->
         <scene sceneID="yyO-sF-nM9">
             <objects>
-                <viewController id="Nbv-t0-eyU" sceneMemberID="viewController">
+                <viewController id="Nbv-t0-eyU" customClass="AETwoPlayerGameVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v3R-jp-ay8"/>
                         <viewControllerLayoutGuide type="bottom" id="sLC-E9-nXb"/>
@@ -15,13 +15,91 @@
                     <view key="view" contentMode="scaleToFill" id="4a6-sh-wzN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lam-Qn-pie">
+                                <rect key="frame" x="81" y="182" width="158" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="Host A Game">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="LVB-YS-i5n" kind="push" identifier="TwoPlayerHostSegue" id="v82-oc-Iq8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLA-Yf-TpZ">
+                                <rect key="frame" x="81" y="290" width="158" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="Join A Game">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="LDe-Mz-o0A" kind="push" identifier="TwoPlayerJoinSegue" id="hB1-ma-AhU"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem enabled="NO" title="Profile Name" style="done" id="HrU-nq-YJ6">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Two Player Game" id="gH6-DU-IZa"/>
+                    <connections>
+                        <outlet property="toolbarProfileLabel" destination="HrU-nq-YJ6" id="npX-j6-SdD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rd4-9n-GSG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1357" y="100"/>
+            <point key="canvasLocation" x="553" y="248"/>
+        </scene>
+        <!--Two Player JoinVC - Two Player Game-->
+        <scene sceneID="41R-Wp-fgz">
+            <objects>
+                <viewController id="LDe-Mz-o0A" customClass="AETwoPlayerJoinVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FdY-dO-2oE"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qg6-mM-lLG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AWL-kF-lOF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not Implemented" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ub-nP-hv2">
+                                <rect key="frame" x="88" y="366" width="133" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Searching for Games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KpV-eJ-8SC">
+                                <rect key="frame" x="7" y="83" width="257" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="kUI-to-IIj">
+                                <rect key="frame" x="263" y="79" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem enabled="NO" title="Profile Name" style="done" id="pGw-Uc-Tyd">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Two Player Game" id="xqk-89-Mum"/>
+                    <connections>
+                        <outlet property="toolbarProfileLabel" destination="pGw-Uc-Tyd" id="wOs-Qg-Ok1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oBs-O2-xcD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1696" y="-217"/>
         </scene>
         <!--PlayersVC - Players-->
         <scene sceneID="1aX-nw-2IM">
@@ -79,7 +157,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1c-cS-PzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="670" y="2364"/>
+            <point key="canvasLocation" x="-502" y="2788"/>
         </scene>
         <!--New PlayerVC - New Player-->
         <scene sceneID="0BP-Xl-orU">
@@ -152,7 +230,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ia-Mp-ZOA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1651" y="1936"/>
+            <point key="canvasLocation" x="595" y="2524"/>
         </scene>
         <!--Player DetailsVC - Player Details-->
         <scene sceneID="2HQ-3f-DvT">
@@ -294,7 +372,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R65-wj-kqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1374" y="2628"/>
+            <point key="canvasLocation" x="43" y="3212"/>
         </scene>
         <!--View Controller - High Scores-->
         <scene sceneID="azW-3J-d0I">
@@ -307,13 +385,22 @@
                     <view key="view" contentMode="scaleToFill" id="lHK-E2-IOK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not Implemented" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPk-ij-gqj">
+                                <rect key="frame" x="94" y="273" width="133" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="High Scores" id="0p6-sG-tbg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nwt-3s-ihl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1801" y="745"/>
+            <point key="canvasLocation" x="1464" y="1215"/>
         </scene>
         <!--View Controller - Settings-->
         <scene sceneID="sYT-w7-QSQ">
@@ -326,18 +413,26 @@
                     <view key="view" contentMode="scaleToFill" id="7Br-gU-UGp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not Implemented" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCV-Jz-qK2">
+                                <rect key="frame" x="94" y="273" width="133" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="48Z-zX-3q9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBG-nt-m57" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1385" y="1142"/>
+            <point key="canvasLocation" x="1009" y="1634"/>
         </scene>
-        <!--View Controller - GameScene-->
+        <!--Game Scene View Controller - GameScene-->
         <scene sceneID="CtS-rA-C9T">
             <objects>
-                <viewController title="GameScene" id="LVB-YS-i5n" customClass="AEViewController" sceneMemberID="viewController">
+                <viewController title="GameScene" id="LVB-YS-i5n" customClass="AEGameSceneViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TvN-0d-DFh"/>
                         <viewControllerLayoutGuide type="bottom" id="aVg-JY-jeM"/>
@@ -351,7 +446,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2881" y="428"/>
+            <point key="canvasLocation" x="1225" y="497"/>
         </scene>
         <!--Main View Controller - Main Menu-->
         <scene sceneID="BhK-3K-sg2">
@@ -373,31 +468,31 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mgc-WL-LYH">
-                                <rect key="frame" x="53" y="187" width="215" height="30"/>
+                                <rect key="frame" x="53" y="209" width="215" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="One Player Game">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3Wh-GK-zp2" kind="push" id="rTe-6j-8Mm"/>
+                                    <segue destination="LVB-YS-i5n" kind="modal" identifier="StartOnePlayerGameSegue" id="c93-oA-vjA"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxH-1N-huF">
-                                <rect key="frame" x="64" y="277" width="193" height="30"/>
+                                <rect key="frame" x="53" y="280" width="215" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Two Player Game">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Nbv-t0-eyU" kind="push" id="lbT-ZD-bsW"/>
+                                    <segue destination="Nbv-t0-eyU" kind="push" identifier="TwoPlayerMenuSegue" id="lbT-ZD-bsW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQl-Dh-3Ne">
-                                <rect key="frame" x="70" y="359" width="181" height="30"/>
+                                <rect key="frame" x="53" y="352" width="215" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="High Scores">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -406,9 +501,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNY-zy-aN0">
-                                <rect key="frame" x="100" y="453" width="121" height="30"/>
+                                <rect key="frame" x="53" y="429" width="215" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Settings">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -433,42 +528,15 @@
                     <navigationItem key="navigationItem" title="Main" id="VT4-sT-5ao"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="onePlayerStartButton" destination="Mgc-WL-LYH" id="IoF-de-4Rk"/>
                         <outlet property="profileNameButton" destination="fLB-ZV-Pkh" id="TUM-Oo-6Mi"/>
                         <outlet property="toolbarActionButton" destination="FTv-Gf-wxJ" id="XNn-Cd-Pgr"/>
+                        <outlet property="twoPlayerStartButton" destination="pxH-1N-huF" id="mAn-FC-ENB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZR-a4-I76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="180" y="225"/>
-        </scene>
-        <!--Table View Controller - One Player Game-->
-        <scene sceneID="sev-9p-B4z">
-            <objects>
-                <tableViewController id="3Wh-GK-zp2" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="sob-z9-DI5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hNx-GS-2Bg">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hNx-GS-2Bg" id="QZF-sp-74b">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="3Wh-GK-zp2" id="4SI-Gd-2wM"/>
-                            <outlet property="delegate" destination="3Wh-GK-zp2" id="a3h-s0-eOP"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="One Player Game" id="mUb-ia-fP2"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WVe-Cq-Rk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1745" y="-477"/>
+            <point key="canvasLocation" x="152" y="1025"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FpW-7q-0X4">
@@ -490,7 +558,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysX-ZA-Vz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-455" y="249"/>
+            <point key="canvasLocation" x="-515" y="1031"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qGM-Zp-iVR">
@@ -508,7 +576,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lqb-C5-Tl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1115" y="1936"/>
+            <point key="canvasLocation" x="35" y="2440"/>
         </scene>
     </scenes>
     <resources>
@@ -519,4 +587,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="c93-oA-vjA"/>
+    </inferredMetricsTieBreakers>
 </document>
