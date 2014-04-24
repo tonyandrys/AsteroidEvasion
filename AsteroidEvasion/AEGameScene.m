@@ -17,6 +17,9 @@ static const uint32_t SHIP_CATEGORY = 0x1 << 0; // 00000000000000000000000000000
 //static const uint32_t BLOCK_CATEGORY = 0x1 << 2; // 00000000000000000000000000000100
 //static const uint32_t PADDLE_CATEGORY = 0x1 << 3; // 00000000000000000000000000001000
 
+// Radius of the circle used as the ship's path
+float circleRadius;
+
 @implementation AEGameScene
 
 -(id)initWithSize:(CGSize)size playerOne:(AEPlayer *)p1 {
@@ -105,11 +108,18 @@ static const uint32_t SHIP_CATEGORY = 0x1 << 0; // 00000000000000000000000000000
     
     // Draw circle (path for ship)
     // x origin position, y origin position, width, height
-    CGRect circle = CGRectMake(bottomLeftPoint.x + 12.5, bottomRightPoint.y + 85.0, self.frame.size.width - 25.0, self.frame.size.height - 100.0);
+    //FIXME change to oval!!
+    //CGRect circle = CGRectMake(bottomLeftPoint.x + 12.5, bottomRightPoint.y + 85.0, self.frame.size.width - 25.0, self.frame.size.height - 100.0);
+    CGRect circle = CGRectMake(bottomLeftPoint.x + 12.5, self.frame.origin.y-150.0, 300, 300);
+    
     SKShapeNode *circleShapeNode = [[SKShapeNode alloc] init];
     circleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
     circleShapeNode.strokeColor = [UIColor whiteColor];
     circleShapeNode.fillColor = nil;
+    
+    // Store the radius of the circle for conversion purposes
+    circleRadius = circleShapeNode.frame.size.width/2;
+    
     [self addChild: circleShapeNode];
     
      // Draw ship (place at 0rad on circle)
@@ -126,7 +136,7 @@ static const uint32_t SHIP_CATEGORY = 0x1 << 0; // 00000000000000000000000000000
     ship.physicsBody.dynamic = NO;
     
     // Place at right edge of circle's border
-    ship.position = CGPointMake(self.frame.origin.x + circleShapeNode.frame.size.width/2, self.frame.origin.y + 43.5);
+    ship.position = CGPointMake(self.frame.origin.x + circleShapeNode.frame.size.width/2, self.frame.origin.y);
     [self addChild:ship];
     
     
@@ -138,8 +148,27 @@ static const uint32_t SHIP_CATEGORY = 0x1 << 0; // 00000000000000000000000000000
     
 }
 
-#pragma mark - Helper functions
+#pragma mark - Math
 
+// Converts a set of polar coordinates (r, theta) to their cartesian equivalent (x,y)
+- (CGPoint)polarToCartesian:(double)r theta:(double)q {
+    double x = r * cos(q);
+    double y = r * sin(q);
+    return CGPointMake(x,y);
+}
+
+// Returns the radius in polar coordinates from a pair of (x,y) coordinates
+- (double)getRadiusFromPoint:(CGPoint)pair {
+    double rad = sqrt(((pair.x * pair.x) + (pair.y * pair.y)));
+    return rad;
+}
+
+// Returns theta in polar coordinates from a pair of (x,y) coordinates
+- (double)getThetaFromPoint:(CGPoint)pair {
+    return atan2(pair.x, pair.y);
+}
+
+// Converts degrees to radians
 float degToRad(float degree) {
 	return degree / 180.0f * M_PI;
 }
