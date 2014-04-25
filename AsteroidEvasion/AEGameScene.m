@@ -7,14 +7,9 @@
 //
 
 #import "AEGameScene.h"
-
-// Game object identification constants
-static NSString *shipCategoryName = @"ship";
-
-// Bitmasks
-static const uint32_t SHIP_CATEGORY = 0x1 << 0; // 00000000000000000000000000000001
-static const uint32_t ASTEROID_CATEGORY = 0x1 << 1; // 00000000000000000000000000000010
-static const uint32_t POWERUP_CATEGORY = 0x1 << 2; // 00000000000000000000000000000100
+#import "AECategories.h"
+#import "AEBitmasks.h"
+#import "AEAsteroid.h"
 
 // Radius of the circle used as the ship's path
 float circleRadius;
@@ -46,34 +41,10 @@ float circleRadius;
     // Reference points to make positioning easier, as frame's origin is in the center of the screen
     // x values vary from (-width/2, 0) U (0,width/2)
     // y values vary from (-height/2, 0) U (0,height/2)
-    
     CGPoint bottomLeftPoint = CGPointMake(-self.frame.size.width/2, -self.frame.size.height/2); // Quadrant III
     CGPoint bottomRightPoint = CGPointMake(self.frame.size.width/2, -self.frame.size.height/2); // Quadrant IV
     CGPoint topLeftPoint = CGPointMake(-self.frame.size.width/2, self.frame.size.height/2); // Quadrant II
     CGPoint topRightPoint = CGPointMake(self.frame.size.width/2, self.frame.size.height/2); // Quadrant I
-    
-    // plotting test circles
-    CGRect bLCircle = CGRectMake(bottomLeftPoint.x, bottomLeftPoint.y, 25.0, 25.0);
-    CGRect bRCircle = CGRectMake(bottomRightPoint.x-25.0, bottomRightPoint.y, 25.0, 25.0);
-    CGRect tRCircle = CGRectMake(topRightPoint.x-25.0, topRightPoint.y-25.0, 25.0, 25.0);
-    
-    SKShapeNode *bLCircleShapeNode = [[SKShapeNode alloc] init];
-    SKShapeNode *bRCircleShapeNode = [[SKShapeNode alloc] init];
-    SKShapeNode *tRCircleShapeNode = [[SKShapeNode alloc] init];
-    
-    bLCircleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:bLCircle].CGPath;
-    bRCircleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:bRCircle].CGPath;
-    tRCircleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:tRCircle].CGPath;
-    
-    bLCircleShapeNode.strokeColor = [UIColor redColor];
-    [self addChild:bLCircleShapeNode];
-    
-    bRCircleShapeNode.strokeColor = [UIColor yellowColor];
-    [self addChild:bRCircleShapeNode];
-    
-    tRCircleShapeNode.strokeColor = [UIColor blueColor];
-    [self addChild:tRCircleShapeNode];
-    
     
     /* Configure scene background */
     self.backgroundColor = [SKColor colorWithRed:0 green:0 blue:0 alpha:1.0];
@@ -123,13 +94,13 @@ float circleRadius;
     
      // Draw ship (place at 0rad on circle)
     SKSpriteNode *ship = [SKSpriteNode spriteNodeWithImageNamed:@"ship2.png"];
-    ship.name = shipCategoryName;
+    ship.name = NAME_CATEGORY_SHIP;
     
     // Define physics body of ship
     ship.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ship.frame.size.width/2];
     ship.physicsBody.restitution = 0.1f;
     ship.physicsBody.friction = 0.4f;
-    ship.physicsBody.categoryBitMask = SHIP_CATEGORY;
+    ship.physicsBody.categoryBitMask = BITMASK_SHIP_CATEGORY;
     
     // The ship's physics body should be dynamic, or not react to forces or impulses from other objects (be thrown off path by a moving asteroid for example)
     ship.physicsBody.dynamic = NO;
@@ -138,23 +109,48 @@ float circleRadius;
     ship.position = CGPointMake(self.frame.origin.x + circleShapeNode.frame.size.width/2, self.frame.origin.y);
     [self addChild:ship];
     
-    // Test asteroid
-    SKSpriteNode *testAsteroid = [[SKSpriteNode alloc] initWithImageNamed:@"asteroid"];
-    testAsteroid.position = CGPointMake(bottomLeftPoint.x, bottomLeftPoint.y);
-    [self addChild:testAsteroid];
+    // Generate test asteroids
     
-    // test asteroid physics body - fluid based as we want it to be affected by forces and impulses
-    testAsteroid.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:testAsteroid.frame.size.width/2];
-    testAsteroid.physicsBody.friction = 0.4f; // Asteroids should have no friction
-    testAsteroid.physicsBody.restitution = 1.0f; // Restitution = "bounciness", we want elastic collisions with no energy loss
-    testAsteroid.physicsBody.linearDamping = 0.0f; // Linear dampening = air friction - there's none of that shit in space
-    testAsteroid.physicsBody.allowsRotation = YES; // Asteroids should rotate maybe
-    testAsteroid.physicsBody.categoryBitMask = ASTEROID_CATEGORY; // Assign asteroid category bitmask, all asteroids will have the same for now (they will not collide with each other, which we will eventually want to change)
-    testAsteroid.physicsBody.contactTestBitMask = SHIP_CATEGORY; // Notify if the asteroid makes contact with the ship
+    // Average size asteroid
+    [self generateAsteroidAt:CGPointMake(self.frame.origin.x, self.frame.origin.y) withSize:CGSizeMake(50.0f, 50.0f) withForce:CGVectorMake(6.0f, 2.0f)];
     
-    // Apply an impulse (force vector) to the asteroid. Pushing it dx=1.5f and dy=-1.5f will push it to quadrant VI
-    [testAsteroid.physicsBody applyImpulse:CGVectorMake(7.0f, 8.0f)];
+    // Huge fucking asteroid
+    [self generateAsteroidAt:topLeftPoint withSize:CGSizeMake(125.0f, 125.0f) withForce:CGVectorMake(3.0f, -46.0f)];
+    
+    // Small asteroids
+    [self generateAsteroidAt:bottomRightPoint withSize:CGSizeMake(20.0f, 20.0f) withForce:CGVectorMake(-1.0f, 1.0f)];
+    [self generateAsteroidAt:CGPointMake(bottomRightPoint.x, bottomRightPoint.y) withSize:CGSizeMake(20.0f, 20.0f) withForce:CGVectorMake(-1.0f, 1.0f)];
+    [self generateAsteroidAt:CGPointMake(bottomRightPoint.x, bottomRightPoint.y-20.0f) withSize:CGSizeMake(20.0f, 20.0f) withForce:CGVectorMake(-1.0f, 1.0f)];
+    [self generateAsteroidAt:CGPointMake(bottomRightPoint.x, bottomRightPoint.y-40.0f) withSize:CGSizeMake(20.0f, 20.0f) withForce:CGVectorMake(-1.0f, 1.0f)];
+    ;
 
+  
+}
+
+// Generates an asteroid with arbitrary position, size, and force (linear impulse only)
+-(void)generateAsteroidAt:(CGPoint)pos withSize:(CGSize)size withForce:(CGVector)force {
+    
+    // Configure node
+    SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"asteroid"];
+    asteroid.name = NAME_CATEGORY_ASTEROID;
+    asteroid.position = pos;
+    asteroid.size = size;
+    
+    // Configure physics body
+    asteroid.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:size.width/2];
+    asteroid.physicsBody.friction = 0.1f; // Asteroids should have no friction
+    asteroid.physicsBody.restitution = 1.0f; // Restitution- we want elastic collisions with no energy loss
+    asteroid.physicsBody.linearDamping = 0.0f; // Linear dampening = air friction - there's none of that shit in space
+    asteroid.physicsBody.allowsRotation = YES; // Asteroids should rotate maybe
+    asteroid.physicsBody.categoryBitMask = BITMASK_ASTEROID_CATEGORY; // Assign asteroid category bitmask, all asteroids will have the same for now (they will not collide with each other, which we will eventually want to change)
+    asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY; // Notify if the asteroid makes contact with the ship
+    
+    // Add to SKScene
+    NSLog(@"Generated asteroid at (%f. %f)", pos.x, pos.y);
+    [self addChild:asteroid];
+    
+    // After asteroid is added, apply linear impulse
+    [asteroid.physicsBody applyImpulse:force];
 }
 
 # pragma mark - Touch handling
@@ -182,22 +178,13 @@ float circleRadius;
     // Calculate difference in radians
     double dTheta =  difference * (M_PI/180);
     
-    NSLog(@"===");
-    if (difference > 0) {
-        NSLog(@"Positive (clockwise) touch detected!");
-    } else if (difference < 0) {
-        NSLog(@"Negative (counter-clockwise) touch detected!");
-    } else {
-        NSLog(@"Zero movement touch detected!");
-    }
     
     if (difference != 0) {
         
-    NSLog(@"Touch x difference is %i", difference);
-    NSLog(@"We need to move %i * pi/180 radians = %f", difference, dTheta);
+    NSLog(@"Moving %i * pi/180 radians = %f", difference, dTheta);
     
     // Get a reference to the ship node by its name to change its position
-    SKSpriteNode* ship = (SKSpriteNode *)[self childNodeWithName:shipCategoryName];
+    SKSpriteNode* ship = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
     
     // Calculate the ship's new position by getting its polar position, taking the sum of theta and the touch x difference, and updating the ship's position
     CGPoint currentShipPosition = CGPointMake(ship.position.x, ship.position.y);
@@ -216,13 +203,17 @@ float circleRadius;
     // Update ship position
     ship.position = newShipPosition;
     NSLog(@"Ship is now positioned at (%f, %f)", ship.position.x, ship.position.y);
-    NSLog(@"===");
     }
 }
 
 #pragma mark - Collision Handling
 -(void)didBeginContact:(SKPhysicsContact *)contact {
-    NSLog(@"Contact!!!!!");
+    NSLog(@"Contact between ship and asteroid YOU LOSE FUCKER");
+    NSLog(@"Contact between ship and asteroid YOU LOSE FUCKER");
+    NSLog(@"Contact between ship and asteroid YOU LOSE FUCKER");
+    NSLog(@"Contact between ship and asteroid YOU LOSE FUCKER");
+    NSLog(@"Contact between ship and asteroid YOU LOSE FUCKER");
+    NSLog(@"NOTE: Make a game over screen");
 }
 
 

@@ -33,6 +33,10 @@
 		EA9400B81905F14800A7C18C /* AENewPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400B71905F14800A7C18C /* AENewPlayerVC.m */; };
 		EA9400BE1905F6AA00A7C18C /* AEPlayersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400BD1905F6AA00A7C18C /* AEPlayersVC.m */; };
 		EA9400C21906250500A7C18C /* AEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9400C11906250500A7C18C /* AEPlayer.m */; };
+		EA9D57151909B7F60056BD55 /* AEAsteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D57141909B7F50056BD55 /* AEAsteroid.m */; };
+		EA9D57181909BB510056BD55 /* AEBitmasks.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D57171909BB510056BD55 /* AEBitmasks.m */; };
+		EA9D571B1909BB600056BD55 /* AECategories.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D571A1909BB600056BD55 /* AECategories.m */; };
+		EA9D571E190AF8D50056BD55 /* AEGameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D571D190AF8D50056BD55 /* AEGameOverScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +90,14 @@
 		EA9400BD1905F6AA00A7C18C /* AEPlayersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlayersVC.m; sourceTree = "<group>"; };
 		EA9400C01906250500A7C18C /* AEPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPlayer.h; sourceTree = "<group>"; };
 		EA9400C11906250500A7C18C /* AEPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlayer.m; sourceTree = "<group>"; };
+		EA9D57131909B7F50056BD55 /* AEAsteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAsteroid.h; sourceTree = "<group>"; };
+		EA9D57141909B7F50056BD55 /* AEAsteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAsteroid.m; sourceTree = "<group>"; };
+		EA9D57161909BB510056BD55 /* AEBitmasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEBitmasks.h; sourceTree = "<group>"; };
+		EA9D57171909BB510056BD55 /* AEBitmasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEBitmasks.m; sourceTree = "<group>"; };
+		EA9D57191909BB600056BD55 /* AECategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AECategories.h; sourceTree = "<group>"; };
+		EA9D571A1909BB600056BD55 /* AECategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AECategories.m; sourceTree = "<group>"; };
+		EA9D571C190AF8D50056BD55 /* AEGameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEGameOverScene.h; sourceTree = "<group>"; };
+		EA9D571D190AF8D50056BD55 /* AEGameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEGameOverScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +130,10 @@
 			children = (
 				EA0F23BF1907193600ED4C78 /* AEPreferences.h */,
 				EA0F23C01907193600ED4C78 /* AEPreferences.m */,
+				EA9D57161909BB510056BD55 /* AEBitmasks.h */,
+				EA9D57171909BB510056BD55 /* AEBitmasks.m */,
+				EA9D57191909BB600056BD55 /* AECategories.h */,
+				EA9D571A1909BB600056BD55 /* AECategories.m */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -148,6 +164,8 @@
 			children = (
 				EA8B24A51905C83B004D51D7 /* AEGameScene.h */,
 				EA8B24A61905C83B004D51D7 /* AEGameScene.m */,
+				EA9D571C190AF8D50056BD55 /* AEGameOverScene.h */,
+				EA9D571D190AF8D50056BD55 /* AEGameOverScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -243,6 +261,8 @@
 			children = (
 				EA9400C01906250500A7C18C /* AEPlayer.h */,
 				EA9400C11906250500A7C18C /* AEPlayer.m */,
+				EA9D57131909B7F50056BD55 /* AEAsteroid.h */,
+				EA9D57141909B7F50056BD55 /* AEAsteroid.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -351,13 +371,17 @@
 				EA0F23C11907193600ED4C78 /* AEPreferences.m in Sources */,
 				EA8B24A71905C83B004D51D7 /* AEGameScene.m in Sources */,
 				EA0F23BA19070A1600ED4C78 /* AEPlayerDetailsVC.m in Sources */,
+				EA9D571B1909BB600056BD55 /* AECategories.m in Sources */,
 				EA0F23C719074CC000ED4C78 /* AETwoPlayerJoinVC.m in Sources */,
+				EA9D571E190AF8D50056BD55 /* AEGameOverScene.m in Sources */,
 				EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */,
 				EA8B24A41905C83B004D51D7 /* AEGameSceneViewController.m in Sources */,
 				EA9400B81905F14800A7C18C /* AENewPlayerVC.m in Sources */,
 				EA9400BE1905F6AA00A7C18C /* AEPlayersVC.m in Sources */,
 				EA8B24C91905D394004D51D7 /* AEMainViewController.m in Sources */,
 				EA8B249A1905C83B004D51D7 /* main.m in Sources */,
+				EA9D57181909BB510056BD55 /* AEBitmasks.m in Sources */,
+				EA9D57151909B7F60056BD55 /* AEAsteroid.m in Sources */,
 				EA0F23C4190749A500ED4C78 /* AETwoPlayerGameVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
