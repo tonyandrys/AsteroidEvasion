@@ -66,20 +66,59 @@
             </objects>
             <point key="canvasLocation" x="727" y="-236"/>
         </scene>
-        <!--View Controller-->
+        <!--First View Controller-->
         <scene sceneID="cFQ-Zt-7mz">
             <objects>
-                <viewController id="ZQO-tV-Ugn" sceneMemberID="viewController">
+                <viewController id="ZQO-tV-Ugn" customClass="FirstViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DHB-Jn-uyj"/>
                         <viewControllerLayoutGuide type="bottom" id="7ua-4U-tgK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hmK-4a-kUd">
+                    <view key="view" contentMode="scaleToFill" id="hmK-4a-kUd" customClass="Fir">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter chat text here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nmb-8G-8p6">
+                                <rect key="frame" x="20" y="62" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zp0-Jg-d1M">
+                                <rect key="frame" x="20" y="100" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelMessage:" destination="ZQO-tV-Ugn" eventType="touchUpInside" id="g81-AL-A61"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Je0-iE-2rH">
+                                <rect key="frame" x="264" y="100" width="36" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendMessage:" destination="ZQO-tV-Ugn" eventType="touchUpInside" id="lmd-aa-3xq"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvl-lt-P5l">
+                                <rect key="frame" x="40" y="138" width="240" height="373"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="aSe-Nt-mAN"/>
+                    <connections>
+                        <outlet property="tvChat" destination="Kvl-lt-P5l" id="E5J-rz-AcS"/>
+                        <outlet property="txtMessage" destination="nmb-8G-8p6" id="eYp-Qj-86q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1sW-8M-AJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
