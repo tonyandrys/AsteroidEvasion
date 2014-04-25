@@ -9,7 +9,8 @@
 #import <SpriteKit/SpriteKit.h>
 #import "AEPlayer.h"
 
-@interface AEGameScene : SKScene
+// This scene should receive collision notifications
+@interface AEGameScene : SKScene<SKPhysicsContactDelegate>
 
 // Player objects representing active user profile
 @property (strong, nonatomic) AEPlayer *playerOne;
