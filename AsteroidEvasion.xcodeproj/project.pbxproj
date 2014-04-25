@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13F751C2190A1B220006D253 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F751C1190A1B220006D253 /* ConnectionsViewController.m */; };
+		13F751C5190A1CA00006D253 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F751C4190A1CA00006D253 /* MCManager.m */; };
 		EA0F23B719064F7F00ED4C78 /* PlayerData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA0F23B619064F7F00ED4C78 /* PlayerData.plist */; };
 		EA0F23BA19070A1600ED4C78 /* AEPlayerDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23B919070A1600ED4C78 /* AEPlayerDetailsVC.m */; };
 		EA0F23C11907193600ED4C78 /* AEPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23C01907193600ED4C78 /* AEPreferences.m */; };
@@ -46,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13F751C0190A1B220006D253 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
+		13F751C1190A1B220006D253 /* ConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsViewController.m; sourceTree = "<group>"; };
+		13F751C3190A1CA00006D253 /* MCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCManager.h; sourceTree = "<group>"; };
+		13F751C4190A1CA00006D253 /* MCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCManager.m; sourceTree = "<group>"; };
 		EA0F23B619064F7F00ED4C78 /* PlayerData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlayerData.plist; sourceTree = "<group>"; };
 		EA0F23B819070A1600ED4C78 /* AEPlayerDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPlayerDetailsVC.h; sourceTree = "<group>"; };
 		EA0F23B919070A1600ED4C78 /* AEPlayerDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlayerDetailsVC.m; sourceTree = "<group>"; };
@@ -113,6 +119,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13F751BF190A19D10006D253 /* Connectivity */ = {
+			isa = PBXGroup;
+			children = (
+				13F751C3190A1CA00006D253 /* MCManager.h */,
+				13F751C4190A1CA00006D253 /* MCManager.m */,
+				13F751C0190A1B220006D253 /* ConnectionsViewController.h */,
+				13F751C1190A1B220006D253 /* ConnectionsViewController.m */,
+			);
+			name = Connectivity;
+			sourceTree = "<group>";
+		};
 		EA0F23BB1907146800ED4C78 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +218,7 @@
 				EA65FBBA1905DF180013AB7C /* View Controllers */,
 				EA8B249C1905C83B004D51D7 /* AEAppDelegate.h */,
 				EA8B249D1905C83B004D51D7 /* AEAppDelegate.m */,
+				13F751BF190A19D10006D253 /* Connectivity */,
 				EA8B249F1905C83B004D51D7 /* Main.storyboard */,
 				EA8B24AA1905C83B004D51D7 /* Images.xcassets */,
 				EA8B24941905C83B004D51D7 /* Supporting Files */,
@@ -352,9 +370,11 @@
 				EA8B24A71905C83B004D51D7 /* AEGameScene.m in Sources */,
 				EA0F23BA19070A1600ED4C78 /* AEPlayerDetailsVC.m in Sources */,
 				EA0F23C719074CC000ED4C78 /* AETwoPlayerJoinVC.m in Sources */,
+				13F751C5190A1CA00006D253 /* MCManager.m in Sources */,
 				EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */,
 				EA8B24A41905C83B004D51D7 /* AEGameSceneViewController.m in Sources */,
 				EA9400B81905F14800A7C18C /* AENewPlayerVC.m in Sources */,
+				13F751C2190A1B220006D253 /* ConnectionsViewController.m in Sources */,
 				EA9400BE1905F6AA00A7C18C /* AEPlayersVC.m in Sources */,
 				EA8B24C91905D394004D51D7 /* AEMainViewController.m in Sources */,
 				EA8B249A1905C83B004D51D7 /* main.m in Sources */,

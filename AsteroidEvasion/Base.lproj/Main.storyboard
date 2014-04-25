@@ -17,25 +17,36 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lam-Qn-pie">
-                                <rect key="frame" x="81" y="182" width="158" height="46"/>
+                                <rect key="frame" x="81" y="83" width="158" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <state key="normal" title="Host A Game">
+                                <state key="normal" title="Connect">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="LVB-YS-i5n" kind="push" identifier="TwoPlayerHostSegue" id="v82-oc-Iq8"/>
+                                    <segue destination="ZaW-sd-h09" kind="push" id="e0Q-2N-o8V"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLA-Yf-TpZ">
-                                <rect key="frame" x="81" y="290" width="158" height="57"/>
+                                <rect key="frame" x="81" y="426" width="158" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <state key="normal" title="Join A Game">
+                                <state key="normal" title="Start Game">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="LDe-Mz-o0A" kind="push" identifier="TwoPlayerJoinSegue" id="hB1-ma-AhU"/>
+                                    <segue destination="E6o-2V-6Lj" kind="push" id="m2k-lP-ZFX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJa-oF-r9A">
+                                <rect key="frame" x="121" y="137" width="79" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="Chat">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ZQO-tV-Ugn" kind="push" id="7nN-JB-yvN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -53,53 +64,117 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rd4-9n-GSG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="553" y="248"/>
+            <point key="canvasLocation" x="727" y="-236"/>
         </scene>
-        <!--Two Player JoinVC - Two Player Game-->
-        <scene sceneID="41R-Wp-fgz">
+        <!--View Controller-->
+        <scene sceneID="cFQ-Zt-7mz">
             <objects>
-                <viewController id="LDe-Mz-o0A" customClass="AETwoPlayerJoinVC" sceneMemberID="viewController">
+                <viewController id="ZQO-tV-Ugn" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FdY-dO-2oE"/>
-                        <viewControllerLayoutGuide type="bottom" id="Qg6-mM-lLG"/>
+                        <viewControllerLayoutGuide type="top" id="DHB-Jn-uyj"/>
+                        <viewControllerLayoutGuide type="bottom" id="7ua-4U-tgK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AWL-kF-lOF">
+                    <view key="view" contentMode="scaleToFill" id="hmK-4a-kUd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aSe-Nt-mAN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1sW-8M-AJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1234" y="-992"/>
+        </scene>
+        <!--Connections View Controller - Connect To Another Pilot-->
+        <scene sceneID="xJl-EG-oiB">
+            <objects>
+                <viewController id="ZaW-sd-h09" customClass="ConnectionsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rTL-YF-jDm"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ayv-LI-RF6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="reU-WK-bAw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not Implemented" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ub-nP-hv2">
-                                <rect key="frame" x="88" y="366" width="133" height="21"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter nickname for others to find you" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p3v-Z5-1wj">
+                                <rect key="frame" x="20" y="79" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Can other players find you?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RiF-DD-EEr">
+                                <rect key="frame" x="20" y="129" width="212" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Searching for Games" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KpV-eJ-8SC">
-                                <rect key="frame" x="7" y="83" width="257" height="30"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVj-rP-cSG">
+                                <rect key="frame" x="240" y="124" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="kUI-to-IIj">
-                                <rect key="frame" x="263" y="79" width="37" height="37"/>
+                                <connections>
+                                    <action selector="toggleVisibility:" destination="ZaW-sd-h09" eventType="valueChanged" id="d6F-C9-8R5"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57D-zF-d7w">
+                                <rect key="frame" x="98" y="163" width="125" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
-                            </activityIndicatorView>
+                                <state key="normal" title="Search for players">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="browseForDevices:" destination="ZaW-sd-h09" eventType="touchUpInside" id="0sZ-NC-IdR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWo-MJ-2Dk">
+                                <rect key="frame" x="121" y="481" width="78" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Disconnect">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="disconnect:" destination="ZaW-sd-h09" eventType="touchUpInside" id="mcU-Ju-WVN"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jfc-ba-HGu">
+                                <rect key="frame" x="20" y="201" width="280" height="272"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem enabled="NO" title="Profile Name" style="done" id="pGw-Uc-Tyd">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Two Player Game" id="xqk-89-Mum"/>
+                    <navigationItem key="navigationItem" title="Connect To Another Pilot" id="O0c-QA-vc5"/>
                     <connections>
-                        <outlet property="toolbarProfileLabel" destination="pGw-Uc-Tyd" id="wOs-Qg-Ok1"/>
+                        <outlet property="btnDisconnect" destination="aWo-MJ-2Dk" id="rGU-h9-ell"/>
+                        <outlet property="swVisible" destination="cVj-rP-cSG" id="EK0-7B-UfI"/>
+                        <outlet property="tblConnectedDevices" destination="jfc-ba-HGu" id="17U-Mt-UU2"/>
+                        <outlet property="txtName" destination="p3v-Z5-1wj" id="0Qo-Gf-eMG"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oBs-O2-xcD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TAx-Ag-ra4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1696" y="-217"/>
+            <point key="canvasLocation" x="770" y="-957"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hF5-ta-OID">
+            <objects>
+                <viewController id="E6o-2V-6Lj" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XTt-K9-mJs"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zbl-zd-yJa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="adW-ap-tm9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HR6-us-jca"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZjU-Oh-6kK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1234" y="-236"/>
         </scene>
         <!--PlayersVC - Players-->
         <scene sceneID="1aX-nw-2IM">
@@ -587,7 +662,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="c93-oA-vjA"/>
-    </inferredMetricsTieBreakers>
 </document>
