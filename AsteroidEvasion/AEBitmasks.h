@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 /* Define collision bitmasks for SKNodes here */
-
 @interface AEBitmasks : NSObject
 
 extern const uint32_t BITMASK_SHIP_CATEGORY;

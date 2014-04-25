@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		13496F06190AE3E90048856F /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13496F05190AE3E90048856F /* FirstViewController.m */; };
 		13F751C2190A1B220006D253 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F751C1190A1B220006D253 /* ConnectionsViewController.m */; };
-		13F751C5190A1CA00006D253 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F751C4190A1CA00006D253 /* MCManager.m */; };
 		EA0F23B719064F7F00ED4C78 /* PlayerData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA0F23B619064F7F00ED4C78 /* PlayerData.plist */; };
 		EA0F23BA19070A1600ED4C78 /* AEPlayerDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23B919070A1600ED4C78 /* AEPlayerDetailsVC.m */; };
 		EA0F23C11907193600ED4C78 /* AEPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23C01907193600ED4C78 /* AEPreferences.m */; };
@@ -40,6 +39,7 @@
 		EA9D57181909BB510056BD55 /* AEBitmasks.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D57171909BB510056BD55 /* AEBitmasks.m */; };
 		EA9D571B1909BB600056BD55 /* AECategories.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D571A1909BB600056BD55 /* AECategories.m */; };
 		EA9D571E190AF8D50056BD55 /* AEGameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D571D190AF8D50056BD55 /* AEGameOverScene.m */; };
+		EA9D571F190B04AE0056BD55 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F751C4190A1CA00006D253 /* MCManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -390,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA9D571F190B04AE0056BD55 /* MCManager.m in Sources */,
 				EA9400C21906250500A7C18C /* AEPlayer.m in Sources */,
 				EA0F23C11907193600ED4C78 /* AEPreferences.m in Sources */,
 				EA8B24A71905C83B004D51D7 /* AEGameScene.m in Sources */,
@@ -534,7 +535,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Edward Walsh (XSVQCSUPZZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AsteroidEvasion/AsteroidEvasion-Prefix.pch";
@@ -553,7 +554,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Edward Walsh (XSVQCSUPZZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AsteroidEvasion/AsteroidEvasion-Prefix.pch";

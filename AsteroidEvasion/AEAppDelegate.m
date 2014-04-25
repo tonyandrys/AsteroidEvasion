@@ -17,31 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-      _mcManager = [[MCManager alloc] init];
-    // FIXME: We will need to read all data from storage and create Player objects from it.
-    _players = [NSMutableArray arrayWithCapacity:20];
-    
-    // Fill players array with test data
-    AEPlayer *player = [[AEPlayer alloc] init];
-    player.name = @"Player1";
-    player.highScore = @"100";
-    player.shipColor = 0;
-    player.difficulty = 0;
-    [_players addObject:player];
-    
-    player = [[AEPlayer alloc] init];
-    player.name = @"Player2";
-    player.highScore = @"50";
-    player.shipColor = 1;
-    player.difficulty = 1;
-    [_players addObject:player];
-    
-    // Instantiate the Player List View Controller to write the built array of Players to it
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    AEPlayersVC *playersVC = (AEPlayersVC *)[mainStoryboard instantiateViewControllerWithIdentifier:@"PlayersViewController"];
-    
-    // Update the array of Players associated with the VC
-    playersVC.players = _players;
+    // Load's Patrick's networking stuff?
+    _mcManager = [[MCManager alloc] init];
     
     return YES;
 }

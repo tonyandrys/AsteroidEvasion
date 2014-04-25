@@ -1,5 +1,5 @@
 //
-//  AEMyScene.m
+//  AEGameScene.m
 //  AsteroidEvasion
 //
 //  Created by Tony on 4/21/14.

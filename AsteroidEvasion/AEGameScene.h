@@ -1,5 +1,5 @@
 //
-//  AEMyScene.h
+//  AEGameScene.h
 //  AsteroidEvasion
 //
 //  Created by Tony on 4/21/14.
@@ -8,6 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "AEPlayer.h"
+
+/* AEGameScene is the main Sprite Kit Scene for the game engine. */
 
 // This scene should receive collision notifications
 @interface AEGameScene : SKScene<SKPhysicsContactDelegate>
