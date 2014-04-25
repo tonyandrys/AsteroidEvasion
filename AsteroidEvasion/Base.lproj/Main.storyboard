@@ -9,8 +9,8 @@
             <objects>
                 <viewController id="Nbv-t0-eyU" customClass="AETwoPlayerGameVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="v3R-jp-ay8"/>
-                        <viewControllerLayoutGuide type="bottom" id="sLC-E9-nXb"/>
+                        <viewControllerLayoutGuide type="top" id="Scm-CF-13d"/>
+                        <viewControllerLayoutGuide type="bottom" id="aom-gA-hwt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4a6-sh-wzN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLA-Yf-TpZ">
-                                <rect key="frame" x="81" y="426" width="158" height="57"/>
+                                <rect key="frame" x="81" y="313" width="158" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Start Game">
@@ -66,13 +66,13 @@
             </objects>
             <point key="canvasLocation" x="727" y="-236"/>
         </scene>
-        <!--First View Controller-->
+        <!--First View Controller - Strategize-->
         <scene sceneID="cFQ-Zt-7mz">
             <objects>
                 <viewController id="ZQO-tV-Ugn" customClass="FirstViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="DHB-Jn-uyj"/>
-                        <viewControllerLayoutGuide type="bottom" id="7ua-4U-tgK"/>
+                        <viewControllerLayoutGuide type="top" id="2Fe-nv-0lh"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z15-uk-jrJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hmK-4a-kUd" customClass="Fir">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -105,7 +105,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvl-lt-P5l">
-                                <rect key="frame" x="40" y="138" width="240" height="373"/>
+                                <rect key="frame" x="40" y="138" width="240" height="325"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -114,7 +114,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aSe-Nt-mAN"/>
+                    <navigationItem key="navigationItem" title="Strategize" id="aSe-Nt-mAN"/>
                     <connections>
                         <outlet property="tvChat" destination="Kvl-lt-P5l" id="E5J-rz-AcS"/>
                         <outlet property="txtMessage" destination="nmb-8G-8p6" id="eYp-Qj-86q"/>
@@ -129,8 +129,8 @@
             <objects>
                 <viewController id="ZaW-sd-h09" customClass="ConnectionsViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rTL-YF-jDm"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ayv-LI-RF6"/>
+                        <viewControllerLayoutGuide type="top" id="Joz-f6-BX8"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Ar-fn-zwZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="reU-WK-bAw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -201,12 +201,21 @@
             <objects>
                 <viewController id="E6o-2V-6Lj" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XTt-K9-mJs"/>
-                        <viewControllerLayoutGuide type="bottom" id="Zbl-zd-yJa"/>
+                        <viewControllerLayoutGuide type="top" id="nXI-ag-2pY"/>
+                        <viewControllerLayoutGuide type="bottom" id="oHC-QP-60F"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="adW-ap-tm9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some day, this will do a thing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYD-DS-09Q">
+                                <rect key="frame" x="48" y="267" width="225" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="HR6-us-jca"/>
@@ -493,8 +502,8 @@
             <objects>
                 <viewController id="PnM-fU-lP5" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="EhG-rX-UiB"/>
-                        <viewControllerLayoutGuide type="bottom" id="FIO-Gp-VbR"/>
+                        <viewControllerLayoutGuide type="top" id="QDP-AD-JtJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="vHs-Fe-ROh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lHK-E2-IOK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -521,8 +530,8 @@
             <objects>
                 <viewController id="izu-Oi-RtY" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ROi-wQ-6iC"/>
-                        <viewControllerLayoutGuide type="bottom" id="dun-Iw-hq9"/>
+                        <viewControllerLayoutGuide type="top" id="lhD-7E-cqX"/>
+                        <viewControllerLayoutGuide type="bottom" id="bbP-8X-cYQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7Br-gU-UGp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -548,8 +557,8 @@
             <objects>
                 <viewController title="GameScene" id="LVB-YS-i5n" customClass="AEGameSceneViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TvN-0d-DFh"/>
-                        <viewControllerLayoutGuide type="bottom" id="aVg-JY-jeM"/>
+                        <viewControllerLayoutGuide type="top" id="kwv-pc-PQi"/>
+                        <viewControllerLayoutGuide type="bottom" id="rRg-jv-AKr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bdc-N1-crn" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -567,8 +576,8 @@
             <objects>
                 <viewController storyboardIdentifier="MainViewController" title="Main Menu" id="dSs-zL-sWp" customClass="AEMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="shq-BP-jK3"/>
-                        <viewControllerLayoutGuide type="bottom" id="sv7-8S-4qN"/>
+                        <viewControllerLayoutGuide type="top" id="beY-JJ-UYU"/>
+                        <viewControllerLayoutGuide type="bottom" id="fJf-YJ-KXg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eye-97-DaE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
