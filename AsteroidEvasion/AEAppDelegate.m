@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+      _mcManager = [[MCManager alloc] init];
     // FIXME: We will need to read all data from storage and create Player objects from it.
     _players = [NSMutableArray arrayWithCapacity:20];
     
