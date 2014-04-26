@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AsteroidEvasion/AEGameScene.m"
-            timestampString = "420166966.322242"
+            timestampString = "420168260.410333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
             landmarkName = "-degToRad:"
             landmarkType = "5">
          </BreakpointContent>

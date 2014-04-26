@@ -16,7 +16,11 @@
 
 // Player objects representing active user profile
 @property (strong, nonatomic) AEPlayer *playerOne;
-@property (readwrite, assign) NSInteger *playerScore;
+@property (readwrite, assign) int playerScore;
+
+// Reference to scoreLabel to easily change player's score display
+@property (strong, nonatomic) SKLabelNode *playerScoreLabel;
+
 
 - (id)initWithSize:(CGSize)size playerOne:(AEPlayer *)p1;
 

@@ -22,6 +22,10 @@ NSMutableDictionary *asteroidLaunchPoints;
 NSTimeInterval fireInterval = 3;
 NSTimer *asteroidTimer;
 
+// Score increment timer - When fired, increments player's score and updates corresponding SKLabel
+NSTimeInterval scoreIncrementInterval = 1;
+NSTimer *scoreIncrementTimer;
+
 // Asteroid launch points key string constants
 NSString *const KEY_ASTEROID_POSITION = @"keyAsteroidPosition";
 NSString *const KEY_ASTEROID_VECTOR_DX = @"keyAsteroidVectorDx";
@@ -152,14 +156,14 @@ CGPoint topRightPoint;
     [self addChild:playerNameLabel];
     
     // Player score label
-    SKLabelNode *playerScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-    playerScoreLabel.text = @"0"; // start at a score of zero
-    playerScoreLabel.fontSize = 18;
-    playerScoreLabel.fontColor = [UIColor whiteColor];
-    playerScoreLabel.position = CGPointMake(bottomLeftPoint.x + 50.0, bottomLeftPoint.y + 5.0);
-    playerScoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
-    playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-    [self addChild:playerScoreLabel];
+    self.playerScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    self.playerScoreLabel.text = @"0"; // start at a score of zero
+    self.playerScoreLabel.fontSize = 18;
+    self.playerScoreLabel.fontColor = [UIColor whiteColor];
+    self.playerScoreLabel.position = CGPointMake(bottomLeftPoint.x + 50.0, bottomLeftPoint.y + 5.0);
+    self.playerScoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
+    self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    [self addChild:self.playerScoreLabel];
     
     // Draw circle (path for ship)
     // x origin position, y origin position, width, height
@@ -194,8 +198,11 @@ CGPoint topRightPoint;
     ship.position = CGPointMake(self.frame.origin.x + circleShapeNode.frame.size.width/2, self.frame.origin.y);
     [self addChild:ship];
     
-    // Build and start the asteroid timer
-    asteroidTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)3.0f target:self selector:@selector(generateNewAsteroid) userInfo:nil repeats:YES];
+    // Build and start the asteroid and score increment timer
+    asteroidTimer = [NSTimer scheduledTimerWithTimeInterval:fireInterval target:self selector:@selector(generateNewAsteroid) userInfo:nil repeats:YES];
+    
+    // Start score increment timer
+    scoreIncrementTimer = [NSTimer scheduledTimerWithTimeInterval:scoreIncrementInterval target:self selector:@selector(incrementPlayerScoreByOne) userInfo:nil repeats:YES];
 }
 
 // Generates an asteroid using the stored locations and vectors when given an index to pull data from
@@ -246,13 +253,16 @@ CGPoint topRightPoint;
     [asteroid.physicsBody applyImpulse:force];
 }
 
-#pragma mark - Score handling
+#pragma mark - Scoring Methods
 
-// Increments the players score by a some integer incValue
--(void) incrementPlayerScoreBy:(NSInteger)incValue {
+// Increments the players score by one and updates the on screen UI
+-(void) incrementPlayerScoreByOne {
     
-    self.playerScore += incValue;
-    NSLog(@"Player Score: %i", self.playerScore);
+    // Update score in model
+    self.playerScore += 1;
+    
+    // Update on screen score label to the player's current score
+    self.playerScoreLabel.text = [NSString stringWithFormat:@"%i", self.playerScore];
 }
 
 # pragma mark - Touch handling
@@ -317,7 +327,9 @@ CGPoint topRightPoint;
     
     // Pass player model and score to game over scene
     gameOverScene.playerOne = self.playerOne;
-    gameOverScene.playerScore = self.playerScore;
+    
+    // FIXME: Why can't I do this with ARC?
+    //gameOverScene.playerScore = [NSNumber numberWithInt:self.playerScore];
     
     // Present the scene
     [self.view presentScene:gameOverScene];
