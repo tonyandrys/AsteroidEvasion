@@ -2,7 +2,7 @@
 //  AEGameScene.m
 //  AsteroidEvasion
 //
-//  Created by Tony on 4/21/14.
+//  Created by Tony Andrys on 4/21/14.
 //  Copyright (c) 2014 Tony Andrys, Ian Brauer, Patrick Walsh. All rights reserved.
 //
 
@@ -10,9 +10,26 @@
 #import "AECategories.h"
 #import "AEBitmasks.h"
 #import "AEAsteroid.h"
+#import "AEGameOverScene.h"
 
 // Radius of the circle used as the ship's path
 float circleRadius;
+
+// Asteroid launching information is stored here. Each key contains a launching point and the force vector that should be applied. Eventually I'd like to get rid of this and just generate this all randomly (and derive a general function for calculating the force vector for an arbitrary point (x,y)), but for the alpha I think this is fine.
+NSMutableDictionary *asteroidLaunchPoints;
+
+// asteroid launch points key string constants
+NSString *const KEY_ASTEROID_POSITION = @"keyAsteroidPosition";
+NSString *const KEY_ASTEROID_VECTOR_DX = @"keyAsteroidVectorDx";
+NSString *const KEY_ASTEROID_VECTOR_DY = @"keyAsteroidVectorDy";
+
+// Reference points to make positioning easier, as frame's origin is in the center of the screen
+// x values vary from (-width/2, 0) U (0,width/2)
+// y values vary from (-height/2, 0) U (0,height/2)
+CGPoint bottomLeftPoint;
+CGPoint bottomRightPoint;
+CGPoint topLeftPoint;
+CGPoint topRightPoint;
 
 @implementation AEGameScene
 
@@ -25,6 +42,9 @@ float circleRadius;
         // Set player's score to zero
         self.playerScore = 0;
         
+        // Fill the asteroid launch point dictionary
+        asteroidLaunchPoints = [self buildAsteroidLaunchDictionary];
+        
         // Setup the scene
         [self buildScene];
         
@@ -35,16 +55,73 @@ float circleRadius;
 
 #pragma mark - Scene Setup and Object Creation
 
-// Builds all visual elements and sets up the scene
-- (void)buildScene {
+// Builds and returns the asteroid launch dictionary from hardcoded points
+- (NSMutableDictionary *)buildAsteroidLaunchDictionary {
     
     // Reference points to make positioning easier, as frame's origin is in the center of the screen
     // x values vary from (-width/2, 0) U (0,width/2)
     // y values vary from (-height/2, 0) U (0,height/2)
-    CGPoint bottomLeftPoint = CGPointMake(-self.frame.size.width/2, -self.frame.size.height/2); // Quadrant III
-    CGPoint bottomRightPoint = CGPointMake(self.frame.size.width/2, -self.frame.size.height/2); // Quadrant IV
-    CGPoint topLeftPoint = CGPointMake(-self.frame.size.width/2, self.frame.size.height/2); // Quadrant II
-    CGPoint topRightPoint = CGPointMake(self.frame.size.width/2, self.frame.size.height/2); // Quadrant I
+    bottomLeftPoint = CGPointMake(-self.frame.size.width/2, -self.frame.size.height/2); // Quadrant III
+    bottomRightPoint = CGPointMake(self.frame.size.width/2, -self.frame.size.height/2); // Quadrant IV
+    topLeftPoint = CGPointMake(-self.frame.size.width/2, self.frame.size.height/2); // Quadrant II
+    topRightPoint = CGPointMake(self.frame.size.width/2, self.frame.size.height/2); // Quadrant I
+    
+    // Define array of launch points (number denotes index in array)
+    // -----------------------------
+    // (6)   (7)   (8)   (9)   (10) |
+    //                              |
+    //                              |
+    //                              |
+    //        origin - (0,0)        |
+    //                              |
+    //                              |
+    //                              |
+    // (1)   (2)   (3)   (4)   (5)  |
+    // -----------------------------
+    NSArray *launchPoints = [NSArray arrayWithObjects:
+                             [NSValue valueWithCGPoint:CGPointMake(bottomLeftPoint.x, bottomLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (1/3), bottomLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width/2, bottomLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (2/3), bottomLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width, bottomLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(topLeftPoint.x, topLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (1/3), topLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width/2, topLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (2/3), topLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width, topLeftPoint.y)],
+                             nil];
+    
+    // Apparently I can't wrap a CGVector in an NSValue, so here comes a C array
+    // Index of each vector corresponds to launchPoint
+    CGVector launchVectors[] = {CGVectorMake(10.0f, 10.0f), CGVectorMake(5.0f, 10.0f), CGVectorMake(0.0f, 10.0f), CGVectorMake(-5.0f, 10.0f), CGVectorMake(-10.0f, 10.0f), CGVectorMake(10.0f, -10.0f), CGVectorMake(5.0f, -10.0f), CGVectorMake(0.0f, -10.0f), CGVectorMake(-5.0f, -10.0f), CGVectorMake(-10.0f, -10.0f)};
+
+    // Initialize a new dictionary to add points/vectors to
+    NSMutableDictionary *pointDictionary = [[NSMutableDictionary alloc] init];
+    
+    // For every launch point, create a dictionary that contains the location and the force vector to be applied to an asteroid spawned at that location. Store it as key="i" to be referenced by the pseudorandom number generator.
+    for (int i=0; i<[launchPoints count]; i++) {
+        NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
+        
+        [d setValue:[launchPoints objectAtIndex:i] forKey:KEY_ASTEROID_POSITION];
+        
+        // Force vector unfortunately has to be stored as two separate floats
+        [d setValue:[NSNumber numberWithFloat:launchVectors[i].dx] forKey:KEY_ASTEROID_VECTOR_DX];
+        [d setValue:[NSNumber numberWithFloat:launchVectors[i].dy] forKey:KEY_ASTEROID_VECTOR_DY];
+        
+        // Add the newly created dictionary to the master dictionary as key @"i"
+        [pointDictionary setValue:d forKey:[NSString stringWithFormat:@"%i", i]];
+        
+        // Ridiculous logging statements
+        NSLog(@"Key %i: ", i);
+               NSLog(@"Added launch point (%f, %f) with force vector (%f, %f)", [[d valueForKey:KEY_ASTEROID_POSITION] CGPointValue].x, [[d valueForKey:KEY_ASTEROID_POSITION] CGPointValue].y, [[d valueForKey:KEY_ASTEROID_VECTOR_DX] floatValue], [[d valueForKey:KEY_ASTEROID_VECTOR_DY] floatValue]);
+    }
+    
+    // Return the master dictionary
+    return pointDictionary;
+}
+
+// Builds all visual elements and sets up the scene
+- (void)buildScene {
     
     /* Configure scene background */
     self.backgroundColor = [SKColor colorWithRed:0 green:0 blue:0 alpha:1.0];
@@ -112,18 +189,9 @@ float circleRadius;
     // Generate test asteroids
     
     // Average size asteroid
-    [self generateAsteroidAt:CGPointMake(self.frame.origin.x, self.frame.origin.y) withSize:CGSizeMake(50.0f, 50.0f) withForce:CGVectorMake(6.0f, 2.0f)];
-    
-    // Huge fucking asteroid
-    [self generateAsteroidAt:topLeftPoint withSize:CGSizeMake(125.0f, 125.0f) withForce:CGVectorMake(3.0f, -46.0f)];
-    
-    // Small asteroids
-    [self generateAsteroidAt:bottomRightPoint withSize:CGSizeMake(20.0f, 20.0f) withForce:CGVectorMake(-1.0f, 1.0f)];
-    [self generateAsteroidAt:CGPointMake(bottomRightPoint.x, bottomRightPoint.y) withSize:CGSizeMake(20.0f, 20.0f) withForce:CGVectorMake(-1.0f, 1.0f)];
-    [self generateAsteroidAt:CGPointMake(bottomRightPoint.x, bottomRightPoint.y-20.0f) withSize:CGSizeMake(20.0f, 20.0f) withForce:CGVectorMake(-1.0f, 1.0f)];
-    [self generateAsteroidAt:CGPointMake(bottomRightPoint.x, bottomRightPoint.y-40.0f) withSize:CGSizeMake(20.0f, 20.0f) withForce:CGVectorMake(-1.0f, 1.0f)];
-    ;
-
+    [self generateAsteroidAt:CGPointMake(bottomLeftPoint.x, bottomLeftPoint.y) withSize:CGSizeMake(50.0f, 50.0f) withForce:CGVectorMake(5.0f, 5.0f)];
+    [self generateAsteroidAt:CGPointMake(bottomLeftPoint.x + self.frame.size.width/2, bottomLeftPoint.y) withSize:CGSizeMake(50.0f, 50.0f) withForce:CGVectorMake(0.0f, 5.0f)];
+    [self generateAsteroidAt:CGPointMake(bottomLeftPoint.x + self.frame.size.width, bottomLeftPoint.y) withSize:CGSizeMake(50.0f, 50.0f) withForce:CGVectorMake(-5.0f, 5.0f)];
   
 }
 
@@ -178,42 +246,47 @@ float circleRadius;
     // Calculate difference in radians
     double dTheta =  difference * (M_PI/180);
     
-    
+    // If x touch difference is nonzero, change the ship's location
     if (difference != 0) {
-        
-    NSLog(@"Moving %i * pi/180 radians = %f", difference, dTheta);
+        NSLog(@"Moving %i * pi/180 radians = %f", difference, dTheta);
     
-    // Get a reference to the ship node by its name to change its position
-    SKSpriteNode* ship = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
+        // Get a reference to the ship node by its name to change its position
+        SKSpriteNode* ship = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
     
-    // Calculate the ship's new position by getting its polar position, taking the sum of theta and the touch x difference, and updating the ship's position
-    CGPoint currentShipPosition = CGPointMake(ship.position.x, ship.position.y);
-    NSLog(@"Ship's current position is (%f, %f)", ship.position.x, ship.position.y);
+        // Calculate the ship's new position by getting its polar position, taking the sum of theta and the touch x difference, and updating the ship's position
+        CGPoint currentShipPosition = CGPointMake(ship.position.x, ship.position.y);
+        NSLog(@"Ship's current position is (%f, %f)", ship.position.x, ship.position.y);
     
-    double rad = [self getRadiusFromPoint:currentShipPosition];
-    double theta = [self getThetaFromPoint:currentShipPosition];
-    NSLog(@"Ship's current polar position is (%f, %f)", rad, theta);
+        double rad = [self getRadiusFromPoint:currentShipPosition];
+        double theta = [self getThetaFromPoint:currentShipPosition];
+        NSLog(@"Ship's current polar position is (%f, %f)", rad, theta);
     
-    // Add the change in theta to the original theta
-    double thetaPrime = theta + dTheta;
+        // Add the change in theta to the original theta
+        double thetaPrime = theta + dTheta;
     
-    // Convert r and theta back to their cartesian equivalent to set the position of the node
-    CGPoint newShipPosition = [self polarToCartesian:rad theta:thetaPrime];
+        // Convert r and theta back to their cartesian equivalent to set the position of the node
+        CGPoint newShipPosition = [self polarToCartesian:rad theta:thetaPrime];
     
-    // Update ship position
-    ship.position = newShipPosition;
-    NSLog(@"Ship is now positioned at (%f, %f)", ship.position.x, ship.position.y);
+        // Update ship position
+        ship.position = newShipPosition;
+        NSLog(@"Ship is now positioned at (%f, %f)", ship.position.x, ship.position.y);
     }
 }
 
 #pragma mark - Collision Handling
+
+/* Method called when contact is made between two nodes with different collision bitmasks. */
 -(void)didBeginContact:(SKPhysicsContact *)contact {
-    NSLog(@"Contact between ship and asteroid YOU LOSE FUCKER");
-    NSLog(@"Contact between ship and asteroid YOU LOSE FUCKER");
-    NSLog(@"Contact between ship and asteroid YOU LOSE FUCKER");
-    NSLog(@"Contact between ship and asteroid YOU LOSE FUCKER");
-    NSLog(@"Contact between ship and asteroid YOU LOSE FUCKER");
-    NSLog(@"NOTE: Make a game over screen");
+    
+    // If a collision happens between the ship and an asteroid, the game is over.
+    AEGameOverScene* gameOverScene = [[AEGameOverScene alloc] initWithSize:self.frame.size];
+    
+    // Pass player model and score to game over scene
+    gameOverScene.playerOne = self.playerOne;
+    gameOverScene.playerScore = self.playerScore;
+    
+    // Present the scene
+    [self.view presentScene:gameOverScene];
 }
 
 

@@ -22,7 +22,7 @@
         SKLabelNode *gameOverTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
         gameOverTextLabel.fontSize = 36;
         gameOverTextLabel.fontColor = [UIColor whiteColor];
-        gameOverTextLabel.position = CGPointMake(self.frame.origin.x, self.frame.origin.y);
+        gameOverTextLabel.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         
         // Write the appropriate message to the label depending on the context and add it to the  scene
         gameOverTextLabel.text = @"Game Over!";
@@ -34,14 +34,19 @@
         playAgainTextLabel.fontSize = 22;
         playAgainTextLabel.position = CGPointMake(CGRectGetMidX(self.frame), gameOverTextLabel.position.y - gameOverTextLabel.fontSize - 20.0f);
         playAgainTextLabel.text = @"Touch to play again.";
-        [self addChild:gameOverTextLabel];
+        [self addChild:playAgainTextLabel];
     }
     return self;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    // When the user touches the screen, the jumps back into the breakout game
-    AEGameScene *gameScene = [[AEGameScene alloc] initWithSize:self.size];
+    
+    // When the user touches the screen, rebuild and reconfigure the game scene
+    AEGameScene *gameScene = [[AEGameScene alloc] initWithSize:self.size playerOne:self.playerOne];
+    gameScene.scaleMode = SKSceneScaleModeAspectFit;
+    gameScene.anchorPoint = CGPointMake(0.5, 0.5);
+    
+    // Present the scene to restart the game
     [self.view presentScene:gameScene];
 }
 

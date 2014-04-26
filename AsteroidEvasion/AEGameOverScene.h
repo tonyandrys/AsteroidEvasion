@@ -7,7 +7,12 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "AEPlayer.h"
 
 @interface AEGameOverScene : SKScene
+
+// Player objects representing active user profile
+@property (strong, nonatomic) AEPlayer *playerOne;
+@property (readwrite, assign) NSInteger *playerScore;
 
 @end
