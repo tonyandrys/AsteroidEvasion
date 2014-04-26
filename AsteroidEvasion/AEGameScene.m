@@ -18,7 +18,11 @@ float circleRadius;
 // Asteroid launching information is stored here. Each key contains a launching point and the force vector that should be applied. Eventually I'd like to get rid of this and just generate this all randomly (and derive a general function for calculating the force vector for an arbitrary point (x,y)), but for the alpha I think this is fine.
 NSMutableDictionary *asteroidLaunchPoints;
 
-// asteroid launch points key string constants
+// Asteroid Timer - When fired, spawn a new asteroid and increment player's score
+NSTimeInterval fireInterval = 3;
+NSTimer *asteroidTimer;
+
+// Asteroid launch points key string constants
 NSString *const KEY_ASTEROID_POSITION = @"keyAsteroidPosition";
 NSString *const KEY_ASTEROID_VECTOR_DX = @"keyAsteroidVectorDx";
 NSString *const KEY_ASTEROID_VECTOR_DY = @"keyAsteroidVectorDy";
@@ -30,6 +34,8 @@ CGPoint bottomLeftPoint;
 CGPoint bottomRightPoint;
 CGPoint topLeftPoint;
 CGPoint topRightPoint;
+
+
 
 @implementation AEGameScene
 
@@ -66,7 +72,7 @@ CGPoint topRightPoint;
     topLeftPoint = CGPointMake(-self.frame.size.width/2, self.frame.size.height/2); // Quadrant II
     topRightPoint = CGPointMake(self.frame.size.width/2, self.frame.size.height/2); // Quadrant I
     
-    // Define array of launch points (number denotes index in array)
+    // Define array of launch points (launch point number == index number-1)
     // -----------------------------
     // (6)   (7)   (8)   (9)   (10) |
     //                              |
@@ -78,16 +84,18 @@ CGPoint topRightPoint;
     //                              |
     // (1)   (2)   (3)   (4)   (5)  |
     // -----------------------------
+    
+    // Hardcode launch points in (for now)
     NSArray *launchPoints = [NSArray arrayWithObjects:
                              [NSValue valueWithCGPoint:CGPointMake(bottomLeftPoint.x, bottomLeftPoint.y)],
-                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (1/3), bottomLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (0.33f), bottomLeftPoint.y)],
                              [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width/2, bottomLeftPoint.y)],
-                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (2/3), bottomLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (0.66f), bottomLeftPoint.y)],
                              [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width, bottomLeftPoint.y)],
                              [NSValue valueWithCGPoint:CGPointMake(topLeftPoint.x, topLeftPoint.y)],
-                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (1/3), topLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (0.33f), topLeftPoint.y)],
                              [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width/2, topLeftPoint.y)],
-                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (2/3), topLeftPoint.y)],
+                             [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width * (0.66f), topLeftPoint.y)],
                              [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width, topLeftPoint.y)],
                              nil];
     
@@ -186,13 +194,30 @@ CGPoint topRightPoint;
     ship.position = CGPointMake(self.frame.origin.x + circleShapeNode.frame.size.width/2, self.frame.origin.y);
     [self addChild:ship];
     
-    // Generate test asteroids
+    // Build and start the asteroid timer
+    asteroidTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)3.0f target:self selector:@selector(generateNewAsteroid) userInfo:nil repeats:YES];
+}
+
+// Generates an asteroid using the stored locations and vectors when given an index to pull data from
+-(void)generateNewAsteroid {
     
-    // Average size asteroid
-    [self generateAsteroidAt:CGPointMake(bottomLeftPoint.x, bottomLeftPoint.y) withSize:CGSizeMake(50.0f, 50.0f) withForce:CGVectorMake(5.0f, 5.0f)];
-    [self generateAsteroidAt:CGPointMake(bottomLeftPoint.x + self.frame.size.width/2, bottomLeftPoint.y) withSize:CGSizeMake(50.0f, 50.0f) withForce:CGVectorMake(0.0f, 5.0f)];
-    [self generateAsteroidAt:CGPointMake(bottomLeftPoint.x + self.frame.size.width, bottomLeftPoint.y) withSize:CGSizeMake(50.0f, 50.0f) withForce:CGVectorMake(-5.0f, 5.0f)];
-  
+    // Get a random index value inside the size of asteroidLaunchPoints
+    int i = [self generateRandomNumberBetween:0 maxNumber:([asteroidLaunchPoints count]-1)];
+    
+    // Convert the number into a string to use as a key for the asteroid launch points dictionary
+    NSString *k = [NSString stringWithFormat:@"%i", i];
+    
+    // Get the dictionary located at key @"k" and extract launch parameters
+    NSDictionary* launchParameters = [asteroidLaunchPoints objectForKey:k];
+    
+    CGPoint launchPosition = [[launchParameters valueForKey:KEY_ASTEROID_POSITION] CGPointValue];
+    CGVector launchVector = CGVectorMake([[launchParameters valueForKey:KEY_ASTEROID_VECTOR_DX] floatValue], [[launchParameters valueForKey:KEY_ASTEROID_VECTOR_DY] floatValue]);
+    CGSize asteroidSize = CGSizeMake(75.0f, 75.0f); // Hardcoding size for now
+
+    // Fire a new asteroid at the stored position using the stored force vector
+    [self generateAsteroidAt:launchPosition withSize:asteroidSize withForce:launchVector];
+    
+    
 }
 
 // Generates an asteroid with arbitrary position, size, and force (linear impulse only)
@@ -214,11 +239,20 @@ CGPoint topRightPoint;
     asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY; // Notify if the asteroid makes contact with the ship
     
     // Add to SKScene
-    NSLog(@"Generated asteroid at (%f. %f)", pos.x, pos.y);
+    NSLog(@"Generated asteroid at (%f. %f) with force dx=%f, dy=%f)", pos.x, pos.y, force.dx, force.dy);
     [self addChild:asteroid];
     
     // After asteroid is added, apply linear impulse
     [asteroid.physicsBody applyImpulse:force];
+}
+
+#pragma mark - Score handling
+
+// Increments the players score by a some integer incValue
+-(void) incrementPlayerScoreBy:(NSInteger)incValue {
+    
+    self.playerScore += incValue;
+    NSLog(@"Player Score: %i", self.playerScore);
 }
 
 # pragma mark - Touch handling
@@ -248,18 +282,18 @@ CGPoint topRightPoint;
     
     // If x touch difference is nonzero, change the ship's location
     if (difference != 0) {
-        NSLog(@"Moving %i * pi/180 radians = %f", difference, dTheta);
+        //NSLog(@"Moving %i * pi/180 radians = %f", difference, dTheta);
     
         // Get a reference to the ship node by its name to change its position
         SKSpriteNode* ship = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
     
         // Calculate the ship's new position by getting its polar position, taking the sum of theta and the touch x difference, and updating the ship's position
         CGPoint currentShipPosition = CGPointMake(ship.position.x, ship.position.y);
-        NSLog(@"Ship's current position is (%f, %f)", ship.position.x, ship.position.y);
+        //NSLog(@"Ship's current position is (%f, %f)", ship.position.x, ship.position.y);
     
         double rad = [self getRadiusFromPoint:currentShipPosition];
         double theta = [self getThetaFromPoint:currentShipPosition];
-        NSLog(@"Ship's current polar position is (%f, %f)", rad, theta);
+        //NSLog(@"Ship's current polar position is (%f, %f)", rad, theta);
     
         // Add the change in theta to the original theta
         double thetaPrime = theta + dTheta;
@@ -269,7 +303,7 @@ CGPoint topRightPoint;
     
         // Update ship position
         ship.position = newShipPosition;
-        NSLog(@"Ship is now positioned at (%f, %f)", ship.position.x, ship.position.y);
+        //NSLog(@"Ship is now positioned at (%f, %f)", ship.position.x, ship.position.y);
     }
 }
 
@@ -297,7 +331,7 @@ CGPoint topRightPoint;
 - (CGPoint)polarToCartesian:(double)r theta:(double)q {
     double x = r * cos(q);
     double y = r * sin(q);
-    NSLog(@"Converting] polar (%f %f) to cartesian is (%f, %f)", r, q, x, y);
+    //NSLog(@"Converting] polar (%f %f) to cartesian is (%f, %f)", r, q, x, y);
     return CGPointMake(x,y);
 }
 
@@ -320,6 +354,11 @@ CGPoint topRightPoint;
 // Converts radians to degrees
 - (double)radToDeg:(double)radians {
     return radians * (180.0 / M_PI);
+}
+
+// Generates and returns a pseudorandom number on the interval [min, max]
+- (NSInteger)generateRandomNumberBetween:(NSInteger)min maxNumber:(NSInteger)max {
+    return min + arc4random() % (max - min + 1);
 }
 
 # pragma mark - Frame Update Handler
