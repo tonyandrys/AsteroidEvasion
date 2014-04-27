@@ -691,6 +691,7 @@
         <image name="meteor2" width="60" height="67"/>
         <image name="space02" width="1150" height="864"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
