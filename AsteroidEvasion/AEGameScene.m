@@ -335,7 +335,7 @@ CGPoint topRightPoint;
         }
         else
         {
-            ship.zRotation = theta - 160.55;
+            ship.zRotation = theta - 160.3;
         }
         
     }
