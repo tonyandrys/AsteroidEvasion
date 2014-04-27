@@ -58,6 +58,12 @@ CGPoint topRightPoint;
         // Setup the scene
         [self buildScene];
         
+       
+//        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"space05"];
+//        bgImage.position = CGPointMake(self.size.width/2, self.size.height/2);
+//        [self addChild:bgImage];
+        
+        
         }
     
     return self;
@@ -137,6 +143,9 @@ CGPoint topRightPoint;
     
     /* Configure scene background */
     self.backgroundColor = [SKColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"space02"];
+    background.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+    [self addChild:background];
     
     // Configure SKSCene physics
     self.physicsWorld.contactDelegate = self;
@@ -165,6 +174,8 @@ CGPoint topRightPoint;
     self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     [self addChild:self.playerScoreLabel];
     
+    
+    
     // Draw circle (path for ship)
     // x origin position, y origin position, width, height
     //FIXME change to oval!!
@@ -182,7 +193,7 @@ CGPoint topRightPoint;
     [self addChild: circleShapeNode];
     
      // Draw ship (place at 0rad on circle)
-    SKSpriteNode *ship = [SKSpriteNode spriteNodeWithImageNamed:@"ship2.png"];
+    SKSpriteNode *ship = [SKSpriteNode spriteNodeWithImageNamed:@"spaceshipsOutlined.png"];
     ship.name = NAME_CATEGORY_SHIP;
     
     // Define physics body of ship
@@ -194,8 +205,10 @@ CGPoint topRightPoint;
     // The ship's physics body should be dynamic, or not react to forces or impulses from other objects (be thrown off path by a moving asteroid for example)
     ship.physicsBody.dynamic = NO;
     
+    
     // Place at right edge of circle's border
     ship.position = CGPointMake(self.frame.origin.x + circleShapeNode.frame.size.width/2, self.frame.origin.y);
+  
     [self addChild:ship];
     
     // Build and start the asteroid and score increment timer
@@ -231,7 +244,7 @@ CGPoint topRightPoint;
 -(void)generateAsteroidAt:(CGPoint)pos withSize:(CGSize)size withForce:(CGVector)force {
     
     // Configure node
-    SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"asteroid"];
+    SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"meteor2"];
     asteroid.name = NAME_CATEGORY_ASTEROID;
     asteroid.position = pos;
     asteroid.size = size;
@@ -314,6 +327,17 @@ CGPoint topRightPoint;
         // Update ship position
         ship.position = newShipPosition;
         //NSLog(@"Ship is now positioned at (%f, %f)", ship.position.x, ship.position.y);
+        
+        
+        if(dTheta >= 0)
+        {
+            ship.zRotation = theta;
+        }
+        else
+        {
+            ship.zRotation = theta - 160.55;
+        }
+        
     }
 }
 

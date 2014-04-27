@@ -15,5 +15,4 @@
 
 // Store the profile of the currently logged in user, passed from the root VC during the segue to this scene
 @property (strong, nonatomic) AEPlayer *loggedInPlayer;
-
 @end

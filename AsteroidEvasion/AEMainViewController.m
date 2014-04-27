@@ -31,6 +31,15 @@
 {
     [super viewDidLoad];
     
+//    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"space02"]];
+//    
+////      bgImageView.frame = self.view.bounds;
+////      [self.view addSubview:bgImageView];
+////      [self.view sendSubviewToBack:bgImageView];
+    
+//    UIImage *logo = [[UIImage alloc] initWithCIImage:[UIImage imageNamed:@"space02"]];
+ //   logo.size
+    
     // Load user preferences to get the profile currently logged in
     self.userPrefs = [NSUserDefaults standardUserDefaults];
 }
