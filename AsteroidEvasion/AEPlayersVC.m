@@ -39,8 +39,9 @@
     // Read player data from storage
     self.players = [self getPlayerData];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"space02"]];
-    [self.tableView setBackgroundView:imageView];
+    // Disabled by Tony - doesn't do anything right now
+    //UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"space02"]];
+    //[self.tableView setBackgroundView:imageView];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

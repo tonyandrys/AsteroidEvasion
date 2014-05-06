@@ -282,9 +282,7 @@ CGPoint topRightPoint;
 
 // Called when a touch begins
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    // Get an instance of the touch and store the location of the touch event
-    //UITouch *touch = [touches anyObject];
-    //CGPoint touchLocation = [touch locationInNode:self];
+
 }
 
 // Fired when the finger moves within a view
