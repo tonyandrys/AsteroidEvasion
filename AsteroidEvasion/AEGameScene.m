@@ -30,6 +30,7 @@ NSTimer *scoreIncrementTimer;
 NSString *const KEY_ASTEROID_POSITION = @"keyAsteroidPosition";
 NSString *const KEY_ASTEROID_VECTOR_DX = @"keyAsteroidVectorDx";
 NSString *const KEY_ASTEROID_VECTOR_DY = @"keyAsteroidVectorDy";
+CGRect circle;
 
 // Reference points to make positioning easier, as frame's origin is in the center of the screen
 // x values vary from (-width/2, 0) U (0,width/2)
@@ -174,15 +175,13 @@ CGPoint topRightPoint;
     self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     [self addChild:self.playerScoreLabel];
     
-    
-    
     // Draw circle (path for ship)
     // x origin position, y origin position, width, height
     //FIXME change to oval!!
     //CGRect circle = CGRectMake(bottomLeftPoint.x + 12.5, bottomRightPoint.y + 85.0, self.frame.size.width - 25.0, self.frame.size.height - 100.0);
-    CGRect circle = CGRectMake(bottomLeftPoint.x + 12.5, self.frame.origin.y-150.0, 300, 300);
-    
+    circle = CGRectMake(bottomLeftPoint.x + 12.5, self.frame.origin.y-150.0, 300, 300);
     SKShapeNode *circleShapeNode = [[SKShapeNode alloc] init];
+    circleShapeNode.name = NAME_CATEGORY_CIRCLE;
     circleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
     circleShapeNode.strokeColor = [UIColor whiteColor];
     circleShapeNode.fillColor = nil;
@@ -204,7 +203,6 @@ CGPoint topRightPoint;
     
     // The ship's physics body should be dynamic, or not react to forces or impulses from other objects (be thrown off path by a moving asteroid for example)
     ship.physicsBody.dynamic = NO;
-    
     
     // Place at right edge of circle's border
     ship.position = CGPointMake(self.frame.origin.x + circleShapeNode.frame.size.width/2, self.frame.origin.y);
@@ -285,6 +283,80 @@ CGPoint topRightPoint;
 
 }
 
+// Moves the player's ship deltaX units around the circle
+-(void) moveShipX:(NSInteger)deltaX {
+    
+    NSLog(@"moveShipX called! deltaX:%i", deltaX);
+    
+    // Get a reference to the ship node by its name to change its position
+    SKSpriteNode* playerShip = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
+    
+    // Calculate difference in radians
+    double dTheta =  deltaX * (M_PI/180);
+    
+    // Calculate the ship's new position by getting its polar position, taking the sum of theta and the touch x difference, and updating the ship's position
+    CGPoint currentShipPosition = CGPointMake(playerShip.position.x, playerShip.position.y);
+    //NSLog(@"Ship's current position is (%f, %f)", ship.position.x, ship.position.y);
+    
+    double rad = [self getRadiusFromPoint:currentShipPosition];
+    double theta = [self getThetaFromPoint:currentShipPosition];
+    //NSLog(@"Ship's current polar position is (%f, %f)", rad, theta);
+    
+    // Add the change in theta to the original theta
+    double thetaPrime = theta + dTheta;
+    
+    // Convert r and theta back to their cartesian equivalent to set the position of the node
+    CGPoint newShipPosition = [self polarToCartesian:rad theta:thetaPrime];
+    
+    // Set rotation of the ship based on its movement
+    if(dTheta >= 0) {
+        playerShip.zRotation = theta;
+    } else {
+        playerShip.zRotation = theta - 160.3;
+    }
+    
+    // Update ship position
+    playerShip.position = newShipPosition;
+    //NSLog(@"Ship is now positioned at (%f, %f)", ship.position.x, ship.position.y);
+}
+
+// Moves the player's ship deltaY units to/from the center of the screen and redraws the on-screen circle accordingly
+-(void) moveShipY:(NSInteger)deltaY {
+    
+    NSLog(@"moveShipY called! deltaY:%i", deltaY);
+    
+    // Get a reference to the ship and circle nodes to modify their properties
+    SKSpriteNode *playerShip = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
+    SKShapeNode *circleShapeNode = (SKShapeNode *)[self childNodeWithName:NAME_CATEGORY_CIRCLE];
+    
+    // Change the ship's Y position by deltaY
+    CGPoint newShipPosition = CGPointMake(playerShip.position.x, playerShip.position.y + deltaY);
+    
+    // Add/subtract the height/width of the circle model by deltaY
+    float circleHeight = circleShapeNode.frame.size.height;
+    float circleWidth = circleShapeNode.frame.size.width;
+    //float circlePositionX = circle.origin.x - circleRadius;
+    //float circlePositionY = circle.origin.y - circleRadius;
+    
+    NSLog(@"CGRect Circle's origin is %f, %f", circle.origin.x, circle.origin.y);
+    
+    circle = CGRectMake(circle.origin.x += deltaY, circle.origin.y += deltaY, circleHeight - (deltaY*2), circleWidth - (deltaY*2));
+    
+    // Apply the circle height changes to the circleNode
+    circleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
+
+    //circleShapeNode.strokeColor = [UIColor whiteColor];
+    //circleShapeNode.fillColor = nil;
+    NSLog(@"Circle now has height=%f", circle.size.height);
+    
+    
+    // Update ship position
+    playerShip.position = newShipPosition;
+    NSLog(@"Ship is now positioned at (%f, %f)", playerShip.position.x, playerShip.position.y);
+    
+}
+
+// Refactor into moveShipX and moveShipY ***
 // Fired when the finger moves within a view
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -295,49 +367,29 @@ CGPoint topRightPoint;
     CGPoint touchLocation = [touch locationInNode:self];
     CGPoint previousLocation = [touch previousLocationInNode:self];
     
-    // Check if the user is panning to the right (positive x difference) or to the left (negative x difference)
-    NSInteger difference = touchLocation.x - previousLocation.x;
+    // Check if the user is panning to the right (positive x difference), to the left (negative x difference), to the top (positive y difference), or to the bottom (negative y difference)
+    NSInteger deltaX = touchLocation.x - previousLocation.x;
+    NSInteger deltaY = touchLocation.y - previousLocation.y;
     
-    // Calculate difference in radians
-    double dTheta =  difference * (M_PI/180);
-    
-    // If x touch difference is nonzero, change the ship's location
-    if (difference != 0) {
-        //NSLog(@"Moving %i * pi/180 radians = %f", difference, dTheta);
-    
-        // Get a reference to the ship node by its name to change its position
-        SKSpriteNode* ship = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
-    
-        // Calculate the ship's new position by getting its polar position, taking the sum of theta and the touch x difference, and updating the ship's position
-        CGPoint currentShipPosition = CGPointMake(ship.position.x, ship.position.y);
-        //NSLog(@"Ship's current position is (%f, %f)", ship.position.x, ship.position.y);
-    
-        double rad = [self getRadiusFromPoint:currentShipPosition];
-        double theta = [self getThetaFromPoint:currentShipPosition];
-        //NSLog(@"Ship's current polar position is (%f, %f)", rad, theta);
-    
-        // Add the change in theta to the original theta
-        double thetaPrime = theta + dTheta;
-    
-        // Convert r and theta back to their cartesian equivalent to set the position of the node
-        CGPoint newShipPosition = [self polarToCartesian:rad theta:thetaPrime];
-    
-        // Update ship position
-        ship.position = newShipPosition;
-        //NSLog(@"Ship is now positioned at (%f, %f)", ship.position.x, ship.position.y);
+    // If there is a change in position of the touch, trigger ship movement
+    if (previousLocation.x != touchLocation.x || previousLocation.y != touchLocation.y) {
         
-        
-        if(dTheta >= 0)
-        {
-            ship.zRotation = theta;
-        }
-        else
-        {
-            ship.zRotation = theta - 160.3;
+        // If a change in X is detected, move around the circle X degrees
+        if (deltaX != 0) {
+            
+            // Move the ship deltaX units around the circle
+            [self moveShipX:deltaX];
         }
         
+        // If a change in Y is detected, move the ship towards or away from the center of the screen
+        else if (deltaY != 0) {
+            
+            // Move the ship deltaY units around the circle
+            [self moveShipY:deltaY];
+        }
+
+        }
     }
-}
 
 #pragma mark - Collision Handling
 
@@ -352,6 +404,9 @@ CGPoint topRightPoint;
     
     // FIXME: Why can't I do this with ARC?
     //gameOverScene.playerScore = [NSNumber numberWithInt:self.playerScore];
+    
+    // Kill the asteroid launch timer
+    [asteroidTimer invalidate];
     
     // Present the scene
     [self.view presentScene:gameOverScene];

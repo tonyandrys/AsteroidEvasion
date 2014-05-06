@@ -13,5 +13,6 @@
 
 extern NSString *const NAME_CATEGORY_SHIP;
 extern NSString *const NAME_CATEGORY_ASTEROID;
+extern NSString *const NAME_CATEGORY_CIRCLE;
 
 @end
