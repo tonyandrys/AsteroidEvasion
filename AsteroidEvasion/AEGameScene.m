@@ -297,6 +297,7 @@ CGPoint topRightPoint;
     // Calculate the ship's new position by getting its polar position, taking the sum of theta and the touch x difference, and updating the ship's position
     CGPoint currentShipPosition = CGPointMake(playerShip.position.x, playerShip.position.y);
     //NSLog(@"Ship's current position is (%f, %f)", ship.position.x, ship.position.y);
+    //NSLog(@)
     
     double rad = [self getRadiusFromPoint:currentShipPosition];
     double theta = [self getThetaFromPoint:currentShipPosition];
@@ -329,17 +330,19 @@ CGPoint topRightPoint;
     SKSpriteNode *playerShip = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
     SKShapeNode *circleShapeNode = (SKShapeNode *)[self childNodeWithName:NAME_CATEGORY_CIRCLE];
     
-    // Change the ship's Y position by deltaY
-    CGPoint newShipPosition = CGPointMake(playerShip.position.x, playerShip.position.y + deltaY);
+    // Calculate the ship's new position by getting its radius from its polar position and setting its new radius as the sum of the previous radius + deltaY
+    CGPoint currentShipPosition = CGPointMake(playerShip.position.x, playerShip.position.y);
+    double newRadius = [self getRadiusFromPoint:currentShipPosition] - deltaY; // Add deltaY
+    double theta = [self getThetaFromPoint:currentShipPosition]; // Get Q, but do not change Q (ship's polar rotation)
+    
+    // Convert r and theta back to their cartesian equivalent to set the position of the node
+    CGPoint newShipPosition = [self polarToCartesian:newRadius theta:theta];
     
     // Add/subtract the height/width of the circle model by deltaY
     float circleHeight = circleShapeNode.frame.size.height;
     float circleWidth = circleShapeNode.frame.size.width;
-    //float circlePositionX = circle.origin.x - circleRadius;
-    //float circlePositionY = circle.origin.y - circleRadius;
-    
-    NSLog(@"CGRect Circle's origin is %f, %f", circle.origin.x, circle.origin.y);
-    
+
+    // Update the circle model so we can use this change as a reference point for future changes
     circle = CGRectMake(circle.origin.x += deltaY, circle.origin.y += deltaY, circleHeight - (deltaY*2), circleWidth - (deltaY*2));
     
     // Apply the circle height changes to the circleNode
@@ -347,13 +350,9 @@ CGPoint topRightPoint;
 
     //circleShapeNode.strokeColor = [UIColor whiteColor];
     //circleShapeNode.fillColor = nil;
-    NSLog(@"Circle now has height=%f", circle.size.height);
-    
     
     // Update ship position
-    playerShip.position = newShipPosition;
-    NSLog(@"Ship is now positioned at (%f, %f)", playerShip.position.x, playerShip.position.y);
-    
+    playerShip.position = newShipPosition;    
 }
 
 // Refactor into moveShipX and moveShipY ***
