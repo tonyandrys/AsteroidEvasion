@@ -244,7 +244,7 @@ CGPoint topRightPoint;
 -(void)generateAsteroidAt:(CGPoint)pos withSize:(CGSize)size withForce:(CGVector)force {
     
     // Configure node
-    SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"meteor1"];
+    SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"meteor2"];
     asteroid.name = NAME_CATEGORY_ASTEROID;
     asteroid.position = pos;
     asteroid.size = size;
