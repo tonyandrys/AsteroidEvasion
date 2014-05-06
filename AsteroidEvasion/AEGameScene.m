@@ -32,6 +32,10 @@ NSString *const KEY_ASTEROID_VECTOR_DX = @"keyAsteroidVectorDx";
 NSString *const KEY_ASTEROID_VECTOR_DY = @"keyAsteroidVectorDy";
 CGRect circle;
 
+// Circle diameter constraints
+float const CIRCLE_DIAMETER_MAX = 300;
+float const CIRCLE_DIAMETER_MIN = 30;
+
 // Reference points to make positioning easier, as frame's origin is in the center of the screen
 // x values vary from (-width/2, 0) U (0,width/2)
 // y values vary from (-height/2, 0) U (0,height/2)
@@ -39,8 +43,6 @@ CGPoint bottomLeftPoint;
 CGPoint bottomRightPoint;
 CGPoint topLeftPoint;
 CGPoint topRightPoint;
-
-
 
 @implementation AEGameScene
 
@@ -112,7 +114,7 @@ CGPoint topRightPoint;
     
     // Apparently I can't wrap a CGVector in an NSValue, so here comes a C array
     // Index of each vector corresponds to launchPoint
-    CGVector launchVectors[] = {CGVectorMake(10.0f, 10.0f), CGVectorMake(5.0f, 10.0f), CGVectorMake(0.0f, 10.0f), CGVectorMake(-5.0f, 10.0f), CGVectorMake(-10.0f, 10.0f), CGVectorMake(10.0f, -10.0f), CGVectorMake(5.0f, -10.0f), CGVectorMake(0.0f, -10.0f), CGVectorMake(-5.0f, -10.0f), CGVectorMake(-10.0f, -10.0f)};
+    CGVector launchVectors[] = {CGVectorMake(15.0f, 15.0f), CGVectorMake(10.0f, 15.0f), CGVectorMake(0.0f, 15.0f), CGVectorMake(-10.0f, 15.0f), CGVectorMake(-15.0f, 15.0f), CGVectorMake(15.0f, -15.0f), CGVectorMake(10.0f, -15.0f), CGVectorMake(0.0f, -15.0f), CGVectorMake(-10.0f, -15.0f), CGVectorMake(-15.0f, -15.0f)};
 
     // Initialize a new dictionary to add points/vectors to
     NSMutableDictionary *pointDictionary = [[NSMutableDictionary alloc] init];
@@ -335,24 +337,55 @@ CGPoint topRightPoint;
     double newRadius = [self getRadiusFromPoint:currentShipPosition] - deltaY; // Add deltaY
     double theta = [self getThetaFromPoint:currentShipPosition]; // Get Q, but do not change Q (ship's polar rotation)
     
-    // Convert r and theta back to their cartesian equivalent to set the position of the node
-    CGPoint newShipPosition = [self polarToCartesian:newRadius theta:theta];
+    // Check if the diameter of the circle is within the MIN/MAX constraints to prevent the ship from moving too close to the middle or off of the screen
+    if ((newRadius*2 > CIRCLE_DIAMETER_MAX) || (newRadius*2 < CIRCLE_DIAMETER_MIN)){
+        NSLog(@"Circle bounds have been reached!");
+        return;
+    }
     
-    // Add/subtract the height/width of the circle model by deltaY
-    float circleHeight = circleShapeNode.frame.size.height;
-    float circleWidth = circleShapeNode.frame.size.width;
+    // If we are within the MIN/MAX constraints, perform the movement of the ship and resize the circle
+    else {
+    
+        // Convert r and theta back to their cartesian equivalent to set the position of the node
+        CGPoint newShipPosition = [self polarToCartesian:newRadius theta:theta];
+        
+        // Add/subtract the height/width of the circle model by deltaY
+        float circleHeight = circleShapeNode.frame.size.height;
+        float circleWidth = circleShapeNode.frame.size.width;
+        
+        // Update the circle model so we can use this change as a reference point for future changes
+        circle = CGRectMake(circle.origin.x += deltaY, circle.origin.y += deltaY, circleHeight - (deltaY*2), circleWidth - (deltaY*2));
+        
+        // Change the rotation of the ship to correctly animate moving toward the screen or away from it
+        if (deltaY > 0) {
+            
+            // BROKEN - FIX ME
+            // If we are moving up, rotate the ship towards the center of the circle
+            //playerShip.zRotation += M_PI_2;
+            
+            // Set the moving up flag for the ship so rotation doesn't happen again until direction changes
+            //isShipMovingUp = YES;
+            //isShipMovingDown = NO;
+            
+        } else if (deltaY < 0) {
+            
+            // BROKEN - FIX ME
+            // If we are moving down, rotate the ship away from the center of the circle
+            //playerShip.zRotation -= M_PI_2;
+            
+            // Set the moving flags for the ship so rotation doesn't happen again until direction changes
+            //isShipMovingDown = YES;
+            //isShipMovingUp = NO;
+        }
+        
+        // Apply the circle height changes to the circleNode
+        circleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
+        
+        // Update ship position
+        playerShip.position = newShipPosition;
+    }
+    
 
-    // Update the circle model so we can use this change as a reference point for future changes
-    circle = CGRectMake(circle.origin.x += deltaY, circle.origin.y += deltaY, circleHeight - (deltaY*2), circleWidth - (deltaY*2));
-    
-    // Apply the circle height changes to the circleNode
-    circleShapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
-
-    //circleShapeNode.strokeColor = [UIColor whiteColor];
-    //circleShapeNode.fillColor = nil;
-    
-    // Update ship position
-    playerShip.position = newShipPosition;    
 }
 
 // Refactor into moveShipX and moveShipY ***
