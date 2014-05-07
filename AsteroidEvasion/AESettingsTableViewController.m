@@ -1,25 +1,26 @@
 //
-//  AEPlayerDetailsVC.m
+//  AESettingsTableViewController.m
 //  AsteroidEvasion
 //
-//  Created by Tony Andrys on 4/22/14.
+//  Created by Tony Andrys on 5/6/14.
 //  Copyright (c) 2014 Tony Andrys, Ian Brauer, Patrick Walsh. All rights reserved.
 //
 
-#import "AEPlayerDetailsVC.h"
-#import "AEPreferences.h"
+#import "AESettingsTableViewController.h"
 
-@interface AEPlayerDetailsVC ()
+@interface AESettingsTableViewController ()
 
 @end
 
-@implementation AEPlayerDetailsVC
+@implementation AESettingsTableViewController {
+    NSString *color;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        // Custom initialization goes here
     }
     return self;
 }
@@ -28,22 +29,17 @@
 {
     [super viewDidLoad];
     
-    // Load the active user preferences and get the name of the user currently logged in
-    self.userPrefs = [NSUserDefaults standardUserDefaults];
-    NSString *loggedInName = [self.userPrefs stringForKey:KEY_PROFILE_NAME];
-    NSLog(@"Name of logged in profile is: %@", loggedInName);
+    // Write the player's name to the top label
+    self.playerNameDisplayLabel.text = self.loggedInPlayer.name;
     
-    // Disable the "Log In" button if the profile we are about to view is the profile currently logged in.
-    if ([self.displayPlayer.name isEqualToString:loggedInName]) {
-        [self.loginMenuButton setEnabled:NO];
-    }
+    color = self.loggedInPlayer.shipColor;
+    NSLog(@"Player's ship color is currently set to %@", color);
     
-    // Fill the UI labels with information from the selected player object
-    self.nameDisplayLabel.text = self.displayPlayer.name;
-    self.highScoreDisplayLabel.text = self.displayPlayer.highScore;
-    self.shipColorDisplayLabel.text = self.displayPlayer.shipColor;
-    self.difficultyDisplayLabel.text = [NSString stringWithFormat:@"%i", self.displayPlayer.difficulty];
-
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,34 +48,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-// Method fired when login button is pressed.
-- (IBAction)loginButtonPressed:(id)sender {
-    
-    //  Replace the information about the user currently logged in with the displayUser (the user whos information is currently being displayed)
-    [self.userPrefs setValue:self.displayPlayer.name forKey:KEY_PROFILE_NAME];
-    [self.userPrefs setValue:self.displayPlayer.highScore forKey:KEY_PROFILE_HIGH_SCORE];
-    [self.userPrefs setValue:self.displayPlayer.shipColor forKey:KEY_PROFILE_SHIP_COLOR];
-    [self.userPrefs setValue:[NSString stringWithFormat:@"%i", self.displayPlayer.difficulty] forKey:KEY_PROFILE_DIFFICULTY];
-    NSLog(@"User %@ is now logged in.", self.displayPlayer.name);
-    
-    // Go back to the main view controller
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    
-}
-
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 5;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 1;
+    NSUInteger rowCount = 0;
+    if (section == 0) {
+        rowCount = 1;
+    } else if (section == 1) {
+        rowCount = 2;
+    }
+    
+    return rowCount;
 }
 
 /*

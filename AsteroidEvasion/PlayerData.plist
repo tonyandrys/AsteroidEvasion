@@ -2,33 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>players</key>
-    
-    <array>
-        
-        <dict>
-            <key>name</key>
-            <string>Tony</string>
-            <key>highScore</key>
-            <string>100</string>
-            <key>shipColor</key>
-            <string>0</string>
-            <key>difficulty</key>
-            <string>2</string>
-        </dict>
-        
-        <dict>
-            <key>name</key>
-            <string>Barack</string>
-            <key>highScore</key>
-            <string>50</string>
-            <key>shipColor</key>
-            <string>0</string>
-            <key>difficulty</key>
-            <string>1</string>
-        </dict>
-        
-    </array>
-    
+	<key>players</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Tony</string>
+			<key>highScore</key>
+			<string>100</string>
+			<key>shipColor</key>
+			<string>White</string>
+			<key>difficulty</key>
+			<string>2</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Barack</string>
+			<key>highScore</key>
+			<string>50</string>
+			<key>shipColor</key>
+			<string>Red</string>
+			<key>difficulty</key>
+			<string>1</string>
+		</dict>
+	</array>
 </dict>
 </plist>

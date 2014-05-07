@@ -23,7 +23,7 @@
     NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
     [d setValue:self.name forKey:KEY_PLAYER_NAME];
     [d setValue:self.highScore forKey:KEY_HIGH_SCORE];
-    [d setValue:[NSString stringWithFormat:@"%i", self.shipColor] forKey:KEY_SHIP_COLOR];
+    [d setValue:self.shipColor forKey:KEY_SHIP_COLOR];
     [d setValue:[NSString stringWithFormat:@"%i", self.difficulty] forKey:KEY_DIFFICULTY];
     return d;
 }

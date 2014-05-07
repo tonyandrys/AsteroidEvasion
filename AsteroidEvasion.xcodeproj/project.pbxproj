@@ -40,6 +40,8 @@
 		EA9D571B1909BB600056BD55 /* AECategories.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D571A1909BB600056BD55 /* AECategories.m */; };
 		EA9D571E190AF8D50056BD55 /* AEGameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D571D190AF8D50056BD55 /* AEGameOverScene.m */; };
 		EA9D571F190B04AE0056BD55 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F751C4190A1CA00006D253 /* MCManager.m */; };
+		EAF65A731919CE7C00E8FE31 /* AESettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A721919CE7C00E8FE31 /* AESettingsTableViewController.m */; };
+		EAF65A761919DF3700E8FE31 /* AEColorPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A751919DF3700E8FE31 /* AEColorPickerTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,10 @@
 		EA9D571A1909BB600056BD55 /* AECategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AECategories.m; sourceTree = "<group>"; };
 		EA9D571C190AF8D50056BD55 /* AEGameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEGameOverScene.h; sourceTree = "<group>"; };
 		EA9D571D190AF8D50056BD55 /* AEGameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEGameOverScene.m; sourceTree = "<group>"; };
+		EAF65A711919CE7C00E8FE31 /* AESettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESettingsTableViewController.h; sourceTree = "<group>"; };
+		EAF65A721919CE7C00E8FE31 /* AESettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESettingsTableViewController.m; sourceTree = "<group>"; };
+		EAF65A741919DF3700E8FE31 /* AEColorPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEColorPickerTableViewController.h; sourceTree = "<group>"; };
+		EAF65A751919DF3700E8FE31 /* AEColorPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEColorPickerTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +183,10 @@
 				EA0F23C3190749A500ED4C78 /* AETwoPlayerGameVC.m */,
 				EA0F23C519074CC000ED4C78 /* AETwoPlayerJoinVC.h */,
 				EA0F23C619074CC000ED4C78 /* AETwoPlayerJoinVC.m */,
+				EAF65A711919CE7C00E8FE31 /* AESettingsTableViewController.h */,
+				EAF65A721919CE7C00E8FE31 /* AESettingsTableViewController.m */,
+				EAF65A741919DF3700E8FE31 /* AEColorPickerTableViewController.h */,
+				EAF65A751919DF3700E8FE31 /* AEColorPickerTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -398,6 +408,7 @@
 				EA9D571B1909BB600056BD55 /* AECategories.m in Sources */,
 				EA0F23C719074CC000ED4C78 /* AETwoPlayerJoinVC.m in Sources */,
 				EA9D571E190AF8D50056BD55 /* AEGameOverScene.m in Sources */,
+				EAF65A731919CE7C00E8FE31 /* AESettingsTableViewController.m in Sources */,
 				EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */,
 				13496F06190AE3E90048856F /* FirstViewController.m in Sources */,
 				EA8B24A41905C83B004D51D7 /* AEGameSceneViewController.m in Sources */,
@@ -406,6 +417,7 @@
 				EA9400BE1905F6AA00A7C18C /* AEPlayersVC.m in Sources */,
 				EA8B24C91905D394004D51D7 /* AEMainViewController.m in Sources */,
 				EA8B249A1905C83B004D51D7 /* main.m in Sources */,
+				EAF65A761919DF3700E8FE31 /* AEColorPickerTableViewController.m in Sources */,
 				EA9D57181909BB510056BD55 /* AEBitmasks.m in Sources */,
 				EA9D57151909B7F60056BD55 /* AEAsteroid.m in Sources */,
 				EA0F23C4190749A500ED4C78 /* AETwoPlayerGameVC.m in Sources */,

@@ -20,7 +20,7 @@
     signed integer
  
  + A ship color (used to color the ship in single player and represent this player in network games)
-    signed integer representing one of many(?) ship colors
+    string
  
  + A difficulty level 
     signed integer representing one of four difficulty levels
@@ -32,7 +32,7 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *highScore;
-@property (readwrite, assign) NSInteger shipColor;
+@property (strong, nonatomic) NSString *shipColor;
 @property (readwrite, assign) NSInteger difficulty;
 
 -(NSDictionary *)toDictionary;

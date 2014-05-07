@@ -140,9 +140,9 @@
         AEPlayer *newPlayer = [[AEPlayer alloc] init];
         newPlayer.name = [d valueForKey:KEY_PLAYER_NAME];
         newPlayer.highScore = [d valueForKey:KEY_HIGH_SCORE];
-        newPlayer.shipColor = [[d valueForKey:KEY_SHIP_COLOR] intValue];
+        newPlayer.shipColor = [d valueForKey:KEY_SHIP_COLOR];
         newPlayer.difficulty = [[d valueForKey:KEY_DIFFICULTY] intValue];
-        NSLog(@"Built Player (Name: %@ | High Score: %@ | Ship Color: %i | Difficulty: %i)", newPlayer.name, newPlayer.highScore, newPlayer.shipColor, newPlayer.difficulty);
+        NSLog(@"Built Player (Name: %@ | High Score: %@ | Ship Color: %@ | Difficulty: %i)", newPlayer.name, newPlayer.highScore, newPlayer.shipColor, newPlayer.difficulty);
         
         // Add it to the array
         [createdPlayers addObject:newPlayer];

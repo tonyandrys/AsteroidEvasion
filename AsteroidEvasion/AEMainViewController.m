@@ -11,6 +11,7 @@
 #import "AEPlayer.h"
 #import "AETwoPlayerGameVC.h"
 #import "AEGameSceneViewController.h"
+#import "AESettingsTableViewController.h"
 
 @interface AEMainViewController ()
 
@@ -58,7 +59,7 @@
     NSString *logOutButtonText = @"Log Out";
     
     // Get the name of the currently logged in profile
-    NSString *activeProfileName = [self.userPrefs valueForKey:KEY_PROFILE_NAME];
+    NSString *activeProfileName = [self.userPrefs valueForKey:KEY_PROFILE_NAME];    
     
     // if there is no profile logged in (or a logout just occurred), reset the toolbar's left label text to "No Profile" and the right button's text to "Log In"
     if ([activeProfileName length] == 0) {
@@ -111,7 +112,7 @@
     AEPlayer *p = [[AEPlayer alloc] init];
     p.name = [self.userPrefs valueForKey:KEY_PROFILE_NAME];
     p.highScore = [self.userPrefs valueForKey:KEY_PROFILE_HIGH_SCORE];
-    p.shipColor = [[self.userPrefs valueForKey:KEY_PROFILE_SHIP_COLOR] intValue];
+    p.shipColor = [self.userPrefs valueForKey:KEY_PROFILE_SHIP_COLOR];
     p.difficulty = [[self.userPrefs valueForKey:KEY_PROFILE_DIFFICULTY] intValue];
     
     // Segue from this screen to the Host Game/Join Game menu screen
@@ -133,6 +134,17 @@
         
         // Write the AEPlayer object we just made to the destinationVC's loggedInPlayer property
         destinationVC.loggedInPlayer = p;
+    }
+    
+    // Segue from this view to the player settings screen
+    if ([[segue identifier] isEqualToString:@"SettingsSegue"]) {
+        
+        // Get reference to destination VC
+        AESettingsTableViewController *destinationVC = [segue destinationViewController];
+        
+        // Write AEPlayer object
+        destinationVC.loggedInPlayer = p;
+        
     }
 }
 
