@@ -68,6 +68,7 @@
     NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;
     
+    // next line is hella important to send data between peers
     [_appDelegate.mcManager.session sendData:dataToSend
                                      toPeers:allPeers
                                     withMode:MCSessionSendDataReliable

@@ -12,6 +12,7 @@
 #import "AEAsteroid.h"
 #import "AEGameOverScene.h"
 #import "FirstViewController.h"
+#import "AEAppDelegate.h"
 
 // Radius of the circle used as the ship's path
 float circleRadius;
@@ -66,7 +67,7 @@ CGPoint topRightPoint;
 //        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"space05"];
 //        bgImage.position = CGPointMake(self.size.width/2, self.size.height/2);
 //        [self addChild:bgImage];
-        
+        _appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
         
         }
     
@@ -177,6 +178,15 @@ CGPoint topRightPoint;
     self.playerScoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
     self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     [self addChild:self.playerScoreLabel];
+    
+    self.player2Score = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    //self.player2Score.text = @"0"; // start at a score of zero
+    self.player2Score.fontSize = 18;
+    self.player2Score.fontColor = [UIColor blueColor];
+    self.player2Score.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 20.0);
+    self.player2Score.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
+    self.player2Score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    [self addChild:self.player2Score];
     
     // Draw circle (path for ship)
     // x origin position, y origin position, width, height
@@ -292,6 +302,10 @@ CGPoint topRightPoint;
     
     // Update on screen score label to the player's current score
     self.playerScoreLabel.text = [NSString stringWithFormat:@"%i", self.playerScore];
+    
+    if(_appDelegate.mcManager.session.connectedPeers != nil){
+        self.player2Score.text = @"Two player mode!";
+    }
 }
 
 # pragma mark - Touch handling
