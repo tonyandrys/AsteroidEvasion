@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "AEPlayer.h"
 #import "AEColorPickerTableViewController.h"
+#import "AEDifficultyPickerTableViewController.h"
 
-// This class must implement the ColorPickerVC's protocol to allow communication between the two
-@interface AESettingsTableViewController : UITableViewController <AEColorPickerTableViewControllerDelegate>
+// This class must implement both the ColorPickerVC and the DifficultyPickerVC's protocols to allow communication between the three classes
+@interface AESettingsTableViewController : UITableViewController <AEColorPickerTableViewControllerDelegate, AEDifficultyPickerTableViewControllerDelegate>
 
 @property (strong, nonatomic) AEPlayer *loggedInPlayer;
 

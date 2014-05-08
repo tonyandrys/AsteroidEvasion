@@ -68,69 +68,6 @@
     return rowCount;
 }
 
-// Fired when a color is selected in the ColorPickerTableViewController by the user
-- (void)colorPickerViewController:(AEColorPickerTableViewController *)controller didSelectColor:(NSString *)newColor {
-    
-    // Load settings associated with the profile currently logged in
-    NSUserDefaults* userPrefs = [NSUserDefaults standardUserDefaults];
-    NSString *profileName = [userPrefs valueForKey:KEY_PROFILE_NAME];
-    NSString *existingShipColor = [userPrefs valueForKey:KEY_PROFILE_SHIP_COLOR];
-    NSLog(@"Request made to change %@'s ship color setting to %@ (currently %@)", profileName, newColor, existingShipColor);
-    
-    // Write the color change to the user's profile and update.
-    [userPrefs setValue:newColor forKey:KEY_PROFILE_SHIP_COLOR];
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -150,6 +87,55 @@
             NSLog(@"WARNING: Profile has no shipColor associated with it!");
         }
     }
+    
+    // Difficulty select segue
+    if ([segue.identifier isEqualToString:@"SelectDifficultySegue"]) {
+        
+        // Set this VC to act as the difficulty picker view controller's delegate
+        AEDifficultyPickerTableViewController *difficultyPickerTableViewController = segue.destinationViewController;
+        difficultyPickerTableViewController.delegate = self;
+        
+        // Send the user's current ship color setting to the difficulty picker VC
+        difficultyPickerTableViewController.difficulty = self.loggedInPlayer.difficulty;
+    }
+}
+
+#pragma mark - delegate callback methods
+
+// Fired when a color is selected in the Color Picker View by the user
+- (void)colorPickerViewController:(AEColorPickerTableViewController *)controller didSelectColor:(NSString *)newColor {
+    
+    // Load settings associated with the profile currently logged in
+    NSUserDefaults* userPrefs = [NSUserDefaults standardUserDefaults];
+    NSString *profileName = [userPrefs valueForKey:KEY_PROFILE_NAME];
+    NSString *existingShipColor = [userPrefs valueForKey:KEY_PROFILE_SHIP_COLOR];
+    NSLog(@"Request made to change %@'s ship color setting to %@ (currently %@)", profileName, newColor, existingShipColor);
+    
+    // Write the color change to the user's profile and update.
+    [userPrefs setValue:newColor forKey:KEY_PROFILE_SHIP_COLOR];
+    self.loggedInPlayer.shipColor = newColor;
+    
+    // Pop Color Picker off the View Controller stack
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+
+// Fired when a difficulty is selected in the Difficulty Picker View by the user
+- (void)difficultyPickerViewController:(AEDifficultyPickerTableViewController *)controller didSelectDifficulty:(NSInteger)newDifficulty {
+    
+    // Load settings associated with the profile currently logged in
+    NSUserDefaults* userPrefs = [NSUserDefaults standardUserDefaults];
+    NSString *profileName = [userPrefs valueForKey:KEY_PROFILE_NAME];
+    NSInteger existingDifficulty = [[userPrefs valueForKey:KEY_PROFILE_DIFFICULTY] integerValue];
+    NSLog(@"Request made to change %@'s difficulty setting to %i (currently %i)", profileName, newDifficulty, existingDifficulty);
+    
+    // Write the color change to the user's profile and update.
+    [userPrefs setValue:[NSNumber numberWithInteger:existingDifficulty] forKey:KEY_PROFILE_DIFFICULTY];
+    self.loggedInPlayer.difficulty = newDifficulty;
+    
+    // Pop Difficulty Picker off the View Controller stack
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

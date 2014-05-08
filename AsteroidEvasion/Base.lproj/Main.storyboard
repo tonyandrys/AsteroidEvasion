@@ -540,7 +540,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="2KF-Ja-ZbR" kind="push" id="1wN-Zt-JlE"/>
+                                            <segue destination="2KF-Ja-ZbR" kind="push" identifier="SelectDifficultySegue" id="1wN-Zt-JlE"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -599,21 +599,37 @@
             </objects>
             <point key="canvasLocation" x="1757" y="1930"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Difficulty Picker Table View Controller - Choose Difficulty-->
         <scene sceneID="11w-EB-thG">
             <objects>
-                <tableViewController id="2KF-Ja-ZbR" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NTf-BZ-5sR">
+                <tableViewController id="2KF-Ja-ZbR" customClass="AEDifficultyPickerTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="NTf-BZ-5sR">
                         <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="MGL-qm-TJR">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DifficultyCell" textLabel="jX0-5W-bZx" detailTextLabel="5cf-EO-5QU" style="IBUITableViewCellStyleSubtitle" id="MGL-qm-TJR">
+                                <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MGL-qm-TJR" id="ZF3-4l-pM9">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jX0-5W-bZx">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5cf-EO-5QU">
+                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -622,7 +638,7 @@
                             <outlet property="delegate" destination="2KF-Ja-ZbR" id="MIQ-4H-mAr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="O5e-oz-oM1"/>
+                    <navigationItem key="navigationItem" title="Choose Difficulty" id="O5e-oz-oM1"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lrw-5J-if6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

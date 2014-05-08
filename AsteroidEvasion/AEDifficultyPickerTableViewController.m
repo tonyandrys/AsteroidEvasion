@@ -12,7 +12,15 @@
 
 @end
 
-@implementation AEDifficultyPickerTableViewController
+@implementation AEDifficultyPickerTableViewController {
+    
+    // Holds list of difficulty to be displayed in the picker
+    NSArray *difficultyList;
+    NSArray *difficultySubtitleList;
+    
+    // Holds the user's selected index
+    NSUInteger selectedIndex;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,45 +35,70 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    difficultyList = @[@"Easy", @"Medium", @"Hard", @"Impossible"];
+    difficultySubtitleList = @[@"1x points", @"2x points", @"3x points", @"4x points (but good luck)"];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // The difficulty is stored as a signed integer from 0 to 3, where 0 represents Easy and 3 represents Impossible, so the selected difficulty maps to the selected row with no need to index the list options.
+    selectedIndex = self.difficulty;
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [difficultyList count];
 }
 
-/*
+// Method called to configure new cells
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DifficultyCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    // Set the title and subtitle of this cell
+    cell.textLabel.text = difficultyList[indexPath.row];
+    cell.detailTextLabel.text = difficultySubtitleList[indexPath.row];
+    
+    // If this cell matches with the user's selected difficulty, mark this cell with a checkbox.
+    if (indexPath.row == self.difficulty) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }
-*/
+
+// Fired when a cell is selected by the user
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (selectedIndex != NSNotFound) {
+        // Get an instance of the cell that was just deselected and remove its checkbox
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedIndex inSection:0]];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    // Mark the cell that was just selected with a checkbox and get a reference to the cell
+    selectedIndex = indexPath.row;
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedIndex inSection:0]];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    // Send the new difficulty to the delegate to update the player's profile
+    NSLog(@"Difficulty setting changed to %i", indexPath.row);
+    [self.delegate difficultyPickerViewController:self didSelectDifficulty:indexPath.row];
+}
+
 
 /*
 // Override to support conditional editing of the table view.
