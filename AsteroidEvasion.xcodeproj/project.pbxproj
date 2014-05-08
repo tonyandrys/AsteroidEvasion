@@ -14,6 +14,8 @@
 		EA0F23C11907193600ED4C78 /* AEPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23C01907193600ED4C78 /* AEPreferences.m */; };
 		EA0F23C4190749A500ED4C78 /* AETwoPlayerGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23C3190749A500ED4C78 /* AETwoPlayerGameVC.m */; };
 		EA0F23C719074CC000ED4C78 /* AETwoPlayerJoinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23C619074CC000ED4C78 /* AETwoPlayerJoinVC.m */; };
+		EA7A88EF191B5DCF00E99218 /* AESinglePlayerHighScoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A88EE191B5DCF00E99218 /* AESinglePlayerHighScoreTableViewController.m */; };
+		EA7A88F5191B5DFC00E99218 /* AETwoPlayerHighScoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7A88F4191B5DFC00E99218 /* AETwoPlayerHighScoreTableViewController.m */; };
 		EA8B248C1905C83A004D51D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248B1905C83A004D51D7 /* Foundation.framework */; };
 		EA8B248E1905C83A004D51D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248D1905C83A004D51D7 /* CoreGraphics.framework */; };
 		EA8B24901905C83A004D51D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8B248F1905C83A004D51D7 /* UIKit.framework */; };
@@ -71,6 +73,10 @@
 		EA0F23C3190749A500ED4C78 /* AETwoPlayerGameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AETwoPlayerGameVC.m; sourceTree = "<group>"; };
 		EA0F23C519074CC000ED4C78 /* AETwoPlayerJoinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AETwoPlayerJoinVC.h; sourceTree = "<group>"; };
 		EA0F23C619074CC000ED4C78 /* AETwoPlayerJoinVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AETwoPlayerJoinVC.m; sourceTree = "<group>"; };
+		EA7A88ED191B5DCF00E99218 /* AESinglePlayerHighScoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESinglePlayerHighScoreTableViewController.h; sourceTree = "<group>"; };
+		EA7A88EE191B5DCF00E99218 /* AESinglePlayerHighScoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESinglePlayerHighScoreTableViewController.m; sourceTree = "<group>"; };
+		EA7A88F3191B5DFC00E99218 /* AETwoPlayerHighScoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AETwoPlayerHighScoreTableViewController.h; sourceTree = "<group>"; };
+		EA7A88F4191B5DFC00E99218 /* AETwoPlayerHighScoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AETwoPlayerHighScoreTableViewController.m; sourceTree = "<group>"; };
 		EA8B24881905C83A004D51D7 /* AsteroidEvasion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsteroidEvasion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8B248B1905C83A004D51D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA8B248D1905C83A004D51D7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -192,6 +198,10 @@
 				EAF65A751919DF3700E8FE31 /* AEColorPickerTableViewController.m */,
 				EAF65A77191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.h */,
 				EAF65A78191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m */,
+				EA7A88ED191B5DCF00E99218 /* AESinglePlayerHighScoreTableViewController.h */,
+				EA7A88EE191B5DCF00E99218 /* AESinglePlayerHighScoreTableViewController.m */,
+				EA7A88F3191B5DFC00E99218 /* AETwoPlayerHighScoreTableViewController.h */,
+				EA7A88F4191B5DFC00E99218 /* AETwoPlayerHighScoreTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -413,6 +423,7 @@
 				EA9D571B1909BB600056BD55 /* AECategories.m in Sources */,
 				EA0F23C719074CC000ED4C78 /* AETwoPlayerJoinVC.m in Sources */,
 				EA9D571E190AF8D50056BD55 /* AEGameOverScene.m in Sources */,
+				EA7A88EF191B5DCF00E99218 /* AESinglePlayerHighScoreTableViewController.m in Sources */,
 				EAF65A731919CE7C00E8FE31 /* AESettingsTableViewController.m in Sources */,
 				EA8B249E1905C83B004D51D7 /* AEAppDelegate.m in Sources */,
 				13496F06190AE3E90048856F /* FirstViewController.m in Sources */,
@@ -424,6 +435,7 @@
 				EA8B249A1905C83B004D51D7 /* main.m in Sources */,
 				EAF65A761919DF3700E8FE31 /* AEColorPickerTableViewController.m in Sources */,
 				EAF65A79191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m in Sources */,
+				EA7A88F5191B5DFC00E99218 /* AETwoPlayerHighScoreTableViewController.m in Sources */,
 				EA9D57181909BB510056BD55 /* AEBitmasks.m in Sources */,
 				EA9D57151909B7F60056BD55 /* AEAsteroid.m in Sources */,
 				EA0F23C4190749A500ED4C78 /* AETwoPlayerGameVC.m in Sources */,
