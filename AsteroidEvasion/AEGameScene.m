@@ -11,6 +11,7 @@
 #import "AEBitmasks.h"
 #import "AEAsteroid.h"
 #import "AEGameOverScene.h"
+#import "FirstViewController.h"
 
 // Radius of the circle used as the ship's path
 float circleRadius;

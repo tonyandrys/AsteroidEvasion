@@ -64,6 +64,7 @@
 
 -(void)sendMyMessage{
     NSData *dataToSend = [_txtMessage.text dataUsingEncoding:NSUTF8StringEncoding];
+    //NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithDouble:22.6]];
     NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;
     
@@ -79,6 +80,8 @@
     [_tvChat setText:[_tvChat.text stringByAppendingString:[NSString stringWithFormat:@"I wrote:\n%@\n\n", _txtMessage.text]]];
     [_txtMessage setText:@""];
     [_txtMessage resignFirstResponder];
+    
+    
 }
 
 
@@ -88,8 +91,10 @@
     
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
     NSString *receivedText = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-    
+    //NSNumber *numberReceived = [NSKeyedUnarchiver unarchiveObjectWithData:receivedData];
+   // NSString *myString = [numberReceived stringValue];
     [_tvChat performSelectorOnMainThread:@selector(setText:) withObject:[_tvChat.text stringByAppendingString:[NSString stringWithFormat:@"%@ wrote:\n%@\n\n", peerDisplayName, receivedText]] waitUntilDone:NO];
+    //[_tvChat performSelectorOnMainThread:@selector(setText:) withObject:[_tvChat.text stringByAppendingString:[NSString stringWithFormat:@"%@ wrote:\n%@\n\n", peerDisplayName, myString]] waitUntilDone:NO];
 }
 
 @end
