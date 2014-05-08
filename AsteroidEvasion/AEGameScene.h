@@ -20,11 +20,13 @@
 @property (nonatomic, strong) AEAppDelegate *appDelegate;
 // Current score of the player is stored here
 @property (readwrite, assign) int playerScore;
+@property (readwrite, assign) int player2S; // player 2 score
+@property (readwrite, assign) bool isDead; // if ship hit asteroid
 
 // Reference to scoreLabel to easily change player's score display
 @property (strong, nonatomic) SKLabelNode *playerScoreLabel;
 
-@property (strong, nonatomic) SKLabelNode *player2Score;
+@property (strong, nonatomic) SKLabelNode *player2Score;// player 2 name label
 
 - (id)initWithSize:(CGSize)size playerOne:(AEPlayer *)p1;
 

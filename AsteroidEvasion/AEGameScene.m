@@ -56,7 +56,7 @@ CGPoint topRightPoint;
         
         // Set player's score to zero
         self.playerScore = 0;
-        
+    
         // Fill the asteroid launch point dictionary
         asteroidLaunchPoints = [self buildAsteroidLaunchDictionary];
         
@@ -183,7 +183,7 @@ CGPoint topRightPoint;
     //self.player2Score.text = @"0"; // start at a score of zero
     self.player2Score.fontSize = 18;
     self.player2Score.fontColor = [UIColor blueColor];
-    self.player2Score.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 20.0);
+    self.player2Score.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 25.0);
     self.player2Score.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
     self.player2Score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     [self addChild:self.player2Score];
@@ -302,10 +302,35 @@ CGPoint topRightPoint;
     
     // Update on screen score label to the player's current score
     self.playerScoreLabel.text = [NSString stringWithFormat:@"%i", self.playerScore];
-    
-    if(_appDelegate.mcManager.session.connectedPeers != nil){
-        self.player2Score.text = @"Two player mode!";
+   
+    if(_appDelegate.mcManager.session.connectedPeers != nil){ // if two player game and connected with another
+        NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.playerScore]]; // will send current player score
+        NSError *error; // needed for sendData function
+        self.playerScoreLabel.color = [UIColor redColor];
+        if(!self.isDead){
+        [_appDelegate.mcManager.session sendData:dataToSend
+                                         toPeers:_appDelegate.mcManager.session.connectedPeers
+                                        withMode:MCSessionSendDataReliable
+                                           error:&error]; // crucial for sending
+        }
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didReceiveDataWithNotification:)
+                                                     name:@"MCDidReceiveDataNotification"
+                                                   object:nil]; // receiver
+     
+        self.player2Score.text = [NSString stringWithFormat:@"%@:%i", [[_appDelegate.mcManager.session.connectedPeers objectAtIndex:0] displayName], self.player2S];
     }
+}
+
+-(void)didReceiveDataWithNotification:(NSNotification *)notification{
+   // MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+   // NSString *peerDisplayName = peerID.displayName;
+    
+    NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+    //NSString *receivedText = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    NSNumber *numberReceived = [NSKeyedUnarchiver unarchiveObjectWithData:receivedData];
+
+    self.player2S = [numberReceived intValue]; // sets value for player 2 score
 }
 
 # pragma mark - Touch handling
@@ -466,6 +491,7 @@ CGPoint topRightPoint;
     // Kill the asteroid launch timer
     [asteroidTimer invalidate];
     
+    self.isDead = true;
     // Present the scene
     [self.view presentScene:gameOverScene];
 }
