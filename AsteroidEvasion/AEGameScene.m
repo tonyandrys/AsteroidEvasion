@@ -306,7 +306,9 @@ CGPoint topRightPoint;
     if(_appDelegate.mcManager.session.connectedPeers != nil){ // if two player game and connected with another
         NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.playerScore]]; // will send current player score
         NSError *error; // needed for sendData function
-        self.playerScoreLabel.color = [UIColor redColor];
+        self.playerScoreLabel.fontColor = [UIColor redColor];
+        self.playerScoreLabel.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 5.0);
+        self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", [_appDelegate.mcManager.self.peerID displayName], self.playerScore];
         if(!self.isDead){
         [_appDelegate.mcManager.session sendData:dataToSend
                                          toPeers:_appDelegate.mcManager.session.connectedPeers
