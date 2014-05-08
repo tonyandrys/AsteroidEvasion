@@ -14,8 +14,10 @@
 // This scene should receive collision notifications
 @interface AEGameScene : SKScene<SKPhysicsContactDelegate>
 
-// Player objects representing active user profile
+// AEPlayer object representing the current logged in profile
 @property (strong, nonatomic) AEPlayer *playerOne;
+
+// Current score of the player is stored here
 @property (readwrite, assign) int playerScore;
 
 // Reference to scoreLabel to easily change player's score display

@@ -42,6 +42,7 @@
 		EA9D571F190B04AE0056BD55 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F751C4190A1CA00006D253 /* MCManager.m */; };
 		EAF65A731919CE7C00E8FE31 /* AESettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A721919CE7C00E8FE31 /* AESettingsTableViewController.m */; };
 		EAF65A761919DF3700E8FE31 /* AEColorPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A751919DF3700E8FE31 /* AEColorPickerTableViewController.m */; };
+		EAF65A79191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A78191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,8 @@
 		EAF65A721919CE7C00E8FE31 /* AESettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESettingsTableViewController.m; sourceTree = "<group>"; };
 		EAF65A741919DF3700E8FE31 /* AEColorPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEColorPickerTableViewController.h; sourceTree = "<group>"; };
 		EAF65A751919DF3700E8FE31 /* AEColorPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEColorPickerTableViewController.m; sourceTree = "<group>"; };
+		EAF65A77191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEDifficultyPickerTableViewController.h; sourceTree = "<group>"; };
+		EAF65A78191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEDifficultyPickerTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,8 @@
 				EAF65A721919CE7C00E8FE31 /* AESettingsTableViewController.m */,
 				EAF65A741919DF3700E8FE31 /* AEColorPickerTableViewController.h */,
 				EAF65A751919DF3700E8FE31 /* AEColorPickerTableViewController.m */,
+				EAF65A77191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.h */,
+				EAF65A78191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -418,6 +423,7 @@
 				EA8B24C91905D394004D51D7 /* AEMainViewController.m in Sources */,
 				EA8B249A1905C83B004D51D7 /* main.m in Sources */,
 				EAF65A761919DF3700E8FE31 /* AEColorPickerTableViewController.m in Sources */,
+				EAF65A79191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m in Sources */,
 				EA9D57181909BB510056BD55 /* AEBitmasks.m in Sources */,
 				EA9D57151909B7F60056BD55 /* AEAsteroid.m in Sources */,
 				EA0F23C4190749A500ED4C78 /* AETwoPlayerGameVC.m in Sources */,
