@@ -17,7 +17,7 @@
     string
  
  + A high score 
-    signed integer
+    string
  
  + A ship color (used to color the ship in single player and represent this player in network games)
     string
@@ -34,6 +34,8 @@
 @property (strong, nonatomic) NSString *highScore;
 @property (strong, nonatomic) NSString *shipColor;
 @property (readwrite, assign) NSInteger difficulty;
+
+-(UIColor *)getShipColorAsUIColor;
 
 -(NSDictionary *)toDictionary;
 

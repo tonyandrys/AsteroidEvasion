@@ -14,18 +14,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
 
     // Configure the view.
     SKView* skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
 
-    
-    
-
-    
     // Create and configure the scene.
     NSLog(@"Building SKScene with height: %f width: %f", skView.bounds.size.height, skView.bounds.size.width);
     AEGameScene* scene = [[AEGameScene alloc] initWithSize:skView.bounds.size playerOne:self.loggedInPlayer];

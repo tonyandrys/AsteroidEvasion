@@ -10,7 +10,8 @@
 #import "AEPlayer.h"
 #import "AEColorPickerTableViewController.h"
 
-@interface AESettingsTableViewController : UITableViewController
+// This class must implement the ColorPickerVC's protocol to allow communication between the two
+@interface AESettingsTableViewController : UITableViewController <AEColorPickerTableViewControllerDelegate>
 
 @property (strong, nonatomic) AEPlayer *loggedInPlayer;
 

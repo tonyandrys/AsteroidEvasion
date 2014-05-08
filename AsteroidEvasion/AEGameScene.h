@@ -21,7 +21,6 @@
 // Reference to scoreLabel to easily change player's score display
 @property (strong, nonatomic) SKLabelNode *playerScoreLabel;
 
-
 - (id)initWithSize:(CGSize)size playerOne:(AEPlayer *)p1;
 
 @end

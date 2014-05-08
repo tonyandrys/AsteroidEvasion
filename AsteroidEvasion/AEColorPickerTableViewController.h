@@ -12,7 +12,7 @@
 
 // Define a protocol for communication between the table holding the list of colors (this class) and the settings table
 @protocol AEColorPickerTableViewControllerDelegate <NSObject>
-- (void)colorPickerViewController:(AEColorPickerTableViewController *)controller didSelectColor:(NSString *)color;
+- (void)colorPickerViewController:(AEColorPickerTableViewController *)controller didSelectColor:(NSString *)newColor;
 @end
 
 @interface AEColorPickerTableViewController : UITableViewController

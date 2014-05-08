@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="p40-iA-etG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="p40-iA-etG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--First View Controller - Strategize-->
@@ -506,7 +506,7 @@
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="VTG-Rt-y0c" style="IBUITableViewCellStyleDefault" id="G5p-tY-0iZ">
                                         <rect key="frame" x="0.0" y="147" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G5p-tY-0iZ">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G5p-tY-0iZ" id="rYY-fn-1JB">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -520,13 +520,13 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="bb8-y5-iwo" kind="push" id="Qsi-7a-NSJ"/>
+                                            <segue destination="bb8-y5-iwo" kind="push" identifier="SelectColorSegue" id="Qsi-7a-NSJ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="s" textLabel="tuc-Ng-Ckj" style="IBUITableViewCellStyleDefault" id="MNH-tU-mr1">
                                         <rect key="frame" x="0.0" y="191" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MNH-tU-mr1">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MNH-tU-mr1" id="EPz-f5-gXH">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -778,6 +778,7 @@
                     <connections>
                         <outlet property="onePlayerStartButton" destination="Mgc-WL-LYH" id="IoF-de-4Rk"/>
                         <outlet property="profileNameButton" destination="fLB-ZV-Pkh" id="TUM-Oo-6Mi"/>
+                        <outlet property="settingsButton" destination="KNY-zy-aN0" id="FQ9-nT-VdS"/>
                         <outlet property="toolbarActionButton" destination="FTv-Gf-wxJ" id="XNn-Cd-Pgr"/>
                         <outlet property="twoPlayerStartButton" destination="pxH-1N-huF" id="mAn-FC-ENB"/>
                     </connections>

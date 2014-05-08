@@ -63,9 +63,10 @@
     
     // if there is no profile logged in (or a logout just occurred), reset the toolbar's left label text to "No Profile" and the right button's text to "Log In"
     if ([activeProfileName length] == 0) {
-        NSLog(@"No active profile found. Updating bottom toolbar and disabling game buttons.");
+        NSLog(@"No active profile found. Updating bottom toolbar and disabling game & settings buttons.");
         [self.onePlayerStartButton setEnabled:NO];
         [self.twoPlayerStartButton setEnabled:NO];
+        [self.settingsButton setEnabled:NO];
         self.profileNameButton.title = noProfileText;
         self.toolbarActionButton.title = logInButtonText;
     }
@@ -75,6 +76,7 @@
         NSLog(@"Found an active profile (%@). Updating bottom toolbar and enabling game buttons.", activeProfileName);
         [self.onePlayerStartButton setEnabled:YES];
         [self.twoPlayerStartButton setEnabled:YES];
+        [self.settingsButton setEnabled:YES];
         self.profileNameButton.title = activeProfileName;
         self.toolbarActionButton.title = logOutButtonText;
     }
@@ -115,6 +117,12 @@
     p.shipColor = [self.userPrefs valueForKey:KEY_PROFILE_SHIP_COLOR];
     p.difficulty = [[self.userPrefs valueForKey:KEY_PROFILE_DIFFICULTY] intValue];
     
+    NSLog(@"Created AEPlayer object from logged in profile.");
+    NSLog(@"Name: %@", p.name);
+    NSLog(@"High Score: %@", p.highScore);
+    NSLog(@"Ship Color: %@", p.shipColor);
+    NSLog(@"Difficulty: %i", p.difficulty);
+    
     // Segue from this screen to the Host Game/Join Game menu screen
     if ([[segue identifier] isEqualToString:@"TwoPlayerMenuSegue"]) {
         
@@ -123,17 +131,19 @@
         
         // Write the AEPlayer object we just made to the destinationVC's loggedInPlayer property
         destinationVC.loggedInPlayer = p;
+        NSLog(@"Sending AEPlayer object to Two Player Menu...");
+
     }
     
     // Segue from this view to the SKScene kicking off the actual game
     else if ([[segue identifier] isEqualToString:@"StartOnePlayerGameSegue"]) {
-        NSLog(@"Transitioning to one player game...");
         
         // Get reference to destination VC
         AEGameSceneViewController *destinationVC = [segue destinationViewController];
         
         // Write the AEPlayer object we just made to the destinationVC's loggedInPlayer property
         destinationVC.loggedInPlayer = p;
+        NSLog(@"Sending AEPlayer object to One Player Game...");
     }
     
     // Segue from this view to the player settings screen
@@ -144,7 +154,7 @@
         
         // Write AEPlayer object
         destinationVC.loggedInPlayer = p;
-        
+        NSLog(@"Sending AEPlayer object to Settings menu...");
     }
 }
 

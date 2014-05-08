@@ -61,6 +61,9 @@
     [self.userPrefs setValue:self.displayPlayer.shipColor forKey:KEY_PROFILE_SHIP_COLOR];
     [self.userPrefs setValue:[NSString stringWithFormat:@"%i", self.displayPlayer.difficulty] forKey:KEY_PROFILE_DIFFICULTY];
     NSLog(@"User %@ is now logged in.", self.displayPlayer.name);
+    NSLog(@"High Score: %@", self.displayPlayer.highScore);
+    NSLog(@"Ship Color: %@", self.displayPlayer.shipColor);
+    NSLog(@"Difficulty: %i", self.displayPlayer.difficulty);
     
     // Go back to the main view controller
     [self.navigationController popToRootViewControllerAnimated:YES];

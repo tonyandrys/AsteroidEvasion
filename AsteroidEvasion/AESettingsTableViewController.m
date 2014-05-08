@@ -7,6 +7,7 @@
 //
 
 #import "AESettingsTableViewController.h"
+#import "AEPreferences.h"
 
 @interface AESettingsTableViewController ()
 
@@ -67,6 +68,19 @@
     return rowCount;
 }
 
+// Fired when a color is selected in the ColorPickerTableViewController by the user
+- (void)colorPickerViewController:(AEColorPickerTableViewController *)controller didSelectColor:(NSString *)newColor {
+    
+    // Load settings associated with the profile currently logged in
+    NSUserDefaults* userPrefs = [NSUserDefaults standardUserDefaults];
+    NSString *profileName = [userPrefs valueForKey:KEY_PROFILE_NAME];
+    NSString *existingShipColor = [userPrefs valueForKey:KEY_PROFILE_SHIP_COLOR];
+    NSLog(@"Request made to change %@'s ship color setting to %@ (currently %@)", profileName, newColor, existingShipColor);
+    
+    // Write the color change to the user's profile and update.
+    [userPrefs setValue:newColor forKey:KEY_PROFILE_SHIP_COLOR];
+}
+
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -116,15 +130,27 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    // Ship Color segue
+    if ([segue.identifier isEqualToString:@"SelectColorSegue"]) {
+        
+        // Set this VC to act as the color picker view controller's delegate
+        AEColorPickerTableViewController *colorPickerTableViewController = segue.destinationViewController;
+        colorPickerTableViewController.delegate = self;
+        
+        // Send the user's current ship color setting to the color picker VC
+        if (self.loggedInPlayer.shipColor != nil) {
+            colorPickerTableViewController.color = self.loggedInPlayer.shipColor;
+        } else {
+            NSLog(@"WARNING: Profile has no shipColor associated with it!");
+        }
+    }
 }
-*/
+
 
 @end

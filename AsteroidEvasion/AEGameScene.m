@@ -143,7 +143,7 @@ CGPoint topRightPoint;
 
 // Builds all visual elements and sets up the scene
 - (void)buildScene {
-    
+
     /* Configure scene background */
     self.backgroundColor = [SKColor colorWithRed:0 green:0 blue:0 alpha:1.0];
     SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"space02"];
@@ -161,7 +161,7 @@ CGPoint topRightPoint;
     SKLabelNode *playerNameLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     playerNameLabel.text = [NSString stringWithFormat:@"%@:", self.playerOne.name];
     playerNameLabel.fontSize = 18;
-    playerNameLabel.fontColor = [UIColor whiteColor];
+    playerNameLabel.fontColor = [self.playerOne getShipColorAsUIColor];
     playerNameLabel.position = CGPointMake(bottomLeftPoint.x, bottomLeftPoint.y + 5.0);
     playerNameLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
     playerNameLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
@@ -171,7 +171,7 @@ CGPoint topRightPoint;
     self.playerScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     self.playerScoreLabel.text = @"0"; // start at a score of zero
     self.playerScoreLabel.fontSize = 18;
-    self.playerScoreLabel.fontColor = [UIColor whiteColor];
+    self.playerScoreLabel.fontColor = [self.playerOne getShipColorAsUIColor];
     self.playerScoreLabel.position = CGPointMake(bottomLeftPoint.x + 50.0, bottomLeftPoint.y + 5.0);
     self.playerScoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
     self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
@@ -193,8 +193,8 @@ CGPoint topRightPoint;
     
     [self addChild: circleShapeNode];
     
-     // Draw ship (place at 0rad on circle)
-    SKSpriteNode *ship = [SKSpriteNode spriteNodeWithImageNamed:@"spaceshipsOutlined.png"];
+     // Build player's ship node
+    SKSpriteNode *ship = [self buildShipNodeByColorString:self.playerOne.shipColor];
     ship.name = NAME_CATEGORY_SHIP;
     
     // Define physics body of ship
@@ -218,6 +218,21 @@ CGPoint topRightPoint;
     scoreIncrementTimer = [NSTimer scheduledTimerWithTimeInterval:scoreIncrementInterval target:self selector:@selector(incrementPlayerScoreByOne) userInfo:nil repeats:YES];
 }
 
+// Returns the appropriate ship image based on the shipColor property of a user
+-(SKSpriteNode *)buildShipNodeByColorString:(NSString *)colorString {
+    
+    // Initialize an SKSpriteNode using the default ship image in the event we're passed the default color string (White) OR the color string does not match a ship image.
+    SKSpriteNode *ship = [SKSpriteNode spriteNodeWithImageNamed:@"spaceshipsOutlined.png"];
+    
+    if ([colorString isEqualToString:@"Red"]) {
+        ship = [SKSpriteNode spriteNodeWithImageNamed:@"resizedSpaceshipsOutlinedR"];
+    } else if ([colorString isEqualToString:@"Green"]) {
+        ship = [SKSpriteNode spriteNodeWithImageNamed:@"resizedSpaceshipsOutlinedG"];
+    }
+    return ship;
+}
+
+#pragma mark - Asteroid generation & control methods
 // Generates an asteroid using the stored locations and vectors when given an index to pull data from
 -(void)generateNewAsteroid {
     
@@ -288,8 +303,6 @@ CGPoint topRightPoint;
 // Moves the player's ship deltaX units around the circle
 -(void) moveShipX:(NSInteger)deltaX {
     
-    NSLog(@"moveShipX called! deltaX:%i", deltaX);
-    
     // Get a reference to the ship node by its name to change its position
     SKSpriteNode* playerShip = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
     
@@ -325,8 +338,6 @@ CGPoint topRightPoint;
 
 // Moves the player's ship deltaY units to/from the center of the screen and redraws the on-screen circle accordingly
 -(void) moveShipY:(NSInteger)deltaY {
-    
-    NSLog(@"moveShipY called! deltaY:%i", deltaY);
     
     // Get a reference to the ship and circle nodes to modify their properties
     SKSpriteNode *playerShip = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
