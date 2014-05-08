@@ -109,7 +109,7 @@
     NSUserDefaults* userPrefs = [NSUserDefaults standardUserDefaults];
     NSString *profileName = [userPrefs valueForKey:KEY_PROFILE_NAME];
     NSString *existingShipColor = [userPrefs valueForKey:KEY_PROFILE_SHIP_COLOR];
-    NSLog(@"Request made to change %@'s ship color setting to %@ (currently %@)", profileName, newColor, existingShipColor);
+    NSLog(@"Changed %@'s ship color setting to %@ (was %@)", profileName, newColor, existingShipColor);
     
     // Write the color change to the user's profile and update.
     [userPrefs setValue:newColor forKey:KEY_PROFILE_SHIP_COLOR];
@@ -128,11 +128,12 @@
     NSUserDefaults* userPrefs = [NSUserDefaults standardUserDefaults];
     NSString *profileName = [userPrefs valueForKey:KEY_PROFILE_NAME];
     NSInteger existingDifficulty = [[userPrefs valueForKey:KEY_PROFILE_DIFFICULTY] integerValue];
-    NSLog(@"Request made to change %@'s difficulty setting to %i (currently %i)", profileName, newDifficulty, existingDifficulty);
     
     // Write the color change to the user's profile and update.
     [userPrefs setValue:[NSNumber numberWithInteger:existingDifficulty] forKey:KEY_PROFILE_DIFFICULTY];
     self.loggedInPlayer.difficulty = newDifficulty;
+    
+    NSLog(@"Changed %@'s difficulty setting to %i (was %i)", profileName, newDifficulty, existingDifficulty);
     
     // Pop Difficulty Picker off the View Controller stack
     [self.navigationController popViewControllerAnimated:YES];
