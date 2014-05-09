@@ -19,7 +19,8 @@
 @property (strong, nonatomic) AEPlayer *playerOne;
 @property (nonatomic, strong) AEAppDelegate *appDelegate;
 // Current score of the player is stored here
-@property (readwrite, assign) int playerScore;
+
+@property (nonatomic) NSInteger playerScore;
 @property (readwrite, assign) int player2S; // player 2 score
 @property (readwrite, assign) bool isDead; // if ship hit asteroid
 

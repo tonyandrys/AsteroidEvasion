@@ -13,6 +13,9 @@
 
 // Player objects representing active user profile
 @property (strong, nonatomic) AEPlayer *playerOne;
-@property (readwrite, assign) NSInteger *playerScore;
+
+@property (strong, nonatomic) NSUserDefaults *userPrefs;
+
+@property (nonatomic) NSInteger finalScore;
 
 @end

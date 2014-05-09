@@ -13,6 +13,7 @@
 #import "AEGameOverScene.h"
 #import "FirstViewController.h"
 #import "AEAppDelegate.h"
+#import "AEPreferences.h"
 
 // Radius of the circle used as the ship's path
 float circleRadius;
@@ -308,7 +309,8 @@ CGPoint topRightPoint;
         self.playerScoreLabel.fontColor = [UIColor redColor];
         self.playerScoreLabel.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 5.0);
         self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", [_appDelegate.mcManager.self.peerID displayName], self.playerScore];
-        if(!self.isDead){
+        
+        if (!self.isDead) {
         [_appDelegate.mcManager.session sendData:dataToSend
                                          toPeers:_appDelegate.mcManager.session.connectedPeers
                                         withMode:MCSessionSendDataReliable
@@ -486,15 +488,22 @@ CGPoint topRightPoint;
     // Pass player model and score to game over scene
     gameOverScene.playerOne = self.playerOne;
     
-    // FIXME: Why can't I do this with ARC?
-    //gameOverScene.playerScore = [NSNumber numberWithInt:self.playerScore];
-    
     // Kill the asteroid launch timer
     [asteroidTimer invalidate];
     
     self.isDead = true;
-    // Present the scene
+    
+    // Record the score of this game in NSUserDefaults to be retrieved by the next scene
+    //NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
+    //[userPrefs setValue:[NSString stringWithFormat:@"%i", self.playerScore] forKey:KEY_LAST_GAME_SCORE];
+    //[userPrefs synchronize];
+    
+    gameOverScene.userData = [NSMutableDictionary dictionary];
+    [gameOverScene.userData setValue:[NSString stringWithFormat:@"%i", self.playerScore] forKey:@"score"];
+    
+    // Present the game over screen
     [self.view presentScene:gameOverScene];
+    
 }
 
 
