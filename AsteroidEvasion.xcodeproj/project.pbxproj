@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		13496F06190AE3E90048856F /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13496F05190AE3E90048856F /* FirstViewController.m */; };
 		13F751C2190A1B220006D253 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F751C1190A1B220006D253 /* ConnectionsViewController.m */; };
+		EA056A57191C9154001EDEB2 /* AEHighScoresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA056A56191C9154001EDEB2 /* AEHighScoresTableViewController.m */; };
 		EA0F23B719064F7F00ED4C78 /* PlayerData.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA0F23B619064F7F00ED4C78 /* PlayerData.plist */; };
 		EA0F23BA19070A1600ED4C78 /* AEPlayerDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23B919070A1600ED4C78 /* AEPlayerDetailsVC.m */; };
 		EA0F23C11907193600ED4C78 /* AEPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0F23C01907193600ED4C78 /* AEPreferences.m */; };
@@ -64,6 +65,8 @@
 		13F751C1190A1B220006D253 /* ConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsViewController.m; sourceTree = "<group>"; };
 		13F751C3190A1CA00006D253 /* MCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCManager.h; sourceTree = "<group>"; };
 		13F751C4190A1CA00006D253 /* MCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCManager.m; sourceTree = "<group>"; };
+		EA056A55191C9154001EDEB2 /* AEHighScoresTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEHighScoresTableViewController.h; sourceTree = "<group>"; };
+		EA056A56191C9154001EDEB2 /* AEHighScoresTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEHighScoresTableViewController.m; sourceTree = "<group>"; };
 		EA0F23B619064F7F00ED4C78 /* PlayerData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlayerData.plist; sourceTree = "<group>"; };
 		EA0F23B819070A1600ED4C78 /* AEPlayerDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEPlayerDetailsVC.h; sourceTree = "<group>"; };
 		EA0F23B919070A1600ED4C78 /* AEPlayerDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEPlayerDetailsVC.m; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				EA7A88EE191B5DCF00E99218 /* AESinglePlayerHighScoreTableViewController.m */,
 				EA7A88F3191B5DFC00E99218 /* AETwoPlayerHighScoreTableViewController.h */,
 				EA7A88F4191B5DFC00E99218 /* AETwoPlayerHighScoreTableViewController.m */,
+				EA056A55191C9154001EDEB2 /* AEHighScoresTableViewController.h */,
+				EA056A56191C9154001EDEB2 /* AEHighScoresTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				EA9D57181909BB510056BD55 /* AEBitmasks.m in Sources */,
 				EA9D57151909B7F60056BD55 /* AEAsteroid.m in Sources */,
 				EA0F23C4190749A500ED4C78 /* AETwoPlayerGameVC.m in Sources */,
+				EA056A57191C9154001EDEB2 /* AEHighScoresTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
