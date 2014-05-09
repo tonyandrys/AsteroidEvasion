@@ -92,6 +92,7 @@
     // Mark the cell that was just selected with a checkbox and get a reference to the cell
     selectedIndex = indexPath.row;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedIndex inSection:0]];
+    
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
     // Send the new difficulty to the delegate to update the player's profile

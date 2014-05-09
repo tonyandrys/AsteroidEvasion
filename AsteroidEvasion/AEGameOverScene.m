@@ -35,6 +35,8 @@
         playAgainTextLabel.position = CGPointMake(CGRectGetMidX(self.frame), gameOverTextLabel.position.y - gameOverTextLabel.fontSize - 20.0f);
         playAgainTextLabel.text = @"Touch to play again.";
         [self addChild:playAgainTextLabel];
+        
+        
     }
     return self;
 }
@@ -49,5 +51,7 @@
     // Present the scene to restart the game
     [self.view presentScene:gameScene];
 }
+
+
 
 @end

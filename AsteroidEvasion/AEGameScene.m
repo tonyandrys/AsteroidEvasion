@@ -190,7 +190,6 @@ CGPoint topRightPoint;
     
     // Draw circle (path for ship)
     // x origin position, y origin position, width, height
-    //FIXME change to oval!!
     //CGRect circle = CGRectMake(bottomLeftPoint.x + 12.5, bottomRightPoint.y + 85.0, self.frame.size.width - 25.0, self.frame.size.height - 100.0);
     circle = CGRectMake(bottomLeftPoint.x + 12.5, self.frame.origin.y-150.0, 300, 300);
     SKShapeNode *circleShapeNode = [[SKShapeNode alloc] init];
