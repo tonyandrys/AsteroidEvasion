@@ -397,10 +397,14 @@ CGPoint topRightPoint;
     CGPoint newShipPosition = [self polarToCartesian:rad theta:thetaPrime];
     
     // Set rotation of the ship based on its movement
-    if(dTheta >= 0) {
-        playerShip.zRotation = theta;
-    } else {
-        playerShip.zRotation = theta - 160.3;
+    //checks to make sure it is moving in ONLY the x direction
+    if(self.movingX)
+    {
+        if(dTheta >= 0) {
+            playerShip.zRotation = theta;
+        } else {
+            playerShip.zRotation = theta - 160.3;
+        }
     }
     
     // Update ship position
@@ -440,9 +444,11 @@ CGPoint topRightPoint;
         circle = CGRectMake(circle.origin.x += deltaY, circle.origin.y += deltaY, circleHeight - (deltaY*2), circleWidth - (deltaY*2));
         
         // Change the rotation of the ship to correctly animate moving toward the screen or away from it
+    
         if (deltaY > 0) {
             
-            if(self.movingX)
+        //checks to make sure it is moving inward or outward (so it doesnt flicker from rotation)
+            if(self.movingY)
             {
             // If we are moving up, rotate the ship towards the center of the circle
                 playerShip.zRotation = theta+58.05;
@@ -455,7 +461,8 @@ CGPoint topRightPoint;
             
         } else if (deltaY < 0) {
             
-                if(self.movingX)
+            //checks to make sure it is moving inward or outward (so it doesnt flicker from rotation)
+                if(self.movingY)
                 {
             // If we are moving down, rotate the ship away from the center of the circle
                     playerShip.zRotation= theta + 55;
@@ -496,6 +503,9 @@ CGPoint topRightPoint;
     if (previousLocation.x != touchLocation.x || previousLocation.y != touchLocation.y) {
         
         // If a change in X is detected, move around the circle X degrees
+        
+        //sets a threshold so the ship doesnt rotate and move if you swipe slightly up
+        //      down along with your X direction swipe
         if (deltaX >= 3 || deltaX <= -3) {
             
             // Move the ship deltaX units around the circle
@@ -505,12 +515,15 @@ CGPoint topRightPoint;
         }
         
         // If a change in Y is detected, move the ship towards or away from the center of the screen
+        
+        //sets a threshold so the ship doesnt rotate and move if you swipe slightly sideways
+        //       along with your Y direction swipe
         else if (deltaY >= 3 || deltaY <= -3) {
             
             // Move the ship deltaY units around the circle
             [self moveShipY:deltaY];
-            self.movingX = YES;
-            self.movingY = NO;
+            self.movingX = NO;
+            self.movingY = YES;
         }
     }
 
