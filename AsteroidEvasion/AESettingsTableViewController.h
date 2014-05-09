@@ -19,4 +19,7 @@
 // Label at top of settings screen which displays the name of the account that is currently logged in
 @property (weak, nonatomic) IBOutlet UILabel *playerNameDisplayLabel;
 
+// Clear High Score Button
+@property (weak, nonatomic) IBOutlet UIButton *clearHighScoreButton;
+
 @end

@@ -14,8 +14,9 @@
 // Player objects representing active user profile
 @property (strong, nonatomic) AEPlayer *playerOne;
 
-@property (strong, nonatomic) NSUserDefaults *userPrefs;
-
+// The final score the player had before the end of the game
 @property (nonatomic) NSInteger finalScore;
+
+-(id)initWithSize:(CGSize)size playerScore:(NSInteger)score;
 
 @end

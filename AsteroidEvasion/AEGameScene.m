@@ -482,25 +482,17 @@ CGPoint topRightPoint;
 /* Method called when contact is made between two nodes with different collision bitmasks. */
 -(void)didBeginContact:(SKPhysicsContact *)contact {
     
-    // If a collision happens between the ship and an asteroid, the game is over.
-    AEGameOverScene* gameOverScene = [[AEGameOverScene alloc] initWithSize:self.frame.size];
+    // If a collision happens between the ship and an asteroid, the game is over. Build the endgame scene and pass the player's final score
+    AEGameOverScene* gameOverScene = [[AEGameOverScene alloc] initWithSize:self.frame.size playerScore:self.playerScore];
     
-    // Pass player model and score to game over scene
+    // Pass player model to game over scene
     gameOverScene.playerOne = self.playerOne;
     
     // Kill the asteroid launch timer
     [asteroidTimer invalidate];
     
     self.isDead = true;
-    
-    // Record the score of this game in NSUserDefaults to be retrieved by the next scene
-    //NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
-    //[userPrefs setValue:[NSString stringWithFormat:@"%i", self.playerScore] forKey:KEY_LAST_GAME_SCORE];
-    //[userPrefs synchronize];
-    
-    gameOverScene.userData = [NSMutableDictionary dictionary];
-    [gameOverScene.userData setValue:[NSString stringWithFormat:@"%i", self.playerScore] forKey:@"score"];
-    
+        
     // Present the game over screen
     [self.view presentScene:gameOverScene];
     

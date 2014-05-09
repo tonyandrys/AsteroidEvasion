@@ -10,53 +10,89 @@
 #import "AEGameScene.h"
 #import "AEPreferences.h"
 
+// Node name constants
+NSString *const SCORE_NODE_NAME = @"scoreNodeName";
+
 @implementation AEGameOverScene
 
--(id)initWithSize:(CGSize)size {
+// IMPORTANT: Must pass player's score when initializing this scene
+-(id)initWithSize:(CGSize)size playerScore:(NSInteger)s{
     self = [super initWithSize:size];
     if (self) {
         self.backgroundColor = [UIColor blackColor];
         
-        // Load user preferences for score calculation and high score management
-        self.userPrefs = [NSUserDefaults standardUserDefaults];
+        // Store the player's final score as a property
+        self.finalScore = s;
+        
+        // Build and configure the scene
+        [self buildScene];
 
-        
-        // Load and define position of the two text labels
-        
-        // "Game Over!"
-        SKLabelNode *gameOverTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-        gameOverTextLabel.fontSize = 36;
-        gameOverTextLabel.fontColor = [UIColor whiteColor];
-        gameOverTextLabel.position = CGPointMake(self.frame.size.width/2, self.frame.size.height - 64.0f);
-        gameOverTextLabel.text = @"Game Over!";
-        [self addChild:gameOverTextLabel];
-        
-        // Central label which displays the player's ending score
-        SKLabelNode *scoreTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-        scoreTextLabel.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
-        scoreTextLabel.fontSize = 144.0f;
-        scoreTextLabel.fontColor = [UIColor whiteColor];
-        
-        // Pull the player's score out of NSUserDefaults and write it to the score label
-        if (self.userData == nil) {
-            NSLog(@"FKDLJFSLDKJFLSDKJFDLSKJFSLDKJF'"); // THIS CANNOT HAPPEN IN INIT.
-        }
-        self.finalScore = [[self.userData valueForKey:@"score"] integerValue];
-        NSLog(@"player's final score is %i", self.finalScore);
-        scoreTextLabel.text = [NSString stringWithFormat:@"%i", self.finalScore];
-        [self addChild:scoreTextLabel];
-        
-        // "Touch to play again!"
-        SKLabelNode *playAgainTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-        playAgainTextLabel.fontColor = [UIColor whiteColor];
-        playAgainTextLabel.fontSize = 22;
-        playAgainTextLabel.position = CGPointMake(CGRectGetMidX(self.frame), scoreTextLabel.position.y - scoreTextLabel.fontSize - 20.0f);
-        playAgainTextLabel.text = @"Touch to play again.";
-        [self addChild:playAgainTextLabel];
-        
-        
     }
+    
     return self;
+}
+
+// Builds and configures the nodes for this scene.
+-(void)buildScene {
+    
+    // "Game Over!"
+    SKLabelNode *gameOverTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    gameOverTextLabel.fontSize = 36;
+    gameOverTextLabel.fontColor = [UIColor whiteColor];
+    gameOverTextLabel.position = CGPointMake(self.frame.size.width/2, self.frame.size.height - 64.0f);
+    gameOverTextLabel.text = @"Game Over!";
+    [self addChild:gameOverTextLabel];
+    
+    // Central label which displays the player's ending score
+    SKLabelNode *scoreTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    scoreTextLabel.name = @"statute";
+    scoreTextLabel.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    scoreTextLabel.fontSize = 144.0f;
+    scoreTextLabel.fontColor = [UIColor whiteColor];
+    scoreTextLabel.text = [NSString stringWithFormat:@"%i", self.finalScore];
+    
+    // "You ended up with a score of..."
+    SKLabelNode *scoreTextFooterLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    scoreTextFooterLabel.position = CGPointMake(scoreTextLabel.position.x, scoreTextLabel.position.y + scoreTextLabel.fontSize);
+    scoreTextFooterLabel.fontSize = 22.0f;
+    scoreTextFooterLabel.fontColor = [UIColor whiteColor];
+    scoreTextFooterLabel.text = @"Your final score:";
+    [self addChild:scoreTextFooterLabel];
+    
+    // "Touch to play again!"
+    SKLabelNode *playAgainTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    playAgainTextLabel.fontColor = [UIColor whiteColor];
+    playAgainTextLabel.fontSize = 22;
+    playAgainTextLabel.position = CGPointMake(CGRectGetMidX(self.frame), scoreTextLabel.position.y - scoreTextLabel.fontSize - 40.0f);
+    playAgainTextLabel.text = @"Touch to play again.";
+    [self addChild:playAgainTextLabel];
+    
+    // Check if this round is a new personal best
+    BOOL isNewHighScore = [self isHighScoreAchieved:self.finalScore];
+    
+    // If a new personal high score was achieved, update the view accordingly
+    if (isNewHighScore) {
+        
+        // Record the new high score in NSUserDefaults
+        NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
+        [userPrefs setValue:[NSString stringWithFormat:@"%i", self.finalScore] forKey:KEY_PROFILE_HIGH_SCORE];
+        [userPrefs synchronize];
+        NSLog(@"New high score written to profile (%i)", self.finalScore);
+        
+        // Add a label to the scene notifying the player
+        SKLabelNode *newHighScoreTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+        newHighScoreTextLabel.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2 - scoreTextLabel.fontSize + 65.0f);
+        newHighScoreTextLabel.fontSize = 25.0f;
+        newHighScoreTextLabel.fontColor = [UIColor greenColor];
+        newHighScoreTextLabel.text = @"New personal high score!";
+        [self addChild:newHighScoreTextLabel];
+        
+        // color the score label green
+        scoreTextLabel.fontColor = [UIColor greenColor];
+
+    }
+    [self addChild:scoreTextLabel];
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -75,11 +111,17 @@
     
     // Get the user's current high score from NSUserDefaults
     NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
-    NSString *existingHighScore = [userPrefs stringForKey:KEY_PROFILE_HIGH_SCORE];
+    NSInteger existingHighScore = [[userPrefs stringForKey:KEY_PROFILE_HIGH_SCORE] integerValue];
+    NSLog(@"Player's final score was %i (current high score is %i)", score, existingHighScore);
     
     // Check if the score achieved is better than the user's previous high score (if one exists)
-    return true;
-    
+    if (score > existingHighScore) {
+        NSLog(@"New high score achieved!");
+        return true;
+    } else {
+        NSLog(@"Existing high score is larger than this score, no update necessary.");
+        return false;
+    }
 }
 
 

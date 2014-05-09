@@ -517,6 +517,30 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Data" id="L5I-RO-zJQ">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mNX-md-Xcs">
+                                        <rect key="frame" x="0.0" y="283" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mNX-md-Xcs" id="Xeh-PC-jyc">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHO-F4-TTC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Clear Personal High Score">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="clearHighScoreButtonPressed:" destination="A5S-GZ-lx9" eventType="touchUpInside" id="5fd-BP-Rb3"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="A5S-GZ-lx9" id="43f-JE-t4Z"/>
@@ -525,6 +549,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="UzR-bK-hfr"/>
                     <connections>
+                        <outlet property="clearHighScoreButton" destination="NHO-F4-TTC" id="Hel-zB-Esl"/>
                         <outlet property="playerNameDisplayLabel" destination="f7k-CV-TXT" id="Bep-61-CUp"/>
                     </connections>
                 </tableViewController>

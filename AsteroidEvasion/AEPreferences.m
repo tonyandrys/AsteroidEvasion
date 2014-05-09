@@ -17,9 +17,6 @@ NSString *const KEY_PROFILE_HIGH_SCORE = @"profileHighScore";
 NSString *const KEY_PROFILE_SHIP_COLOR = @"profileShipColor";
 NSString *const KEY_PROFILE_DIFFICULTY = @"profileDifficulty";
 
-// Score of last game
-NSString *const KEY_LAST_GAME_SCORE = @"lastGameScore";
-
 // High Score Table Storage
 NSString *const KEY_HIGH_SCORE_TABLE_1P = @"highScoreTable1P";
 NSString *const KEY_HIGH_SCORE_TABLE_2P = @"highScoreTable2P";

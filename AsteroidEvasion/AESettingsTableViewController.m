@@ -36,11 +36,14 @@
     color = self.loggedInPlayer.shipColor;
     NSLog(@"Player's ship color is currently set to %@", color);
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Check if the logged in player has a non-zero high score. If so, enable the clear high scores button
+    NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
+    NSInteger currentHighScore = [[userPrefs valueForKey:KEY_PROFILE_HIGH_SCORE] integerValue];
+    if (currentHighScore <= 0) {
+        NSLog(@"No high score associated with profile. Disabling clear button.");
+        [self.clearHighScoreButton setEnabled:NO];
+        [self.clearHighScoreButton setAlpha:0.4f];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,19 +56,33 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSUInteger rowCount = 0;
-    if (section == 0) {
+    if (section == 0 || section == 2) {
         rowCount = 1;
     } else if (section == 1) {
         rowCount = 2;
     }
     
     return rowCount;
+}
+
+#pragma mark - Button Actions
+- (IBAction)clearHighScoreButtonPressed:(id)sender {
+    
+    // Write a zero to the current player's high score field
+    NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
+    [userPrefs setValue:@"0" forKey:KEY_PROFILE_HIGH_SCORE];
+    [userPrefs synchronize];
+    
+    // Disable clear high score button
+    [self.clearHighScoreButton setEnabled:NO];
+    [self.clearHighScoreButton setAlpha:0.4f];
+    NSLog(@"High score cleared.");
 }
 
 #pragma mark - Navigation
