@@ -29,8 +29,8 @@
 
 @property (strong, nonatomic) SKLabelNode *player2Score;// player 2 name label
 
-@property (nonatomic) BOOL isShipMovingUp;
-@property (nonatomic) BOOL isShipMovingDown;
+@property (nonatomic) BOOL movingX;
+@property (nonatomic) BOOL movingY;
 
 @property (nonatomic) int asteroidChanger;
 

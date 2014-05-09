@@ -273,7 +273,7 @@ CGPoint topRightPoint;
     //sets it so every three asteroids is the brown one else the gray
     if(self.asteroidChanger % 3 == 0)
     {
-        SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"meteor2"];
+        SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"meteor1"];
         self.asteroidChanger++;
         asteroid.name = NAME_CATEGORY_ASTEROID;
         asteroid.position = pos;
@@ -297,7 +297,7 @@ CGPoint topRightPoint;
     else
     {
         
-        SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"meteor1"];
+        SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"meteor2"];
         self.asteroidChanger++;
         asteroid.name = NAME_CATEGORY_ASTEROID;
         asteroid.position = pos;
@@ -442,12 +442,11 @@ CGPoint topRightPoint;
         // Change the rotation of the ship to correctly animate moving toward the screen or away from it
         if (deltaY > 0) {
             
-            // If we are moving up, rotate the ship towards the center of the circle
-            if(self.isShipMovingUp == NO)
+            if(self.movingX)
             {
+            // If we are moving up, rotate the ship towards the center of the circle
                 playerShip.zRotation = theta+58.05;
             }
-            
             
             // Set the moving up flag for the ship so rotation doesn't happen again until direction changes
         //    playerShip.zRotation = theta + 80;
@@ -456,12 +455,12 @@ CGPoint topRightPoint;
             
         } else if (deltaY < 0) {
             
-    
+                if(self.movingX)
+                {
             // If we are moving down, rotate the ship away from the center of the circle
-            if(self.isShipMovingDown == NO)
-            {
-                playerShip.zRotation= theta + 55;
-            }
+                    playerShip.zRotation= theta + 55;
+                }
+            
             
             // Set the moving flags for the ship so rotation doesn't happen again until direction changes
         //    self.isShipMovingDown = YES;
@@ -497,21 +496,25 @@ CGPoint topRightPoint;
     if (previousLocation.x != touchLocation.x || previousLocation.y != touchLocation.y) {
         
         // If a change in X is detected, move around the circle X degrees
-        if (deltaX != 0) {
+        if (deltaX >= 3 || deltaX <= -3) {
             
             // Move the ship deltaX units around the circle
             [self moveShipX:deltaX];
+            self.movingX=YES;
+            self.movingY = NO;
         }
         
         // If a change in Y is detected, move the ship towards or away from the center of the screen
-        else if (deltaY != 0) {
+        else if (deltaY >= 3 || deltaY <= -3) {
             
             // Move the ship deltaY units around the circle
             [self moveShipY:deltaY];
-        }
-
+            self.movingX = YES;
+            self.movingY = NO;
         }
     }
+
+}
 
 #pragma mark - Collision Handling
 
