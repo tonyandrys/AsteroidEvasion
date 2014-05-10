@@ -51,7 +51,7 @@ CGPoint topRightPoint;
 
 -(id)initWithSize:(CGSize)size playerOne:(AEPlayer *)p1 {
     if (self = [super initWithSize:size]) {
-        
+        self.asteroidChanger = 0;
         // Store AEPlayer to property
         self.playerOne = p1;
         
@@ -270,26 +270,55 @@ CGPoint topRightPoint;
 -(void)generateAsteroidAt:(CGPoint)pos withSize:(CGSize)size withForce:(CGVector)force {
     
     // Configure node
-    SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"meteor2"];
-    asteroid.name = NAME_CATEGORY_ASTEROID;
-    asteroid.position = pos;
-    asteroid.size = size;
+    //sets it so every three asteroids is the brown one else the gray
+    if(self.asteroidChanger % 3 == 0)
+    {
+        SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"meteor1"];
+        self.asteroidChanger++;
+        asteroid.name = NAME_CATEGORY_ASTEROID;
+        asteroid.position = pos;
+        asteroid.size = size;
+        
+        // Configure physics body
+        asteroid.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:size.width/2];
+        asteroid.physicsBody.friction = 0.1f; // Asteroids should have no friction
+        asteroid.physicsBody.restitution = 1.0f; // Restitution- we want elastic collisions with no energy loss
+        asteroid.physicsBody.linearDamping = 0.0f; // Linear dampening = air friction - there's none of that shit in space
+        asteroid.physicsBody.allowsRotation = YES; // Asteroids should rotate maybe
+        asteroid.physicsBody.categoryBitMask = BITMASK_ASTEROID_CATEGORY; // Assign asteroid category bitmask, all asteroids will have the same for now (they will not collide with each other, which we will eventually want to change)
+        asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY; // Notify if the asteroid makes contact with the ship
+        
+        // Add to SKScene
+        NSLog(@"Generated asteroid at (%f. %f) with force dx=%f, dy=%f)", pos.x, pos.y, force.dx, force.dy);
+        [self addChild:asteroid];
+        // After asteroid is added, apply linear impulse
+        [asteroid.physicsBody applyImpulse:force];
+    }
+    else
+    {
+        
+        SKSpriteNode* asteroid = [[SKSpriteNode alloc] initWithImageNamed:@"meteor2"];
+        self.asteroidChanger++;
+        asteroid.name = NAME_CATEGORY_ASTEROID;
+        asteroid.position = pos;
+        asteroid.size = size;
+        
+        // Configure physics body
+        asteroid.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:size.width/2];
+        asteroid.physicsBody.friction = 0.1f; // Asteroids should have no friction
+        asteroid.physicsBody.restitution = 1.0f; // Restitution- we want elastic collisions with no energy loss
+        asteroid.physicsBody.linearDamping = 0.0f; // Linear dampening = air friction - there's none of that shit in space
+        asteroid.physicsBody.allowsRotation = YES; // Asteroids should rotate maybe
+        asteroid.physicsBody.categoryBitMask = BITMASK_ASTEROID_CATEGORY; // Assign asteroid category bitmask, all asteroids will have the same for now (they will not collide with each other, which we will eventually want to change)
+        asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY; // Notify if the asteroid makes contact with the ship
+        
+        // Add to SKScene
+        NSLog(@"Generated asteroid at (%f. %f) with force dx=%f, dy=%f)", pos.x, pos.y, force.dx, force.dy);
+        [self addChild:asteroid];
+        // After asteroid is added, apply linear impulse
+        [asteroid.physicsBody applyImpulse:force];
+    }
     
-    // Configure physics body
-    asteroid.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:size.width/2];
-    asteroid.physicsBody.friction = 0.1f; // Asteroids should have no friction
-    asteroid.physicsBody.restitution = 1.0f; // Restitution- we want elastic collisions with no energy loss
-    asteroid.physicsBody.linearDamping = 0.0f; // Linear dampening = air friction - there's none of that shit in space
-    asteroid.physicsBody.allowsRotation = YES; // Asteroids should rotate maybe
-    asteroid.physicsBody.categoryBitMask = BITMASK_ASTEROID_CATEGORY; // Assign asteroid category bitmask, all asteroids will have the same for now (they will not collide with each other, which we will eventually want to change)
-    asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY; // Notify if the asteroid makes contact with the ship
-    
-    // Add to SKScene
-    NSLog(@"Generated asteroid at (%f. %f) with force dx=%f, dy=%f)", pos.x, pos.y, force.dx, force.dy);
-    [self addChild:asteroid];
-    
-    // After asteroid is added, apply linear impulse
-    [asteroid.physicsBody applyImpulse:force];
 }
 
 #pragma mark - Scoring Methods
@@ -368,10 +397,14 @@ CGPoint topRightPoint;
     CGPoint newShipPosition = [self polarToCartesian:rad theta:thetaPrime];
     
     // Set rotation of the ship based on its movement
-    if(dTheta >= 0) {
-        playerShip.zRotation = theta;
-    } else {
-        playerShip.zRotation = theta - 160.3;
+    //checks to make sure it is moving in ONLY the x direction
+    if(self.movingX)
+    {
+        if(dTheta >= 0) {
+            playerShip.zRotation = theta;
+        } else {
+            playerShip.zRotation = theta - 160.3;
+        }
     }
     
     // Update ship position
@@ -411,25 +444,34 @@ CGPoint topRightPoint;
         circle = CGRectMake(circle.origin.x += deltaY, circle.origin.y += deltaY, circleHeight - (deltaY*2), circleWidth - (deltaY*2));
         
         // Change the rotation of the ship to correctly animate moving toward the screen or away from it
+    
         if (deltaY > 0) {
             
-            // BROKEN - FIX ME
+        //checks to make sure it is moving inward or outward (so it doesnt flicker from rotation)
+            if(self.movingY)
+            {
             // If we are moving up, rotate the ship towards the center of the circle
-            //playerShip.zRotation += M_PI_2;
+                playerShip.zRotation = theta+58.05;
+            }
             
             // Set the moving up flag for the ship so rotation doesn't happen again until direction changes
-            //isShipMovingUp = YES;
-            //isShipMovingDown = NO;
+        //    playerShip.zRotation = theta + 80;
+         //   self.isShipMovingUp = YES;
+         //   self.isShipMovingDown = NO;
             
         } else if (deltaY < 0) {
             
-            // BROKEN - FIX ME
+            //checks to make sure it is moving inward or outward (so it doesnt flicker from rotation)
+                if(self.movingY)
+                {
             // If we are moving down, rotate the ship away from the center of the circle
-            //playerShip.zRotation -= M_PI_2;
+                    playerShip.zRotation= theta + 55;
+                }
+            
             
             // Set the moving flags for the ship so rotation doesn't happen again until direction changes
-            //isShipMovingDown = YES;
-            //isShipMovingUp = NO;
+        //    self.isShipMovingDown = YES;
+        //    self.isShipMovingUp = NO;
         }
         
         // Apply the circle height changes to the circleNode
@@ -461,21 +503,31 @@ CGPoint topRightPoint;
     if (previousLocation.x != touchLocation.x || previousLocation.y != touchLocation.y) {
         
         // If a change in X is detected, move around the circle X degrees
-        if (deltaX != 0) {
+        
+        //sets a threshold so the ship doesnt rotate and move if you swipe slightly up
+        //      down along with your X direction swipe
+        if (deltaX >= 3 || deltaX <= -3) {
             
             // Move the ship deltaX units around the circle
             [self moveShipX:deltaX];
+            self.movingX=YES;
+            self.movingY = NO;
         }
         
         // If a change in Y is detected, move the ship towards or away from the center of the screen
-        else if (deltaY != 0) {
+        
+        //sets a threshold so the ship doesnt rotate and move if you swipe slightly sideways
+        //       along with your Y direction swipe
+        else if (deltaY >= 3 || deltaY <= -3) {
             
             // Move the ship deltaY units around the circle
             [self moveShipY:deltaY];
-        }
-
+            self.movingX = NO;
+            self.movingY = YES;
         }
     }
+
+}
 
 #pragma mark - Collision Handling
 

@@ -29,6 +29,11 @@
 
 @property (strong, nonatomic) SKLabelNode *player2Score;// player 2 name label
 
+@property (nonatomic) BOOL movingX;
+@property (nonatomic) BOOL movingY;
+
+@property (nonatomic) int asteroidChanger;
+
 - (id)initWithSize:(CGSize)size playerOne:(AEPlayer *)p1;
 
 @end
