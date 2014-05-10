@@ -639,7 +639,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lrw-5J-if6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2665" y="2677"/>
+            <point key="canvasLocation" x="2653" y="2679"/>
         </scene>
         <!--View Controller - Two Player Game-->
         <scene sceneID="ofW-K0-WPW">
