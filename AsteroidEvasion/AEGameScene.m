@@ -162,7 +162,7 @@ CGPoint topRightPoint;
     /* Build text labels */
     
     // Tony, I commented out the following and added functionality to update score method to keep long name from overlapping with score
-    // if that wasn't okay, go ahead and change it.
+    // if that wasn't okay, go ahead and change it. - Pat
     
     /* Player name label
     SKLabelNode *playerNameLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
@@ -187,7 +187,7 @@ CGPoint topRightPoint;
     self.player2Score = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     //self.player2Score.text = @"0"; // start at a score of zero
     self.player2Score.fontSize = 18;
-    self.player2Score.fontColor = [UIColor blueColor];
+    self.player2Score.fontColor = [UIColor redColor];
     self.player2Score.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 25.0);
     self.player2Score.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
     self.player2Score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
@@ -343,7 +343,7 @@ CGPoint topRightPoint;
     if(_appDelegate.mcManager.session.connectedPeers != nil){ // if two player game and connected with another
         NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.playerScore]]; // will send current player score
         NSError *error; // needed for sendData function
-        self.playerScoreLabel.fontColor = [UIColor redColor];
+        self.playerScoreLabel.fontColor = [UIColor blueColor];
         self.playerScoreLabel.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 5.0);
         self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", [_appDelegate.mcManager.self.peerID displayName], self.playerScore];
         
