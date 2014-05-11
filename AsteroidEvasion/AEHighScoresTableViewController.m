@@ -71,6 +71,8 @@
 #pragma mark - UI Button Actions
 // Called when the Clear Scores button at the bottom of the is pressed by the player - clears all stored high scores
 - (IBAction)clearHighScoresButtonPressed:(id)sender {
+    [AEHighScoreManager clearHighScoreTable:TABLE_ONE_PLAYER_SCORES];
+    [AEHighScoreManager clearHighScoreTable:TABLE_TWO_PLAYER_SCORES];
 }
 
 /*

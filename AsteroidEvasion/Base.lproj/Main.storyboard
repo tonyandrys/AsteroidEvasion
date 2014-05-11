@@ -817,13 +817,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Main" id="VT4-sT-5ao">
-                        <barButtonItem key="rightBarButtonItem" title="Clear Scores" id="eSu-y2-aY5">
-                            <connections>
-                                <action selector="clearHighScoresButtonPressed:" destination="dSs-zL-sWp" id="wNG-sz-Kgh"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Main" id="VT4-sT-5ao"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -919,6 +913,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="juj-gB-R1G"/>
                         <barButtonItem systemItem="trash" id="fJB-9B-qzt">
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

@@ -159,11 +159,4 @@
     }
 }
 
-// *TEMPORARY METHOD AND BUTTON USED FOR TROUBLESHOOTING ONLY*
-// Clears all stored high scores
-- (IBAction)clearHighScoresButtonPressed:(id)sender {
-    [AEHighScoreManager clearHighScoreTable:TABLE_ONE_PLAYER_SCORES];
-    [AEHighScoreManager clearHighScoreTable:TABLE_TWO_PLAYER_SCORES];
-}
-
 @end
