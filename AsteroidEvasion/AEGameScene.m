@@ -160,7 +160,11 @@ CGPoint topRightPoint;
     self.physicsWorld.gravity = CGVectorMake(0.0f, 0.0f);
     
     /* Build text labels */
-    // Player name label
+    
+    // Tony, I commented out the following and added functionality to update score method to keep long name from overlapping with score
+    // if that wasn't okay, go ahead and change it.
+    
+    /* Player name label
     SKLabelNode *playerNameLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     playerNameLabel.text = [NSString stringWithFormat:@"%@:", self.playerOne.name];
     playerNameLabel.fontSize = 18;
@@ -168,14 +172,14 @@ CGPoint topRightPoint;
     playerNameLabel.position = CGPointMake(bottomLeftPoint.x, bottomLeftPoint.y + 5.0);
     playerNameLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
     playerNameLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
-    [self addChild:playerNameLabel];
+    [self addChild:playerNameLabel];*/
     
     // Player score label
     self.playerScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     self.playerScoreLabel.text = @"0"; // start at a score of zero
     self.playerScoreLabel.fontSize = 18;
     self.playerScoreLabel.fontColor = [self.playerOne getShipColorAsUIColor];
-    self.playerScoreLabel.position = CGPointMake(bottomLeftPoint.x + 50.0, bottomLeftPoint.y + 5.0);
+    self.playerScoreLabel.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 5.0);
     self.playerScoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
     self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     [self addChild:self.playerScoreLabel];
@@ -334,7 +338,7 @@ CGPoint topRightPoint;
     self.playerScore += 1;
     
     // Update on screen score label to the player's current score
-    self.playerScoreLabel.text = [NSString stringWithFormat:@"%i", self.playerScore];
+    self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", self.playerOne.name, self.playerScore];
    
     if(_appDelegate.mcManager.session.connectedPeers != nil){ // if two player game and connected with another
         NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.playerScore]]; // will send current player score
