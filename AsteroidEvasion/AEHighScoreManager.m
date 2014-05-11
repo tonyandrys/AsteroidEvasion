@@ -125,7 +125,15 @@ NSString *const KEY_HIGH_SCORE_PLAYER_SCORE = @"highScorePlayerScore";
 // Wipes either the 1p or 2p high score tables clean
 // (Use TABLE_ONE/TWO_PLAYER_SCORES constants to specify which table to target)
 +(void)clearHighScoreTable:(NSString *)table {
-    
+    NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
+    if ([table isEqualToString:TABLE_ONE_PLAYER_SCORES] || [table isEqualToString:TABLE_TWO_PLAYER_SCORES]) {
+        [userPrefs setValue:nil forKey:table];
+        [userPrefs synchronize];
+        NSLog(@"Cleared high score table (%@).", table);
+    } else {
+        NSLog(@"WARNING: Invalid high score table parameter (sent:%@). Could not clear high scores.", table);
+    }
+
 }
 
 // Writes the passed array to the appropriate key of NSUserDefaults and synchronizes the changes

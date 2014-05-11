@@ -32,7 +32,7 @@ extern NSString *const KEY_HIGH_SCORE_PLAYER_SCORE;
 
 // High score tables are built using a combination of NSArrays and NSDictionaries. The array returned contains one NSDictionary, each representing one high score.
 
-+(NSArray *)getHighScoreTable:(NSString *)table score:(NSInteger)newScore;
++(NSArray *)getHighScoreTable:(NSString *)table;
 
 +(void)addScoreToHighScoreTable:(NSString *)table playerName:(NSString *)name score:(NSInteger)score;
 
