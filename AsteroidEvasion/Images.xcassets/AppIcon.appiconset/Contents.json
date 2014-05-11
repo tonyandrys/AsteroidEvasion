@@ -3,19 +3,19 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "AsteroidEvasionIcon-2.png",
+      "filename" : "AsteroidEvasionIconWB58.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "AsteroidEvasionIcon-1.png",
+      "filename" : "AsteroidEvasionIconWB80.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "AsteroidEvasionIcon.png",
+      "filename" : "AsteroidEvasionIconWB.png",
       "scale" : "2x"
     }
   ],

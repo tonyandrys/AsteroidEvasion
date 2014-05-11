@@ -372,7 +372,7 @@ CGPoint topRightPoint;
                                                      name:@"MCDidReceiveDataNotification"
                                                    object:nil]; // receiver
      
-        self.player2Score.text = [NSString stringWithFormat:@"%@:%i", [[_appDelegate.mcManager.session.connectedPeers objectAtIndex:0] displayName], self.player2S];
+        self.player2Score.text = [NSString stringWithFormat:@"%@:%i", [[_appDelegate.mcManager.session.connectedPeers lastObject] displayName], self.player2S];
     }
 }
 
