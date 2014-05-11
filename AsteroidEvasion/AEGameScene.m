@@ -61,6 +61,20 @@ CGPoint topRightPoint;
         // Fill the asteroid launch point dictionary
         asteroidLaunchPoints = [self buildAsteroidLaunchDictionary];
         
+        // Determine asteroid launch interval by checking the difficulty setting of the user
+        NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
+        NSInteger difficulty = [[userPrefs valueForKey:KEY_PROFILE_DIFFICULTY] integerValue];
+        if (difficulty == 3) {
+            fireInterval = 1.0f;
+        } else if (difficulty == 2) {
+            fireInterval = 2.0f;
+        } else if (difficulty == 1) {
+            fireInterval = 3.0f;
+        } else if (difficulty == 0) {
+            fireInterval = 4.0f;
+        }
+        NSLog(@"Fire interval set: %f", fireInterval);
+        
         // Setup the scene
         [self buildScene];
         
