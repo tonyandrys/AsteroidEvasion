@@ -239,6 +239,10 @@ CGPoint topRightPoint;
         ship = [SKSpriteNode spriteNodeWithImageNamed:@"resizedSpaceshipsOutlinedR"];
     } else if ([colorString isEqualToString:@"Green"]) {
         ship = [SKSpriteNode spriteNodeWithImageNamed:@"resizedSpaceshipsOutlinedG"];
+    } else if ([colorString isEqualToString:@"Orange"]) {
+        ship = [SKSpriteNode spriteNodeWithImageNamed:@"resizedSpaceshipsOutlinedO"];
+    } else if ([colorString isEqualToString:@"Yellow"]) {
+        ship = [SKSpriteNode spriteNodeWithImageNamed:@"resiszedSpaceshipsOutlinedY"];
     }
     return ship;
 }
