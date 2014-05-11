@@ -44,6 +44,13 @@ NSString *const SCORE_NODE_NAME = @"scoreNodeName";
     gameOverTextLabel.text = @"Game Over!";
     [self addChild:gameOverTextLabel];
     
+    // Back button
+    SKSpriteNode *backButton = [SKSpriteNode spriteNodeWithImageNamed:@"backButton"];
+    backButton.position = CGPointMake(0.0f + backButton.frame.size.height, 0.0f + backButton.frame.size.height);
+    backButton.name = @"backButtonNode";
+    [self addChild:backButton];
+    
+    
     // Central label which displays the player's ending score
     SKLabelNode *scoreTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     scoreTextLabel.name = @"statute";
@@ -64,7 +71,7 @@ NSString *const SCORE_NODE_NAME = @"scoreNodeName";
     SKLabelNode *playAgainTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     playAgainTextLabel.fontColor = [UIColor whiteColor];
     playAgainTextLabel.fontSize = 22;
-    playAgainTextLabel.position = CGPointMake(CGRectGetMidX(self.frame), scoreTextLabel.position.y - scoreTextLabel.fontSize - 40.0f);
+    playAgainTextLabel.position = CGPointMake(CGRectGetMidX(self.frame), scoreTextLabel.position.y - scoreTextLabel.fontSize - 5.0f);
     playAgainTextLabel.text = @"Touch to play again.";
     [self addChild:playAgainTextLabel];
     
@@ -102,6 +109,17 @@ NSString *const SCORE_NODE_NAME = @"scoreNodeName";
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
+    
+    //if exit button is pressed, go back to the main menu
+    if ([node.name isEqualToString:@"backButtonNode"]) {
+        NSLog(@"Transitioning to root VC...");
+        [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+
+    }
     
     // When the user touches the screen, rebuild and reconfigure the game scene
     AEGameScene *gameScene = [[AEGameScene alloc] initWithSize:self.size playerOne:self.playerOne];
