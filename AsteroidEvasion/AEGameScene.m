@@ -193,18 +193,18 @@ CGPoint topRightPoint;
     self.playerScoreLabel.text = @"0"; // start at a score of zero
     self.playerScoreLabel.fontSize = 18;
     self.playerScoreLabel.fontColor = [self.playerOne getShipColorAsUIColor];
-    self.playerScoreLabel.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 5.0);
+    self.playerScoreLabel.position = CGPointMake((bottomLeftPoint.x +bottomRightPoint.x)/2 + 0.0, bottomLeftPoint.y + 5.0);
     self.playerScoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
-    self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     [self addChild:self.playerScoreLabel];
     
     self.player2Score = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     //self.player2Score.text = @"0"; // start at a score of zero
     self.player2Score.fontSize = 18;
     self.player2Score.fontColor = [UIColor redColor];
-    self.player2Score.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 25.0);
+    self.player2Score.position = CGPointMake((bottomLeftPoint.x + bottomRightPoint.x)/2 + 0.0, bottomLeftPoint.y + 25.0);
     self.player2Score.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
-    self.player2Score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
+    self.player2Score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     [self addChild:self.player2Score];
     
     // Draw circle (path for ship)
@@ -360,7 +360,8 @@ CGPoint topRightPoint;
         NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.playerScore]]; // will send current player score
         NSError *error; // needed for sendData function
         self.playerScoreLabel.fontColor = [UIColor blueColor];
-        self.playerScoreLabel.position = CGPointMake(bottomLeftPoint.x + 0.0, bottomLeftPoint.y + 5.0);
+        self.playerScoreLabel.position = CGPointMake((bottomLeftPoint.x + bottomRightPoint.x)/2 + 0.0, bottomLeftPoint.y + 5.0);
+        //self.playerScoreLabel.textAlignment = NSTextAlignmentCenter;
         self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", [_appDelegate.mcManager.self.peerID displayName], self.playerScore];
         
         if (!self.isDead) {
