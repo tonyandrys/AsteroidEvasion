@@ -58,6 +58,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Strategize" id="aSe-Nt-mAN"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="tvChat" destination="Kvl-lt-P5l" id="E5J-rz-AcS"/>
                         <outlet property="txtMessage" destination="nmb-8G-8p6" id="eYp-Qj-86q"/>
@@ -132,6 +133,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Connect To Another Pilot" id="O0c-QA-vc5"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="btnDisconnect" destination="aWo-MJ-2Dk" id="rGU-h9-ell"/>
                         <outlet property="swVisible" destination="cVj-rP-cSG" id="EK0-7B-UfI"/>
@@ -142,34 +144,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TAx-Ag-ra4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1584" y="-1004"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="hF5-ta-OID">
-            <objects>
-                <viewController id="E6o-2V-6Lj" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nXI-ag-2pY"/>
-                        <viewControllerLayoutGuide type="bottom" id="oHC-QP-60F"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="adW-ap-tm9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some day, this will do a thing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYD-DS-09Q">
-                                <rect key="frame" x="48" y="267" width="225" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="HR6-us-jca"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZjU-Oh-6kK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2102" y="-506"/>
         </scene>
         <!--PlayersVC - Players-->
         <scene sceneID="1aX-nw-2IM">
@@ -224,6 +198,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1c-cS-PzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -294,6 +269,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="nameTextField" destination="hhz-TI-v9O" id="bIs-Wn-zWE"/>
                     </connections>
@@ -432,6 +408,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="difficultyDisplayLabel" destination="zCR-0J-fv7" id="Xyw-8v-9SX"/>
                         <outlet property="highScoreDisplayLabel" destination="V5x-6e-EIQ" id="yz0-Ur-EYu"/>
@@ -548,6 +525,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="UzR-bK-hfr"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="clearHighScoreButton" destination="NHO-F4-TTC" id="Hel-zB-Esl"/>
                         <outlet property="playerNameDisplayLabel" destination="f7k-CV-TXT" id="Bep-61-CUp"/>
@@ -706,6 +684,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Two Player Game" id="YNV-lY-qoK"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qE-37-Ohc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -725,6 +704,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="N44-KK-1zg"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
             </objects>
@@ -819,6 +799,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Main" id="VT4-sT-5ao"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="onePlayerStartButton" destination="Mgc-WL-LYH" id="IoF-de-4Rk"/>
@@ -837,6 +818,7 @@
             <objects>
                 <navigationController storyboardIdentifier="MainNavController" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="p40-iA-etG" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Spy-18-D7X">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -860,6 +842,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z9K-SY-0hd" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i0E-Rc-mf0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -933,6 +916,7 @@
                             </segmentedControl>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="clearHighScoresButton" destination="fJB-9B-qzt" id="9pJ-Eh-AXc"/>
                         <outlet property="dataSourceSegmentedControl" destination="hiU-JO-6Sx" id="OCp-P4-kjd"/>
