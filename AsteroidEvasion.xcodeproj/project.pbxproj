@@ -44,6 +44,7 @@
 		EAF65A731919CE7C00E8FE31 /* AESettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A721919CE7C00E8FE31 /* AESettingsTableViewController.m */; };
 		EAF65A761919DF3700E8FE31 /* AEColorPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A751919DF3700E8FE31 /* AEColorPickerTableViewController.m */; };
 		EAF65A79191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A78191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m */; };
+		EAF7E1F1191EF489008B9FD1 /* AEHighScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF7E1F0191EF489008B9FD1 /* AEHighScoreManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,8 @@
 		EAF65A751919DF3700E8FE31 /* AEColorPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEColorPickerTableViewController.m; sourceTree = "<group>"; };
 		EAF65A77191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEDifficultyPickerTableViewController.h; sourceTree = "<group>"; };
 		EAF65A78191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEDifficultyPickerTableViewController.m; sourceTree = "<group>"; };
+		EAF7E1EF191EF489008B9FD1 /* AEHighScoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEHighScoreManager.h; sourceTree = "<group>"; };
+		EAF7E1F0191EF489008B9FD1 /* AEHighScoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEHighScoreManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +309,8 @@
 				EA9400C11906250500A7C18C /* AEPlayer.m */,
 				EA9D57131909B7F50056BD55 /* AEAsteroid.h */,
 				EA9D57141909B7F50056BD55 /* AEAsteroid.m */,
+				EAF7E1EF191EF489008B9FD1 /* AEHighScoreManager.h */,
+				EAF7E1F0191EF489008B9FD1 /* AEHighScoreManager.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -417,6 +422,7 @@
 				EA9400C21906250500A7C18C /* AEPlayer.m in Sources */,
 				EA0F23C11907193600ED4C78 /* AEPreferences.m in Sources */,
 				EA8B24A71905C83B004D51D7 /* AEGameScene.m in Sources */,
+				EAF7E1F1191EF489008B9FD1 /* AEHighScoreManager.m in Sources */,
 				EA0F23BA19070A1600ED4C78 /* AEPlayerDetailsVC.m in Sources */,
 				EA9D571B1909BB600056BD55 /* AECategories.m in Sources */,
 				EA0F23C719074CC000ED4C78 /* AETwoPlayerJoinVC.m in Sources */,

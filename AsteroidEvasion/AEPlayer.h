@@ -36,7 +36,6 @@
 @property (readwrite, assign) NSInteger difficulty;
 
 -(UIColor *)getShipColorAsUIColor;
-
 -(NSDictionary *)toDictionary;
 
 @end
