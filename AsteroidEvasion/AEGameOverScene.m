@@ -9,6 +9,7 @@
 #import "AEGameOverScene.h"
 #import "AEGameScene.h"
 #import "AEPreferences.h"
+#import "AEHighScoreManager.h"
 
 // Node name constants
 NSString *const SCORE_NODE_NAME = @"scoreNodeName";
@@ -71,10 +72,10 @@ NSString *const SCORE_NODE_NAME = @"scoreNodeName";
     BOOL isNewHighScore = [self isHighScoreAchieved:self.finalScore];
     
     // If a new personal high score was achieved, update the view accordingly
+    NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
     if (isNewHighScore) {
         
         // Record the new high score in NSUserDefaults
-        NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
         [userPrefs setValue:[NSString stringWithFormat:@"%i", self.finalScore] forKey:KEY_PROFILE_HIGH_SCORE];
         [userPrefs synchronize];
         NSLog(@"New high score written to profile (%i)", self.finalScore);
@@ -91,6 +92,11 @@ NSString *const SCORE_NODE_NAME = @"scoreNodeName";
         scoreTextLabel.fontColor = [UIColor greenColor];
 
     }
+    
+    // Attempt to add this score to the master high score list
+    NSString *playerName = [userPrefs valueForKey:KEY_PROFILE_NAME];
+    [AEHighScoreManager addScoreToHighScoreTable:TABLE_ONE_PLAYER_SCORES playerName:playerName score:self.finalScore];
+    
     [self addChild:scoreTextLabel];
     
 }

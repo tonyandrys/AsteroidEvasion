@@ -817,7 +817,13 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Main" id="VT4-sT-5ao"/>
+                    <navigationItem key="navigationItem" title="Main" id="VT4-sT-5ao">
+                        <barButtonItem key="rightBarButtonItem" title="Clear Scores" id="eSu-y2-aY5">
+                            <connections>
+                                <action selector="clearHighScoresButtonPressed:" destination="dSs-zL-sWp" id="wNG-sz-Kgh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -912,6 +918,14 @@
                             <outlet property="delegate" destination="fuS-Bi-jXL" id="zQe-zP-7zG"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem systemItem="trash" id="fJB-9B-qzt">
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="clearHighScoresButtonPressed:" destination="fuS-Bi-jXL" id="8qF-sv-aL6"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="High Scores" id="xlv-wl-77Z">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="hiU-JO-6Sx">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="91P-iZ-mtx">
@@ -925,6 +939,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="clearHighScoresButton" destination="fJB-9B-qzt" id="9pJ-Eh-AXc"/>
                         <outlet property="dataSourceSegmentedControl" destination="hiU-JO-6Sx" id="OCp-P4-kjd"/>
                     </connections>
                 </tableViewController>

@@ -96,29 +96,48 @@ NSString *const KEY_HIGH_SCORE_PLAYER_SCORE = @"highScorePlayerScore";
 
         }
         
+        // Contains the elements we will write to memory
+        NSMutableArray *writeArray = [NSMutableArray array];
+        
+        // Edge Case II: index to add is at 0
+        if (k == 0) {
+            
+            [writeArray addObject:newHighScoreEntry];
+            [writeArray addObjectsFromArray:scoreArray];
+        }
+        
+        
         // Add the new high score at index=k by splitting the array into two parts, [0,k-1] and [k,n], and adding the new high score value to the first part.
-        
-        // Array [0,k-1]
-        NSMutableArray *a1 = [NSMutableArray array];
-        NSMutableArray *a2 = [NSMutableArray array];
-
-        for (int i=0; i<k; i++) {
-            [a1 addObject:[scoreArray objectAtIndex:i]];
+        else {
+            
+            // Array [0,k-1]
+            NSMutableArray *a1 = [NSMutableArray array];
+            // Array [k,n]
+            NSMutableArray *a2 = [NSMutableArray array];
+            
+            for (int i=0; i<k; i++) {
+                [a1 addObject:[scoreArray objectAtIndex:i]];
+            }
+            
+            // Build array [k,n]
+            for (int i=k; i<[scoreArray count]; i++){
+                [a2 addObject:[scoreArray objectAtIndex:i]];
+            }
+            
+            // Add the new high score entry to the back of the array containing items [0,k-1]
+            [a1 addObject:newHighScoreEntry];
+            
+            // Merge the two arrays and write the result to NSUserDefaults
+            writeArray = [[NSMutableArray alloc] init];
+            [writeArray addObjectsFromArray:a1];
+            if ([a2 count] > 0) {
+                [writeArray addObjectsFromArray:a2];
+            }
         }
         
-        // Build array [k,n]
-        for (int i=k; i<[scoreArray count]; i++){
-            [a2 addObject:[scoreArray objectAtIndex:i]];
-        }
-             
-        // Add the new high score entry to the back of the array containing items [0,k-1]
-        [a1 addObject:newHighScoreEntry];
-        
-        // Merge the two arrays and write the result to NSUserDefaults
-        NSMutableArray *writeArray = [[NSMutableArray alloc] init];
-        [writeArray addObjectsFromArray:a1];
-        [writeArray addObject:a2];
+        // Write the final array to memory
         [self writeHighScoreTable:table arrayToWrite:writeArray];
+        
     }
 }
 

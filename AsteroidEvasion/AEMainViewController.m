@@ -12,6 +12,7 @@
 #import "AETwoPlayerGameVC.h"
 #import "AEGameSceneViewController.h"
 #import "AESettingsTableViewController.h"
+#import "AEHighScoreManager.h"
 
 @interface AEMainViewController ()
 
@@ -156,6 +157,13 @@
         destinationVC.loggedInPlayer = p;
         NSLog(@"Sending AEPlayer object to Settings menu...");
     }
+}
+
+// *TEMPORARY METHOD AND BUTTON USED FOR TROUBLESHOOTING ONLY*
+// Clears all stored high scores
+- (IBAction)clearHighScoresButtonPressed:(id)sender {
+    [AEHighScoreManager clearHighScoreTable:TABLE_ONE_PLAYER_SCORES];
+    [AEHighScoreManager clearHighScoreTable:TABLE_TWO_PLAYER_SCORES];
 }
 
 @end

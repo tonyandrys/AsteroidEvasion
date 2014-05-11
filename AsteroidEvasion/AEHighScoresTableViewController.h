@@ -13,7 +13,11 @@
 // Segmented Control view embedded in the top navigation bar. User toggles this to swap between 1 player and 2 player scores
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *dataSourceSegmentedControl;
 
+// Reference to Clear High Scores Button
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *clearHighScoresButton;
+
 // Holds the dictionary containing the loaded high scores from memory
+@property (strong, nonatomic) NSUserDefaults *userPrefs;
 @property (strong, nonatomic) NSArray *highScores;
 
 @end

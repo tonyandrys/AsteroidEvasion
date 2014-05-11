@@ -7,6 +7,8 @@
 //
 
 #import "AEHighScoresTableViewController.h"
+#import "AEPreferences.h"
+#import "AEHighScoreManager.h"
 
 @interface AEHighScoresTableViewController ()
 
@@ -26,12 +28,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.userPrefs = [NSUserDefaults standardUserDefaults];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    // TEMPORARY: Pull one player high scores from NSUserDefaults
+    self.highScores = [self.userPrefs valueForKey:TABLE_ONE_PLAYER_SCORES];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,7 +50,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return [self.highScores count];
 }
 
@@ -58,9 +58,19 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HighScoreCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    // Get the high score object for this cell
+    NSDictionary *d = [self.highScores objectAtIndex:indexPath.row];
     
+    // Extract name/score values from the high score entry and write them to the cell
+    cell.textLabel.text = [d valueForKey:KEY_HIGH_SCORE_PLAYER_NAME];
+    cell.detailTextLabel.text = [d valueForKey:KEY_HIGH_SCORE_PLAYER_SCORE];
     return cell;
+    
+}
+
+#pragma mark - UI Button Actions
+// Called when the Clear Scores button at the bottom of the is pressed by the player - clears all stored high scores
+- (IBAction)clearHighScoresButtonPressed:(id)sender {
 }
 
 /*
