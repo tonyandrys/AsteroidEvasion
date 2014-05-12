@@ -40,13 +40,13 @@ NSString *const SCORE_NODE_NAME = @"scoreNodeName";
     SKLabelNode *gameOverTextLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
     gameOverTextLabel.fontSize = 36;
     gameOverTextLabel.fontColor = [UIColor whiteColor];
-    gameOverTextLabel.position = CGPointMake(self.frame.size.width/2, self.frame.size.height - 64.0f);
+    gameOverTextLabel.position = CGPointMake(self.frame.size.width/2, self.frame.size.height - 84.0f);
     gameOverTextLabel.text = @"Game Over!";
     [self addChild:gameOverTextLabel];
     
     // Back button
     SKSpriteNode *backButton = [SKSpriteNode spriteNodeWithImageNamed:@"backButton"];
-    backButton.position = CGPointMake(0.0f + backButton.frame.size.height, 0.0f + backButton.frame.size.height);
+    backButton.position = CGPointMake(0.0f + backButton.frame.size.width, 0.0f + backButton.frame.size.height);
     backButton.name = @"backButtonNode";
     [self addChild:backButton];
     

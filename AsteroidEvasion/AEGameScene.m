@@ -67,16 +67,6 @@ CGPoint topRightPoint;
         
         fireInterval = 1.0f;
         self.asteroidLaunchCounter = 0;
-        
-        /*if (difficulty == 3) {
-            fireInterval = 1.0f;
-        } else if (difficulty == 2) {
-            fireInterval = 2.0f;
-        } else if (difficulty == 1) {
-            fireInterval = 3.0f;
-        } else if (difficulty == 0) {
-            fireInterval = 4.0f;
-        }*/
         NSLog(@"Fire interval set: %f", fireInterval);
         
         // Setup the scene
@@ -193,7 +183,7 @@ CGPoint topRightPoint;
     [self addChild:playerNameLabel];*/
     
     // Player score label
-    self.playerScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    self.playerScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica Bold"];
     self.playerScoreLabel.text = @"0"; // start at a score of zero
     self.playerScoreLabel.fontSize = 18;
     self.playerScoreLabel.fontColor = [self.playerOne getShipColorAsUIColor];
@@ -202,7 +192,7 @@ CGPoint topRightPoint;
     self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     [self addChild:self.playerScoreLabel];
     
-    self.player2Score = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    self.player2Score = [SKLabelNode labelNodeWithFontNamed:@"Helvetica Bold"];
     //self.player2Score.text = @"0"; // start at a score of zero
     self.player2Score.fontSize = 18;
     self.player2Score.fontColor = [UIColor redColor];
@@ -313,7 +303,7 @@ CGPoint topRightPoint;
     // Fire a new asteroid at the stored position using the stored force vector
     [self generateAsteroidAt:launchPosition withSize:asteroidSize withForce:launchVector];
     self.asteroidLaunchCounter++;
-    NSLog(@"asteroid launch counter is %i", self.asteroidLaunchCounter);
+    //NSLog(@"asteroid launch counter is %i", self.asteroidLaunchCounter);
     
     
 }
@@ -341,7 +331,7 @@ CGPoint topRightPoint;
         asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY || BITMASK_ASTEROID_CATEGORY; // Notify if the asteroid makes contact with the ship
         
         // Add to SKScene
-        NSLog(@"Generated asteroid at (%f. %f) with force dx=%f, dy=%f)", pos.x, pos.y, force.dx, force.dy);
+        //NSLog(@"Generated asteroid at (%f. %f) with force dx=%f, dy=%f)", pos.x, pos.y, force.dx, force.dy);
         [self addChild:asteroid];
         // After asteroid is added, apply linear impulse
         [asteroid.physicsBody applyImpulse:force];
@@ -365,7 +355,7 @@ CGPoint topRightPoint;
         asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY |BITMASK_ASTEROID_CATEGORY; // Notify if the asteroid makes contact with the ship OR another asteroid
         
         // Add to SKScene
-        NSLog(@"Generated asteroid at (%f. %f) with force dx=%f, dy=%f)", pos.x, pos.y, force.dx, force.dy);
+        //NSLog(@"Generated asteroid at (%f. %f) with force dx=%f, dy=%f)", pos.x, pos.y, force.dx, force.dy);
         [self addChild:asteroid];
         // After asteroid is added, apply linear impulse
         [asteroid.physicsBody applyImpulse:force];
