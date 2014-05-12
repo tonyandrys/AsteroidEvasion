@@ -31,12 +31,6 @@
     // Present the scene.
     [skView presentScene:scene];
     
-//    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"space02"]];
-//    bgImageView.frame = self.view.bounds;
-//    [skView addSubview:bgImageView];
-//    [skView sendSubviewToBack:bgImageView];
-    
-    
 }
 
 - (BOOL)shouldAutorotate
