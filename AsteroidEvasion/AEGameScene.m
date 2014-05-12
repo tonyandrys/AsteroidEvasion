@@ -375,17 +375,18 @@ CGPoint topRightPoint;
     self.playerScore += 1;
     
     // Update on screen score label to the player's current score
-    self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", self.playerOne.name, self.playerScore];
+    int tempInt = self.playerScore;
+    self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", self.playerOne.name, tempInt];
     self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
    
     if([_appDelegate.mcManager.session.connectedPeers lastObject] != nil){ // if two player game and connected with another
-        NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.playerScore]]; // will send current player score
+        NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:tempInt]]; // will send current player score
         NSError *error; // needed for sendData function
         self.playerScoreLabel.fontColor = [UIColor blueColor];
         self.playerScoreLabel.position = CGPointMake(topLeftPoint.x + 0.0, topLeftPoint.y - 30.0);
         self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
         //self.playerScoreLabel.textAlignment = NSTextAlignmentCenter;
-        self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", [_appDelegate.mcManager.self.peerID displayName], self.playerScore];
+        self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", [_appDelegate.mcManager.self.peerID displayName], tempInt];
         
         if (!self.isDead) {
         [_appDelegate.mcManager.session sendData:dataToSend
