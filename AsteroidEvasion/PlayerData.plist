@@ -8,19 +8,29 @@
 			<key>name</key>
 			<string>Tony</string>
 			<key>highScore</key>
-			<string>100</string>
+			<string>0</string>
 			<key>shipColor</key>
-			<string>White</string>
+			<string>Green</string>
 			<key>difficulty</key>
-			<string>2</string>
+			<string>1</string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>Barack</string>
+			<string>Patrick</string>
 			<key>highScore</key>
-			<string>50</string>
+			<string>0</string>
 			<key>shipColor</key>
 			<string>Red</string>
+			<key>difficulty</key>
+			<string>1</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Ian</string>
+			<key>highScore</key>
+			<string>0</string>
+			<key>shipColor</key>
+			<string>Blue</string>
 			<key>difficulty</key>
 			<string>1</string>
 		</dict>

@@ -106,6 +106,10 @@ NSString *const SCORE_NODE_NAME = @"scoreNodeName";
     
     [self addChild:scoreTextLabel];
     
+    // Play burning sound effect
+    [self runAction:[SKAction playSoundFileNamed:@"burn.wav" waitForCompletion:NO]];
+
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
