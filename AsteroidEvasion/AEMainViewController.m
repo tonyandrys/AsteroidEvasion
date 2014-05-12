@@ -13,6 +13,7 @@
 #import "AEGameSceneViewController.h"
 #import "AESettingsTableViewController.h"
 #import "AEHighScoreManager.h"
+#import "AEAppDelegate.h"
 
 @interface AEMainViewController ()
 
@@ -32,6 +33,7 @@
     
 //    UIImage *logo = [[UIImage alloc] initWithCIImage:[UIImage imageNamed:@"space02"]];
  //   logo.size
+    _appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     // Load user preferences to get the profile currently logged in
     self.userPrefs = [NSUserDefaults standardUserDefaults];
@@ -141,7 +143,7 @@
         
         // Get reference to destination VC
         AEGameSceneViewController *destinationVC = [segue destinationViewController];
-        
+        [_appDelegate.mcManager.session disconnect];
         // Write the AEPlayer object we just made to the destinationVC's loggedInPlayer property
         destinationVC.loggedInPlayer = p;
         NSLog(@"Sending AEPlayer object to One Player Game...");
