@@ -197,7 +197,7 @@ CGPoint topRightPoint;
     self.playerScoreLabel.text = @"0"; // start at a score of zero
     self.playerScoreLabel.fontSize = 18;
     self.playerScoreLabel.fontColor = [self.playerOne getShipColorAsUIColor];
-    self.playerScoreLabel.position = CGPointMake((bottomLeftPoint.x +bottomRightPoint.x)/2 + 0.0, bottomLeftPoint.y + 5.0);
+    self.playerScoreLabel.position = CGPointMake((bottomLeftPoint.x +bottomRightPoint.x)/2 + 0.0, topLeftPoint.y - 30.0);
     self.playerScoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
     self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     [self addChild:self.playerScoreLabel];
@@ -206,9 +206,9 @@ CGPoint topRightPoint;
     //self.player2Score.text = @"0"; // start at a score of zero
     self.player2Score.fontSize = 18;
     self.player2Score.fontColor = [UIColor redColor];
-    self.player2Score.position = CGPointMake((bottomLeftPoint.x + bottomRightPoint.x)/2 + 0.0, bottomLeftPoint.y + 25.0);
+    self.player2Score.position = CGPointMake(bottomRightPoint.x + 0.0, topLeftPoint.y - 30.0);
     self.player2Score.verticalAlignmentMode = SKLabelVerticalAlignmentModeBaseline;
-    self.player2Score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
+    self.player2Score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
     [self addChild:self.player2Score];
     
     // Draw circle (path for ship)
@@ -386,12 +386,14 @@ CGPoint topRightPoint;
     
     // Update on screen score label to the player's current score
     self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", self.playerOne.name, self.playerScore];
+    self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
    
-    if(_appDelegate.mcManager.session.connectedPeers != nil){ // if two player game and connected with another
+    if([_appDelegate.mcManager.session.connectedPeers lastObject] != nil){ // if two player game and connected with another
         NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.playerScore]]; // will send current player score
         NSError *error; // needed for sendData function
         self.playerScoreLabel.fontColor = [UIColor blueColor];
-        self.playerScoreLabel.position = CGPointMake((bottomLeftPoint.x + bottomRightPoint.x)/2 + 0.0, bottomLeftPoint.y + 5.0);
+        self.playerScoreLabel.position = CGPointMake(topLeftPoint.x + 0.0, topLeftPoint.y - 30.0);
+        self.playerScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
         //self.playerScoreLabel.textAlignment = NSTextAlignmentCenter;
         self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", [_appDelegate.mcManager.self.peerID displayName], self.playerScore];
         
