@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     
-    colors = @[@"White", @"Red", @"Orange", @"Yellow", @"Green", @"Blue"];
+    colors = @[@"Red", @"Orange", @"Yellow", @"Green", @"Blue", @"Purple"];
     
     // Determine the selected index by matching the stored color against the list of colors
     selectedIndex = [colors indexOfObject:self.color];
