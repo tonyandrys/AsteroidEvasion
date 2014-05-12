@@ -337,8 +337,8 @@ CGPoint topRightPoint;
         asteroid.physicsBody.restitution = 1.0f; // Restitution- we want elastic collisions with no energy loss
         asteroid.physicsBody.linearDamping = 0.0f; // Linear dampening = air friction - there's none of that shit in space
         asteroid.physicsBody.allowsRotation = YES; // Asteroids should rotate maybe
-        asteroid.physicsBody.categoryBitMask = BITMASK_ASTEROID_CATEGORY; // Assign asteroid category bitmask, all asteroids will have the same for now (they will not collide with each other, which we will eventually want to change)
-        asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY; // Notify if the asteroid makes contact with the ship
+        asteroid.physicsBody.categoryBitMask = BITMASK_ASTEROID_CATEGORY; // Assign asteroid category bitmask, all asteroids will have the same for now
+        asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY || BITMASK_ASTEROID_CATEGORY; // Notify if the asteroid makes contact with the ship
         
         // Add to SKScene
         NSLog(@"Generated asteroid at (%f. %f) with force dx=%f, dy=%f)", pos.x, pos.y, force.dx, force.dy);
@@ -362,7 +362,7 @@ CGPoint topRightPoint;
         asteroid.physicsBody.linearDamping = 0.0f; // Linear dampening = air friction - there's none of that shit in space
         asteroid.physicsBody.allowsRotation = YES; // Asteroids should rotate maybe
         asteroid.physicsBody.categoryBitMask = BITMASK_ASTEROID_CATEGORY; // Assign asteroid category bitmask, all asteroids will have the same for now (they will not collide with each other, which we will eventually want to change)
-        asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY; // Notify if the asteroid makes contact with the ship
+        asteroid.physicsBody.contactTestBitMask = BITMASK_SHIP_CATEGORY |BITMASK_ASTEROID_CATEGORY; // Notify if the asteroid makes contact with the ship OR another asteroid
         
         // Add to SKScene
         NSLog(@"Generated asteroid at (%f. %f) with force dx=%f, dy=%f)", pos.x, pos.y, force.dx, force.dy);
@@ -370,6 +370,9 @@ CGPoint topRightPoint;
         // After asteroid is added, apply linear impulse
         [asteroid.physicsBody applyImpulse:force];
     }
+    
+    // Play launch sound
+    [self runAction:[SKAction playSoundFileNamed:@"asteroid-launch.wav" waitForCompletion:NO]];
     
 }
 
@@ -587,19 +590,28 @@ CGPoint topRightPoint;
 /* Method called when contact is made between two nodes with different collision bitmasks. */
 -(void)didBeginContact:(SKPhysicsContact *)contact {
     
+    if (contact.bodyA.categoryBitMask == contact.bodyB.categoryBitMask) {
+        // Asteroid collision - play the collision sound effect
+        [self runAction:[SKAction playSoundFileNamed:@"crack.wav" waitForCompletion:NO]];        
+    }
+    
     // If a collision happens between the ship and an asteroid, the game is over. Build the endgame scene and pass the player's final score
-    AEGameOverScene* gameOverScene = [[AEGameOverScene alloc] initWithSize:self.frame.size playerScore:self.playerScore];
-    
-    // Pass player model to game over scene
-    gameOverScene.playerOne = self.playerOne;
-    
-    // Kill the asteroid launch timer
-    [asteroidTimer invalidate];
-    
-    self.isDead = true;
+    else {
+        AEGameOverScene* gameOverScene = [[AEGameOverScene alloc] initWithSize:self.frame.size playerScore:self.playerScore];
         
-    // Present the game over screen
-    [self.view presentScene:gameOverScene];
+        // Pass player model to game over scene
+        gameOverScene.playerOne = self.playerOne;
+        
+        // Kill the asteroid launch timer
+        [asteroidTimer invalidate];
+        
+        self.isDead = true;
+        
+        // Present the game over screen
+        [self.view presentScene:gameOverScene];
+    }
+    
+
     
 }
 

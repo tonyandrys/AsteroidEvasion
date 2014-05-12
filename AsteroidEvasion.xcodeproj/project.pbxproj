@@ -41,6 +41,8 @@
 		EA9D571B1909BB600056BD55 /* AECategories.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D571A1909BB600056BD55 /* AECategories.m */; };
 		EA9D571E190AF8D50056BD55 /* AEGameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9D571D190AF8D50056BD55 /* AEGameOverScene.m */; };
 		EA9D571F190B04AE0056BD55 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F751C4190A1CA00006D253 /* MCManager.m */; };
+		EADA95C119206B690043DB0C /* asteroid-launch.wav in Resources */ = {isa = PBXBuildFile; fileRef = EADA95BF19206B690043DB0C /* asteroid-launch.wav */; };
+		EADA95C219206B690043DB0C /* crack.wav in Resources */ = {isa = PBXBuildFile; fileRef = EADA95C019206B690043DB0C /* crack.wav */; };
 		EAF65A731919CE7C00E8FE31 /* AESettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A721919CE7C00E8FE31 /* AESettingsTableViewController.m */; };
 		EAF65A761919DF3700E8FE31 /* AEColorPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A751919DF3700E8FE31 /* AEColorPickerTableViewController.m */; };
 		EAF65A79191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF65A78191B0C4A00E8FE31 /* AEDifficultyPickerTableViewController.m */; };
@@ -114,6 +116,8 @@
 		EA9D571A1909BB600056BD55 /* AECategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AECategories.m; sourceTree = "<group>"; };
 		EA9D571C190AF8D50056BD55 /* AEGameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEGameOverScene.h; sourceTree = "<group>"; };
 		EA9D571D190AF8D50056BD55 /* AEGameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEGameOverScene.m; sourceTree = "<group>"; };
+		EADA95BF19206B690043DB0C /* asteroid-launch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "asteroid-launch.wav"; sourceTree = "<group>"; };
+		EADA95C019206B690043DB0C /* crack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = crack.wav; sourceTree = "<group>"; };
 		EAF65A711919CE7C00E8FE31 /* AESettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESettingsTableViewController.h; sourceTree = "<group>"; };
 		EAF65A721919CE7C00E8FE31 /* AESettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESettingsTableViewController.m; sourceTree = "<group>"; };
 		EAF65A741919DF3700E8FE31 /* AEColorPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEColorPickerTableViewController.h; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 		EA8B24931905C83B004D51D7 /* AsteroidEvasion */ = {
 			isa = PBXGroup;
 			children = (
+				EADA95BE19206B580043DB0C /* Audio */,
 				EA0F23BB1907146800ED4C78 /* Constants */,
 				EA9400BF190624E300A7C18C /* Objects */,
 				EA65FBBD1905DF4A0013AB7C /* Assets */,
@@ -313,6 +318,15 @@
 				EAF7E1F0191EF489008B9FD1 /* AEHighScoreManager.m */,
 			);
 			name = Objects;
+			sourceTree = "<group>";
+		};
+		EADA95BE19206B580043DB0C /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				EADA95BF19206B690043DB0C /* asteroid-launch.wav */,
+				EADA95C019206B690043DB0C /* crack.wav */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,11 +409,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EADA95C119206B690043DB0C /* asteroid-launch.wav in Resources */,
 				EA8B24981905C83B004D51D7 /* InfoPlist.strings in Resources */,
 				EA0F23B719064F7F00ED4C78 /* PlayerData.plist in Resources */,
 				EA8B24AB1905C83B004D51D7 /* Images.xcassets in Resources */,
 				EA8B24A91905C83B004D51D7 /* Spaceship.png in Resources */,
 				EA8B24A11905C83B004D51D7 /* Main.storyboard in Resources */,
+				EADA95C219206B690043DB0C /* crack.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
