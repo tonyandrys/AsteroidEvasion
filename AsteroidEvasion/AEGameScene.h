@@ -21,6 +21,7 @@
 // Current score of the player is stored here
 
 @property (nonatomic) NSInteger playerScore;
+@property (nonatomic) NSInteger asteroidLaunchCounter;
 @property (readwrite, assign) int player2S; // player 2 score
 @property (readwrite, assign) bool isDead; // if ship hit asteroid
 

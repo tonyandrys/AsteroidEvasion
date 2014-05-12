@@ -62,9 +62,13 @@ CGPoint topRightPoint;
         asteroidLaunchPoints = [self buildAsteroidLaunchDictionary];
         
         // Determine asteroid launch interval by checking the difficulty setting of the user
-        NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
-        NSInteger difficulty = [[userPrefs valueForKey:KEY_PROFILE_DIFFICULTY] integerValue];
-        if (difficulty == 3) {
+        //NSUserDefaults *userPrefs = [NSUserDefaults standardUserDefaults];
+        //NSInteger difficulty = [[userPrefs valueForKey:KEY_PROFILE_DIFFICULTY] integerValue];
+        
+        fireInterval = 1.0f;
+        self.asteroidLaunchCounter = 0;
+        
+        /*if (difficulty == 3) {
             fireInterval = 1.0f;
         } else if (difficulty == 2) {
             fireInterval = 2.0f;
@@ -72,7 +76,7 @@ CGPoint topRightPoint;
             fireInterval = 3.0f;
         } else if (difficulty == 0) {
             fireInterval = 4.0f;
-        }
+        }*/
         NSLog(@"Fire interval set: %f", fireInterval);
         
         // Setup the scene
@@ -131,7 +135,7 @@ CGPoint topRightPoint;
     
     // Apparently I can't wrap a CGVector in an NSValue, so here comes a C array
     // Index of each vector corresponds to launchPoint
-    CGVector launchVectors[] = {CGVectorMake(15.0f, 15.0f), CGVectorMake(10.0f, 15.0f), CGVectorMake(0.0f, 15.0f), CGVectorMake(-10.0f, 15.0f), CGVectorMake(-15.0f, 15.0f), CGVectorMake(15.0f, -15.0f), CGVectorMake(10.0f, -15.0f), CGVectorMake(0.0f, -15.0f), CGVectorMake(-10.0f, -15.0f), CGVectorMake(-15.0f, -15.0f)};
+    CGVector launchVectors[] = {CGVectorMake(25.0f, 25.0f), CGVectorMake(20.0f, 25.0f), CGVectorMake(0.0f, 25.0f), CGVectorMake(-20.0f, 25.0f), CGVectorMake(-25.0f, 25.0f), CGVectorMake(25.0f, -25.0f), CGVectorMake(20.0f, -25.0f), CGVectorMake(0.0f, -25.0f), CGVectorMake(-20.0f, -25.0f), CGVectorMake(-25.0f, -25.0f)};
 
     // Initialize a new dictionary to add points/vectors to
     NSMutableDictionary *pointDictionary = [[NSMutableDictionary alloc] init];
@@ -272,20 +276,44 @@ CGPoint topRightPoint;
 -(void)generateNewAsteroid {
     
     // Get a random index value inside the size of asteroidLaunchPoints
-    int i = [self generateRandomNumberBetween:0 maxNumber:([asteroidLaunchPoints count]-1)];
+    //int i = [self generateRandomNumberBetween:0 maxNumber:([asteroidLaunchPoints count]-1)];
     
     // Convert the number into a string to use as a key for the asteroid launch points dictionary
-    NSString *k = [NSString stringWithFormat:@"%i", i];
+    NSString *k = [NSString stringWithFormat:@"%i", self.asteroidLaunchCounter % 7];
     
     // Get the dictionary located at key @"k" and extract launch parameters
     NSDictionary* launchParameters = [asteroidLaunchPoints objectForKey:k];
     
     CGPoint launchPosition = [[launchParameters valueForKey:KEY_ASTEROID_POSITION] CGPointValue];
-    CGVector launchVector = CGVectorMake([[launchParameters valueForKey:KEY_ASTEROID_VECTOR_DX] floatValue], [[launchParameters valueForKey:KEY_ASTEROID_VECTOR_DY] floatValue]);
+    
+    // ** Temporarily disabled for the possibility of a better algorithm
+    //CGVector launchVector = CGVectorMake([[launchParameters valueForKey:KEY_ASTEROID_VECTOR_DX] floatValue], [[launchParameters valueForKey:KEY_ASTEROID_VECTOR_DY] floatValue]);
+    
+    // Store ship position
+    SKSpriteNode *ship = (SKSpriteNode *)[self childNodeWithName:NAME_CATEGORY_SHIP];
+    CGPoint shipPostition = CGPointMake(ship.position.x, ship.position.y);
+    
+    // We can construct a line between the asteroid launch position and the ship with their two positions using the point-slope formula
+    double x0 = shipPostition.x;
+    double y0 = shipPostition.y;
+    double x1 = launchPosition.x;
+    double y1 = launchPosition.y;
+    
+    // Solve for m (slope) using the equation form: [(y0-y1)/(x0-x1)]=m
+    //double m = ((y0-y1)/(x0-x1));
+    
+    double dy = (y0-y1) ;
+    double dx = (x0-x1);
+    
+    // Set launch vector of asteroid at dx/dy (which should be == m)
+    CGVector launchVector = CGVectorMake(dx/8, dy/8);
     CGSize asteroidSize = CGSizeMake(75.0f, 75.0f); // Hardcoding size for now
+    
 
     // Fire a new asteroid at the stored position using the stored force vector
     [self generateAsteroidAt:launchPosition withSize:asteroidSize withForce:launchVector];
+    self.asteroidLaunchCounter++;
+    NSLog(@"asteroid launch counter is %i", self.asteroidLaunchCounter);
     
     
 }
