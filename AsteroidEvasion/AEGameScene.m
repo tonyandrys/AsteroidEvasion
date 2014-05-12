@@ -356,7 +356,7 @@ CGPoint topRightPoint;
     // Update on screen score label to the player's current score
     self.playerScoreLabel.text = [NSString stringWithFormat:@"%@:%i", self.playerOne.name, self.playerScore];
    
-    if(_appDelegate.mcManager.session.connectedPeers != nil){ // if two player game and connected with another
+    if([_appDelegate.mcManager.session.connectedPeers lastObject] != nil){ // if two player game and connected with another
         NSData *dataToSend = [NSKeyedArchiver archivedDataWithRootObject:[NSNumber numberWithInt:self.playerScore]]; // will send current player score
         NSError *error; // needed for sendData function
         self.playerScoreLabel.fontColor = [UIColor blueColor];
