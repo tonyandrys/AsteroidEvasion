@@ -904,22 +904,10 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="High Scores" id="xlv-wl-77Z">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="hiU-JO-6Sx">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="91P-iZ-mtx">
-                                <rect key="frame" x="233" y="7" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="1"/>
-                                    <segment title="2"/>
-                                </segments>
-                            </segmentedControl>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="High Scores" id="xlv-wl-77Z"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="clearHighScoresButton" destination="fJB-9B-qzt" id="9pJ-Eh-AXc"/>
-                        <outlet property="dataSourceSegmentedControl" destination="hiU-JO-6Sx" id="OCp-P4-kjd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="991-ma-26t" userLabel="First Responder" sceneMemberID="firstResponder"/>
